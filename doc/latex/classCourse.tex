@@ -1,0 +1,57 @@
+\hypertarget{classCourse}{}\section{Course Class Reference}
+\label{classCourse}\index{Course@{Course}}
+
+
+Repository of \hyperlink{classSession}{Session} instances identified by an unique id.  
+
+
+
+
+{\ttfamily \#include $<$courses.\+hh$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classCourse_a3e2bd434ae266de10601112d808f5e15}{is\+\_\+legal} ()
+\item 
+string \hyperlink{classCourse_a37e52d8c02455bccec118d3ca95b8496}{find\+\_\+session\+\_\+id} (string target\+\_\+problem)
+\item 
+\mbox{\Hypertarget{classCourse_a92302590d57b2871c76b369b53404cfc}\label{classCourse_a92302590d57b2871c76b369b53404cfc}} 
+\hyperlink{classSession}{Session} \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (string)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Repository of \hyperlink{classSession}{Session} instances identified by an unique id. 
+
+The \hyperlink{classCourse}{Course} class behaves as a wrapper of uniquely identified by an id combinations \hyperlink{classSession}{Session} instances. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classCourse_a37e52d8c02455bccec118d3ca95b8496}\label{classCourse_a37e52d8c02455bccec118d3ca95b8496}} 
+\index{Course@{Course}!find\+\_\+session\+\_\+id@{find\+\_\+session\+\_\+id}}
+\index{find\+\_\+session\+\_\+id@{find\+\_\+session\+\_\+id}!Course@{Course}}
+\subsubsection{\texorpdfstring{find\+\_\+session\+\_\+id()}{find\_session\_id()}}
+{\footnotesize\ttfamily string Course\+::find\+\_\+session\+\_\+id (\begin{DoxyParamCaption}\item[{string}]{target\+\_\+problem }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+\_\+problem} & The problem id to be searched. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An std\+::string containing the id of the internal session that contains the given problem id. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCourse_a3e2bd434ae266de10601112d808f5e15}\label{classCourse_a3e2bd434ae266de10601112d808f5e15}} 
+\index{Course@{Course}!is\+\_\+legal@{is\+\_\+legal}}
+\index{is\+\_\+legal@{is\+\_\+legal}!Course@{Course}}
+\subsubsection{\texorpdfstring{is\+\_\+legal()}{is\_legal()}}
+{\footnotesize\ttfamily bool Course\+::is\+\_\+legal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+True if there is no repeated problem across the different sessions stored in the implicit parameter. False otherwise. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/include/\hyperlink{courses_8hh}{courses.\+hh}\end{DoxyCompactItemize}

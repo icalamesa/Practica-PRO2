@@ -1,0 +1,57 @@
+\hypertarget{classSession}{}\section{Session Class Reference}
+\label{classSession}\index{Session@{Session}}
+
+
+Class that behaves as a problem set with completion requisites.  
+
+
+
+
+{\ttfamily \#include $<$sessions.\+hh$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classSession_a75f5a103f7251936bde1183acae2b97e}{read\+\_\+session} ()
+\item 
+set$<$ string $>$ \hyperlink{classSession_a571f2f08abc58c6670c78b922ffaade4}{list\+\_\+of\+\_\+problems} ()
+\item 
+bool \hyperlink{classSession_a004fcd4b4d5030cd7e48afe3444a69d4}{find} (string target\+\_\+problem)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that behaves as a problem set with completion requisites. 
+
+Class that represent a session, composed of multiple problems. A system of prerequisites is implemented so that problems may require other problems to be resolved first. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classSession_a004fcd4b4d5030cd7e48afe3444a69d4}\label{classSession_a004fcd4b4d5030cd7e48afe3444a69d4}} 
+\index{Session@{Session}!find@{find}}
+\index{find@{find}!Session@{Session}}
+\subsubsection{\texorpdfstring{find()}{find()}}
+{\footnotesize\ttfamily bool Session\+::find (\begin{DoxyParamCaption}\item[{string}]{target\+\_\+problem }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+True if the target problem id is found in this session problem list. False otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSession_a571f2f08abc58c6670c78b922ffaade4}\label{classSession_a571f2f08abc58c6670c78b922ffaade4}} 
+\index{Session@{Session}!list\+\_\+of\+\_\+problems@{list\+\_\+of\+\_\+problems}}
+\index{list\+\_\+of\+\_\+problems@{list\+\_\+of\+\_\+problems}!Session@{Session}}
+\subsubsection{\texorpdfstring{list\+\_\+of\+\_\+problems()}{list\_of\_problems()}}
+{\footnotesize\ttfamily set$<$string$>$ Session\+::list\+\_\+of\+\_\+problems (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+A std\+::set$<$std\+::string$>$ containing the id of the problems contained in the implicit parameter. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSession_a75f5a103f7251936bde1183acae2b97e}\label{classSession_a75f5a103f7251936bde1183acae2b97e}} 
+\index{Session@{Session}!read\+\_\+session@{read\+\_\+session}}
+\index{read\+\_\+session@{read\+\_\+session}!Session@{Session}}
+\subsubsection{\texorpdfstring{read\+\_\+session()}{read\_session()}}
+{\footnotesize\ttfamily void Session\+::read\+\_\+session (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Reads problems from standard input to initialize the implicit parameter. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/include/\hyperlink{sessions_8hh}{sessions.\+hh}\end{DoxyCompactItemize}

@@ -1,0 +1,99 @@
+\hypertarget{classSessions}{}\section{Sessions Class Reference}
+\label{classSessions}\index{Sessions@{Sessions}}
+
+
+General interface to manage a \hyperlink{classSession}{Session} repository.  
+
+
+
+
+{\ttfamily \#include $<$sessions.\+hh$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+set$<$ string $>$ \hyperlink{classSessions_a718f8c6c45ba188c3223334a6b636c96}{list\+\_\+of\+\_\+problems} (string session\+\_\+id)
+\item 
+void \hyperlink{classSessions_ad64feefd5a922b325e3e58d2462a5c4d}{read\+\_\+sessions} ()
+\item 
+string \hyperlink{classSessions_a16396f8b9ae0bb03f382636a733f9aa5}{find\+\_\+in\+\_\+sessions} (string prob)
+\item 
+bool \hyperlink{classSessions_a4298c2fc46ab30d4785f831712b6c5d0}{exists\+\_\+session} (string target)
+\item 
+void \hyperlink{classSessions_a63bf568976dda1bfdd5d324930bf860b}{insert\+\_\+session} (string id, \hyperlink{classSession}{Session} new\+\_\+session)
+\item 
+int \hyperlink{classSessions_a997503177f5cde1a81668df6dfbc64a8}{size} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+General interface to manage a \hyperlink{classSession}{Session} repository. 
+
+Repository of \hyperlink{classSession}{Session} instances that works as a general interface between the (implementation-\/agnostic) \hyperlink{classSession}{Session} storage model and the caller. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classSessions_a4298c2fc46ab30d4785f831712b6c5d0}\label{classSessions_a4298c2fc46ab30d4785f831712b6c5d0}} 
+\index{Sessions@{Sessions}!exists\+\_\+session@{exists\+\_\+session}}
+\index{exists\+\_\+session@{exists\+\_\+session}!Sessions@{Sessions}}
+\subsubsection{\texorpdfstring{exists\+\_\+session()}{exists\_session()}}
+{\footnotesize\ttfamily bool Sessions\+::exists\+\_\+session (\begin{DoxyParamCaption}\item[{string}]{target }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+True if a given \hyperlink{classSession}{Session} id exists in the \hyperlink{classSession}{Session} list, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSessions_a16396f8b9ae0bb03f382636a733f9aa5}\label{classSessions_a16396f8b9ae0bb03f382636a733f9aa5}} 
+\index{Sessions@{Sessions}!find\+\_\+in\+\_\+sessions@{find\+\_\+in\+\_\+sessions}}
+\index{find\+\_\+in\+\_\+sessions@{find\+\_\+in\+\_\+sessions}!Sessions@{Sessions}}
+\subsubsection{\texorpdfstring{find\+\_\+in\+\_\+sessions()}{find\_in\_sessions()}}
+{\footnotesize\ttfamily string Sessions\+::find\+\_\+in\+\_\+sessions (\begin{DoxyParamCaption}\item[{string}]{prob }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+An std\+::string with the id of the specific session that contains a given problem id. Blank string if no matches. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSessions_a63bf568976dda1bfdd5d324930bf860b}\label{classSessions_a63bf568976dda1bfdd5d324930bf860b}} 
+\index{Sessions@{Sessions}!insert\+\_\+session@{insert\+\_\+session}}
+\index{insert\+\_\+session@{insert\+\_\+session}!Sessions@{Sessions}}
+\subsubsection{\texorpdfstring{insert\+\_\+session()}{insert\_session()}}
+{\footnotesize\ttfamily void Sessions\+::insert\+\_\+session (\begin{DoxyParamCaption}\item[{string}]{id,  }\item[{\hyperlink{classSession}{Session}}]{new\+\_\+session }\end{DoxyParamCaption})}
+
+Inserts session onto the list of sessions. 
+\begin{DoxyParams}{Parameters}
+{\em id} & The id for the new session. \\
+\hline
+{\em new\+\_\+session} & The already initialized \hyperlink{classSession}{Session} instance to be added. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSessions_a718f8c6c45ba188c3223334a6b636c96}\label{classSessions_a718f8c6c45ba188c3223334a6b636c96}} 
+\index{Sessions@{Sessions}!list\+\_\+of\+\_\+problems@{list\+\_\+of\+\_\+problems}}
+\index{list\+\_\+of\+\_\+problems@{list\+\_\+of\+\_\+problems}!Sessions@{Sessions}}
+\subsubsection{\texorpdfstring{list\+\_\+of\+\_\+problems()}{list\_of\_problems()}}
+{\footnotesize\ttfamily set$<$string$>$ Sessions\+::list\+\_\+of\+\_\+problems (\begin{DoxyParamCaption}\item[{string}]{session\+\_\+id }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em session\+\_\+id} & The id of the specific session. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns an std\+::set$<$string$>$ of ids of problems in a given session. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSessions_ad64feefd5a922b325e3e58d2462a5c4d}\label{classSessions_ad64feefd5a922b325e3e58d2462a5c4d}} 
+\index{Sessions@{Sessions}!read\+\_\+sessions@{read\+\_\+sessions}}
+\index{read\+\_\+sessions@{read\+\_\+sessions}!Sessions@{Sessions}}
+\subsubsection{\texorpdfstring{read\+\_\+sessions()}{read\_sessions()}}
+{\footnotesize\ttfamily void Sessions\+::read\+\_\+sessions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Reads \hyperlink{classSession}{Session} instances from standard input and inserts them onto the list of sessions. \mbox{\Hypertarget{classSessions_a997503177f5cde1a81668df6dfbc64a8}\label{classSessions_a997503177f5cde1a81668df6dfbc64a8}} 
+\index{Sessions@{Sessions}!size@{size}}
+\index{size@{size}!Sessions@{Sessions}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily int Sessions\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+Integer with the amount of \hyperlink{classSession}{Session} contained in the list. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/include/\hyperlink{sessions_8hh}{sessions.\+hh}\end{DoxyCompactItemize}

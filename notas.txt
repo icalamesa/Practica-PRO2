@@ -1,0 +1,30 @@
+Colección de problemas.
+    -Tiene problemas
+
+Conjunto de cursos
+    -Formados por una o más sesiones del repositorio
+
+Repositorio de sesiones
+    -Las sesiones contienen problemas de la colección
+    -Cada sesión tiene un problema básico mínimo nmecesario
+    -Los problemas pueden ser prerequisito de hasta 2 problemas
+    - Los problemas solo pueden tener 1 problema de requisito directo
+
+CURSOS:
+    Identificados con numero de 1 a N
+    Las sesiones solo aparecen una vez por curso, así como los problemas
+    Problemas y sesiones pueden aparecer en más de un curso
+
+USUARIOS:
+    Identificados por string
+    Libertad entrar y darse de baja
+    Pueden inscribirse en curso poero necesitan completar el curso en el que están
+    Puede trabajar en más de una sesión pero del mismo curso y aquellos para los que tenga prerequisitos
+    Una vez solucion correcta no puede enviar solucion para ese mismo problema.
+    Mantendremos estadísticas de envío: Ha hecho un envío mínimo, cuántos correctos en total y numero de envíos
+    Debemos poder saber si está inscrito en un curso, y cuántos problemas ha realizado en ese o en anteriores
+    También de aquellos que podría resolver ahora.
+
+PROBLEMA:
+    Identificado por string
+    Solo es requerido gestionar numero de envios y cuantos son correctos
