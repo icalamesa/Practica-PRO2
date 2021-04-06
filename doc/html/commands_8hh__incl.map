@@ -1,6 +1,0 @@
-<map id="src/include/commands.hh" name="src/include/commands.hh">
-<area shape="rect" id="node2" href="$users_8hh.html" title="Specification of the whole User list/DB general&#45;use interface. " alt="" coords="5,80,77,107"/>
-<area shape="rect" id="node3" href="$courses_8hh.html" title="Course class and its list interface. " alt="" coords="102,80,189,107"/>
-<area shape="rect" id="node4" href="$sessions_8hh.html" title="Session class and the session list interface. " alt="" coords="99,155,191,181"/>
-<area shape="rect" id="node5" href="$problems_8hh.html" title="Problem class and a problem repository interface. " alt="" coords="99,229,192,256"/>
-</map>
