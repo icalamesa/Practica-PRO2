@@ -79,8 +79,8 @@ class Users
 	    Enrolls the specific User in a course if it is not in one (at function call). Prints an error message if it is already enrolled in a course.
 	    @param id Id of the specific student to search for.
 	    @param course_name Name of the course to enroll the user in.
-	    @pre An id of an existing user not enrolled in any course, plus the id of an existing @ref Course instance in the valid Course container.
-	    @post User with id identifier has been enrolled in a course with course_name identifier. 
+	    @pre An @p id of an existing user not enrolled in any course, plus the id of an existing @ref Course instance in the valid Course container.
+	    @post User with @p id identifier has been enrolled in a course with @p course_name identifier. 
 
 	*/
 	void sign_in_course(string id, int course_name);
@@ -88,7 +88,8 @@ class Users
 	    @param id Id of the specific student to search for.
 	    @param problem_id The id of the newly solved problem
 	    @param solved True if the given problem is solved, false otherwise.
-	    	    Registers a problem to the list of attempted problems by the user. Specifies whether the problem is solved and allows modification of the state of the problem (has been solved).
+	    @pre Problem with @p problem_id identifier exists in the platform and has not been already solved by the user with the given @p id. 
+	    @post Registers a problem to the list of attempted problems by the user. Specifies whether the problem is solved and allows modification of the state of the problem (has been solved).
 	*/
 	void add_problem_to_list(string id, string problem_id, bool solved);
 	/**
@@ -96,17 +97,17 @@ class Users
 	    @pre No precondition required.
 	    @post The list of solved problems is blanked out.
 	*/
-	void restart_solved_list(string id);
+	void restart_solved_list();
 	/**
 	    @param id Id of the specific student to search for.
-	    @pre User with the given id does not already exist in the platform.
-	    @post User with the given has been added to the user list.
+	    @pre User with @p id identifier does not already exist in the platform.
+	    @post User with the @p id identifier has been added to the user list.
 	*/
 	void insert_user(string id);
 	/**
 	    @param id Id of the specific student to search for.
-	    @pre User with the given id exists in the platform.
-	    @post User by the given id no longer exists in the platform.
+	    @pre User with @p id identifier exists in the platform.
+	    @post User with @p id identifier no longer exists in the platform.
 	*/
 	void remove_user(string id);
 	/**
