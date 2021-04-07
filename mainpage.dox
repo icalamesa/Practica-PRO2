@@ -1,0 +1,18 @@
+/*! \mainpage Evaluator Platform 
+ *
+ * \section intro_sec Introduction
+ *
+ * The Evaluator Platform is a portable app that allows anyone with the right tooling to set up a programming learning service. It relies in a Course model, which is also composed of multiple sessions, which also contain problems. 
+
+ Users may send solutions to the platform, which will then store that data and account those deliveries as 'correct' or not.  
+ *
+ * \section install_sec Installation
+
+ * No installation required. The Evaluator platform can be deployed anywhere in a C++ program. 
+ *
+ * \section extra Disclaimer
+ *
+ *  Any possible similarities between the Evaluator platform and other programming learning platforms is a mistake.
+ *  @image html EVALUATOR.png
+ */
+

@@ -49,27 +49,33 @@ class Users
 	Users();
 	/**
 	    @param id Id of the specific student to search for.
+	    @pre @p id is a valid string that corresponds to the id of an existing user
 	    @return An std::string with id of the course that the specific User is enrolled in (at function call).
 	*/
 	const string tell_course(string id);
 	/**
 	    @param id Id of the specific student to search for.
+	    @pre @p id is a valid string that corresponds to the id of an existing user
 	    @return True if the specific User is enrolled in a course, false if it is not.
 	*/
 	bool is_coursing(string id);
 
 	/**
 	    @param id Id of the specific student to search for.
+	    @pre @p id is a valid string that corresponds to the id of an existing user
 	    @return Integer with the amount of attempts(deliveries) the specific User has performed onto the platform.
 	*/
 	const int attempts(string id);
 	/**
 	    @param id Id of the specific student to search for.
+	    @pre @p id is a valid string that corresponds to the id of an existing user
 	    @return Integer with the amount of problems that have been solved so far by the specific User (deliveries flagged as correct). 
+
 	*/
 	const int amount_solved_problems(string id);
 	/**
 	    @param id of the specific student to search for.
+	    @pre User with @p id identifier exists in the platform.
 	    @return Integer with the amount of different problems that have been attempted so far by the specific User.
 	*/
 	const int different_attempts(string id);
@@ -79,7 +85,7 @@ class Users
 	    Enrolls the specific User in a course if it is not in one (at function call). Prints an error message if it is already enrolled in a course.
 	    @param id Id of the specific student to search for.
 	    @param course_name Name of the course to enroll the user in.
-	    @pre An @p id of an existing user not enrolled in any course, plus the id of an existing @ref Course instance in the valid Course container.
+	    @pre A valid string @p id of an existing user that is not enrolled in any course, plus @p course_id string corresponds to the id of an existing @ref Course instance in the valid Course container.
 	    @post User with @p id identifier has been enrolled in a course with @p course_name identifier. 
 
 	*/
@@ -88,25 +94,25 @@ class Users
 	    @param id Id of the specific student to search for.
 	    @param problem_id The id of the newly solved problem
 	    @param solved True if the given problem is solved, false otherwise.
-	    @pre Problem with @p problem_id identifier exists in the platform and has not been already solved by the user with the given @p id. 
+	    @pre @p problem_id string corresponds to the identifier of an existing problem in the platform that has not already been solved by the user with the given @p id as string id. 
 	    @post Registers a problem to the list of attempted problems by the user. Specifies whether the problem is solved and allows modification of the state of the problem (has been solved).
 	*/
 	void add_problem_to_list(string id, string problem_id, bool solved);
 	/**
 	    @param id Id of the specific student to search for.
-	    @pre No precondition required.
+	    @pre No precondition.
 	    @post The list of solved problems is blanked out.
 	*/
 	void restart_solved_list();
 	/**
 	    @param id Id of the specific student to search for.
-	    @pre User with @p id identifier does not already exist in the platform.
+	    @pre @p id identifier corresponds to an already existing user in the platform.
 	    @post User with the @p id identifier has been added to the user list.
 	*/
 	void insert_user(string id);
 	/**
 	    @param id Id of the specific student to search for.
-	    @pre User with @p id identifier exists in the platform.
+	    @pre @p id identifier corresponds to an already existing user in the platform.
 	    @post User with @p id identifier no longer exists in the platform.
 	*/
 	void remove_user(string id);
