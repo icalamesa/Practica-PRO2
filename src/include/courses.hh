@@ -35,6 +35,11 @@ class Course
 	    @return An std::string with the id of the internal session that contains the given problem id. If it does not exist, the string retuned is empty.
 	*/
 	string find_session_id(string target_problem);
+    /**
+        @param id String with identifier of a session
+        @
+    */
+    Session& get_session(string id);
 	Session& operator[](string);
 
 	~Course();

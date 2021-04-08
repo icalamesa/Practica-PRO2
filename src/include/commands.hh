@@ -64,11 +64,11 @@ class Evaluator
 
     //12.
     void tell_prob_list();
-    void tell_prob_list(queue<string> user);
+    void tell_prob_list(queue<string>& args);
 
     //13.
     void tell_session();
-    void tell_session(queue<string> args);
+    void tell_session(queue<string>& args);
 
     //14.
     void tell_courses();

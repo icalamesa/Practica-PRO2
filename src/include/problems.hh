@@ -49,7 +49,7 @@ class Problem_repo
     vector<Problem> problem_list;
     void ratio_sort();
     void id_sort();
-    
+
     public:
 	Problem_repo();
     /**
@@ -65,7 +65,7 @@ class Problem_repo
     /**
         @param id The id of the new problem to be created and added to the problem repository.
         @pre @p id is not the identifier of a currently existing problem instance,
-        @post @p id has been added to the problem repository.
+        @post if @p id does not exist, it is added to the problem repository. Otherwise throws error in Standard output.
     */
 	void insert_problem(string id);
     /**

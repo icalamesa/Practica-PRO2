@@ -39,15 +39,18 @@ class Session
 	/**
 	    @return A std::set<std::string> containing the id of the problems contained in the implicit parameter.
 	*/
+
+    //no puede devolver esto
 	set<string> list_of_problems();
 	/**
 	    @return True if the target problem id is found in this session problem list. False otherwise.
 	*/
 	bool find(string target_problem);
     /**
+        @param target_problem std::string containing the identifier of a problem
         @return A std::string with the id of the implicit parameter.
     */
-    string get_id();
+    string get_id(string target_problem);
 
 	~Session();
 };
@@ -88,6 +91,11 @@ class Sessions
 	    @return Integer with the amount of @ref Session contained in the list.
 	*/
 	int size();
+    /**
+        @param id Valid identifier of an exiting Session instance.
+        @return Session isntane reference
+    */
+    Session& get_session(string id);
 
 	~Sessions();
 };
