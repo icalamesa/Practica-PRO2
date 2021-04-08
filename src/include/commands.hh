@@ -1,8 +1,8 @@
 
-/** 
+/**
     @file
     @brief Evaluator main program class.
-    
+
     @author Ivan Cala Mesa
     @date 1st of April of 2021
 
@@ -16,18 +16,18 @@
 /**
     @brief Class that contains a deployable instance of the Evaluator Platform.
 
-    The Evaluator class behaves single-handedly as the Evaluator platform itself. It contains multiple interfaces such as @ref Courses, @ref Problem_repo and @ref Users. Evaluator itself can be deployed elsewhere, and only one evaluator instance can be on use in a single processor thread. 
+    The Evaluator class behaves single-handedly as the Evaluator platform itself. It contains multiple interfaces such as @ref Courses, @ref Problem_repo and @ref Users. Evaluator itself can be deployed elsewhere, and only one evaluator instance can be on use in a single processor thread.
 */
 class Evaluator
-{    
+{
     Users users_list;
 
     Problem_repo problem_list;
 
     Sessions session_list;
-    
+
     Courses course_list;
-    
+
     public:
     //1.
     void add_problem(queue<string>& args);
@@ -76,7 +76,14 @@ class Evaluator
 
     //15.
     void tell_users(queue<string>& args);
-
+    /**
+        Initializes the multiple internal objects contained in the implicit parameter. These instantiations require reading from standard input.
+        @pre Standard input text follows the input format for @ref Problem_repo, @ref Courses, and @ref Users.
+        @post Internal container interfaces have been initialized.
+    */
 	void init();
+    /**
+        Starts a command-line mode. Executs commands depending on the input command. Abbrevations for every commad have been defined.
+    */
 	void console();
 };

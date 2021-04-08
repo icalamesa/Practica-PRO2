@@ -1,8 +1,8 @@
 
-/** 
+/**
     @file
     @brief Course class and its list interface.
-    
+
     @author Ivan Cala Mesa
     @date 1st of April of 2021
 
@@ -31,7 +31,8 @@ class Course
 	bool is_legal();
 	/**
 	    @param target_problem The problem id to be searched.
-	    @return An std::string containing the id of the internal session that contains the given problem id.
+        @pre @p target_problem is an string correctly formatted
+	    @return An std::string with the id of the internal session that contains the given problem id. If it does not exist, the string retuned is empty.
 	*/
 	string find_session_id(string target_problem);
 	Session& operator[](string);
@@ -45,23 +46,38 @@ class Course
 */
 class Courses
 {
-    //incorrecto, listar por orden de inclusion
+    //listar por orden de inclusión
     map<int, Course> course_list;
+
     public:
+    Courses();
 	/**
-	    Adds a new course to the @ref Course list.
+
 	    @param new_course Course instance to be inserted.
+        @pre @p newcourse is a valid course instance
+        @post A new Course instance has been added to the @ref Course list.
 	*/
 	void insert_course(Course new_course);
 	/**
-	    Reads a course instance from standard input and inserts it into the list.
+        Reads Cours einstances from standard input.
+	    @pre Course instances in standard input follow the valid specified format by the docs.
+        @post Course instances have been read and added to the list of courses.
 	    For more insight into the reading format, see @ref Problem and @ref Session.
 	*/
 	void read_courses();
-	void count_courses();
+    /**
+        @pre No prerequisites.
+        @return An integer with the amount of Course instances inside the implicit argument internal list.
+    */
+	int count_courses();
+    /**
+        @param id Identifier of a Course instance.
+        @pre @p id is an integer with a valid course id.
+        @return Lvalue reference to a Course instance
+    */
 	Course& get_course();
 	Course& operator[](int index);
-	Courses();
+
 	~Courses();
 };
 #endif

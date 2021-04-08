@@ -1,8 +1,8 @@
 
-/** 
+/**
     @file
     @brief Session class and the session list interface.
-    
+
     @author Ivan Cala Mesa
     @date 1st of April of 2021
 
@@ -28,6 +28,7 @@ class Session
     BinTree<string> problem_node;
     int size = 0;
     void recalc_size();
+    string id;
 
     public:
 	Session();
@@ -40,19 +41,23 @@ class Session
 	*/
 	set<string> list_of_problems();
 	/**
-	    @return True if the target problem id is found in this session problem list. False otherwise. 
+	    @return True if the target problem id is found in this session problem list. False otherwise.
 	*/
 	bool find(string target_problem);
-	
+    /**
+        @return A std::string with the id of the implicit parameter.
+    */
+    string get_id();
+
 	~Session();
 };
-/** @brief General interface to manage a Session repository. 
+/** @brief General interface to manage a Session repository.
 
     Repository of @ref Session instances that works as a general interface between the (implementation-agnostic) Session storage model and the caller.
 */
 class Sessions
 {
-    map<string, Session> session_list;
+    vector<Session> session_list;
 
     public:
 	Sessions();
