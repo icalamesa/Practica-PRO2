@@ -1,7 +1,7 @@
 
 /**
     @file
-    @brief Course class and its list interface.
+    @brief Courses list interface specification.
 
     @author Ivan Cala Mesa
     @date 1st of April of 2021
@@ -11,39 +11,10 @@
 /** @cond */
 #include <string>
 /** @endcond */
-
-#include "sessions.hh"
+#include "course.hh"
 using namespace std;
-#ifndef COURSES_HPP
-#define COURSES_HPP
-/** @brief Repository of @ref Session instances identified by an unique id.
-
-    The Course class behaves as a wrapper of uniquely identified by an id combinations Session instances.
-*/
-class Course
-{
-    Sessions session_list;
-    public:
-	Course();
-	/**
-	    @return True if there is no repeated problem across the different sessions stored in the implicit parameter. False otherwise.
-	*/
-	bool is_legal();
-	/**
-	    @param target_problem The problem id to be searched.
-        @pre @p target_problem is an string correctly formatted
-	    @return An std::string with the id of the internal session that contains the given problem id. If it does not exist, the string returned is empty.
-	*/
-	string find_session_id(string target_problem);
-	/**
-        @param id String with identifier of a session
-        @return Reference to @red Session instance.
-	*/
-	Session& get_session(string id);
-	Session& operator[](string);
-
-	~Course();
-};
+#ifndef COURSES_HH
+#define COURSES_HH
 /** @brief Interface of a repository of different courses, uniquely identified by their id.
 
   The Courses class acts as one of the main classes. In essence, it allows an implementation-agnostic generalised use of the Evaluator main specifications.
@@ -86,7 +57,7 @@ class Courses
 	    @pre @p id is an integer with a valid course id.
 	    @return Lvalue reference to a Course instance
 	*/
-	Course& get_course();
+	Course& get_course(int id);
 	Course& operator[](int index);
 
 	~Courses();
