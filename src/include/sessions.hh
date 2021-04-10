@@ -34,6 +34,8 @@ class Session
 	Session();
 	/**
 	    Reads problems from standard input to initialize the implicit parameter.
+	    @pre The implicit parameter is empty (no problems in it). It has not been initialized before. The standard input read problems do not repeat. Stanard input follows the format requirements(read in preorder).
+	    @post Problems read are inserted into the Session. 
 	*/
 	void read_session();
 	/**
@@ -43,14 +45,16 @@ class Session
     //no puede devolver esto
 	set<string> list_of_problems();
 	/**
+	    @p target_problem size is greater than zero
 	    @return True if the target problem id is found in this session problem list. False otherwise.
 	*/
 	bool find(string target_problem);
-    /**
-        @param target_problem std::string containing the identifier of a problem
-        @return A std::string with the id of the implicit parameter.
-    */
-    string get_id(string target_problem);
+	/**
+	    @param target_problem std::string containing the identifier of a problem
+	    @p target_problem size is greater than zero
+	    @return A std::string with the id of the implicit parameter.
+	*/
+	string get_id(string target_problem);
 
 	~Session();
 };
@@ -61,16 +65,17 @@ class Session
 class Sessions
 {
     vector<Session> session_list;
+    set<string> list_of_problems(string session_id);
+    /**
+	Reads @ref Session instances from standard input and inserts them onto the list of sessions(read in preorder).
+    */
 
     public:
-	Sessions();
+	Sessions();	
 	/**
-	    @param session_id The id of the specific session.
-	    @return Returns an std::set<string> of ids of problems in a given session.
-	*/
-	set<string> list_of_problems(string session_id);
-	/**
-	    Reads @ref Session instances from standard input and inserts them onto the list of sessions.
+	    Reads n sessions, where n>=1, from standard input.
+	    @pre The implicit parameter is empty (no sessions in it). It has not been initialized before. No problems repeat within individual sessions. Standard input follows the format requirements.
+	    @post Read problems get inserted into the Session. 
 	*/
 	void read_sessions();
 	/**

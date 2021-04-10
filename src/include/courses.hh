@@ -14,8 +14,8 @@
 
 #include "sessions.hh"
 using namespace std;
-#ifndef COURSES
-#define COURSES
+#ifndef COURSES_HPP
+#define COURSES_HPP
 /** @brief Repository of @ref Session instances identified by an unique id.
 
     The Course class behaves as a wrapper of uniquely identified by an id combinations Session instances.
@@ -32,14 +32,14 @@ class Course
 	/**
 	    @param target_problem The problem id to be searched.
         @pre @p target_problem is an string correctly formatted
-	    @return An std::string with the id of the internal session that contains the given problem id. If it does not exist, the string retuned is empty.
+	    @return An std::string with the id of the internal session that contains the given problem id. If it does not exist, the string returned is empty.
 	*/
 	string find_session_id(string target_problem);
-    /**
+	/**
         @param id String with identifier of a session
-        @
-    */
-    Session& get_session(string id);
+        @return Reference to @red Session instance.
+	*/
+	Session& get_session(string id);
 	Session& operator[](string);
 
 	~Course();
@@ -55,31 +55,37 @@ class Courses
     map<int, Course> course_list;
 
     public:
-    Courses();
+        Courses();	
 	/**
-
+	    @param course_id The id of the specific course to find the problem in.
+	    @param target_problem The id of the specific problem to be searched for.
+	    @pre course_id is not equal to 0 and the size of the target_problem id is not equal to zero
+	    @post If the given problem is found within the problems of the given @ref Course, the name of the Session is returned. If the problem with the given identifier does not exist in the given course, or the Course does not exist, or even the problem, an error is printed in Standard output.
+	*/
+	string find_session_id(int course_id, string target_problem);
+	/**
 	    @param new_course Course instance to be inserted.
-        @pre @p newcourse is a valid course instance
-        @post A new Course instance has been added to the @ref Course list.
+	    @pre @p newcourse is a valid course instance
+	    @post A new Course instance has been added to the @ref Course list.
 	*/
 	void insert_course(Course new_course);
 	/**
         Reads Cours einstances from standard input.
 	    @pre Course instances in standard input follow the valid specified format by the docs.
-        @post Course instances have been read and added to the list of courses.
-	    For more insight into the reading format, see @ref Problem and @ref Session.
+	    @post Course instances have been read and added to the list of courses.
+	For more insight into the reading format, see @ref Problem and @ref Session.
 	*/
 	void read_courses();
-    /**
-        @pre No prerequisites.
-        @return An integer with the amount of Course instances inside the implicit argument internal list.
-    */
+	/**
+	    @pre No prerequisites.
+	    @return An integer with the amount of Course instances inside the implicit argument internal list.
+	*/
 	int count_courses();
-    /**
-        @param id Identifier of a Course instance.
-        @pre @p id is an integer with a valid course id.
-        @return Lvalue reference to a Course instance
-    */
+	/**
+	    @param id Identifier of a Course instance.
+	    @pre @p id is an integer with a valid course id.
+	    @return Lvalue reference to a Course instance
+	*/
 	Course& get_course();
 	Course& operator[](int index);
 

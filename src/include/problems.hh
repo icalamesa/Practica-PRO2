@@ -28,12 +28,30 @@ class Problem
     int successful_deliveries = 0;
     Problem();
     public:
-	Problem(string);
-
+	/**
+	    @ref Problem constructor.
+	    @param problem_id Is the id for the new problem instance.
+	    @pre No precondition.
+	    @post A problem instance with @p problem_id as its id is created.
+	*/
+	Problem(string problem_id);
+	/**
+	    @return Problem id.
+	*/
 	string get_id();
+	/**
+	    @return The ratio, whose calculation is as follows: (successful_deliveries+1)/(total_deliveries+1)
+	*/
 	double get_ratio();
+	/**
+	    @return Integer with the number of attempts/total deliveries done to this problem.
+	*/
 	int get_attempts();
+	/**
+	    @return Integer with the number of successful attempts/correct deliveries done to this problem.
+	*/
 	int get_solved();
+
 	~Problem();
 
 };
@@ -64,7 +82,7 @@ class Problem_repo
 	void insert_problem(Problem new_problem);
     /**
         @param id The id of the new problem to be created and added to the problem repository.
-        @pre @p id is not the identifier of a currently existing problem instance,
+        @pre @p id size is greater than zero.
         @post if @p id does not exist, it is added to the problem repository. Otherwise throws error in Standard output.
     */
 	void insert_problem(string id);
@@ -74,8 +92,10 @@ class Problem_repo
         @post Problem instances read from standard input have been inserted into the list.
     */
 	void read_problems();
-
-	Problem& operator[](int);
+	/**
+	    @post Returns a problem reference to the problem belonging to the given index. Prints error message if such a problem does not exist
+	*/
+	Problem& get_problem(int index);
 	~Problem_repo();
 };
 #endif
