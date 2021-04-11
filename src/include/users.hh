@@ -94,7 +94,6 @@ using namespace std;
 	void add_problem_to_list(string id, string problem_id, bool solved);
 	/**
 	    @param user_id Id of the User instance to search for.
-	    @param courses_list The @ref Course instances list.
 	    @pre User with the @p user_id identifier exists. If it is coursing a @ref Course, that Course must exist in the @ref Course list.
 	    @post Lists in increasing order by identifier the problems that the user has not yet solved in the course in which he is currently enrolled, but to which he can already make a submission (because he fulfills all his prerequisites, direct and indirect). In addition to the identifiers, the number of submissions made by the user to each problem in the list (value greater than or equal to zero) is also printed in Standard output. 	
 	*/
