@@ -8,7 +8,7 @@
  *
  * \section install_sec Installation
 
- * No installation required. The Evaluator platform can be deployed anywhere in a C++ program. 
+ * No installation required. The Evaluator platform can be deployed anywhere in a C++ program with the appropiate source code. 
  *
  * \section extra Disclaimer
  *

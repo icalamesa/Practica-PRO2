@@ -3,6 +3,8 @@
     @file
     @brief Evaluator platform main program.
 
+    This file contains the multiple different functions used for every operation that may be performed by the user-agent. In the Evaluator platform's implementation, every different function/function overload is 1:1 identified by a single command (plus its correspondent abbreviation).
+
     @author Ivan Cala Mesa
     @date 1st of April of 2021
 
@@ -117,7 +119,7 @@ void tell_solvable_probs(string user_id, Users& user_list, Courses& course_list)
     @pre It is ensured that the User whose identifier is @p user_id is registered and enrolled in a course where the problem appears and that the problem belongs to the set of problems to which he can submit a solution by fulfilling the prerequisites.
     @post The outcome (r= 1 if success or= 0 if failure) of a user's new submission to the problem is noted. All submissions result in updating the statistics of the user and the problem. In addition, in case= 1 it is also necessary to update the user's solved and submittable problems and check if he has completed the course he was enrolled in. If completed, the user is no longer enrolled in the course.
 */
-void deliver_problem(string user_id, string problem_id, bool successful);
+void deliver_problem(string user_id, string problem_id, bool successful, Users& user_list, Problem_repo& problem_list);
 
 //12.
 /**
@@ -164,19 +166,17 @@ void tell_courses(Courses& course_list);
 void tell_courses(int course_id, Courses& course_list);
 
 //15.
-void tell_users();
-void tell_users(string user_id);
 /**
-    @param problem_list The repository of @ref Problem instances where all problems in the program lie.
-    @param session_list The repository of @ref Session instances where all sessions in the program lie.
-    @param course_list The repository of @ref Course instances where all courses in the program lie.
-    
-    Initializes @p problem_list, @p session_list and @p course_list (in that order) by calling at their internal reading methods. The initializations require reading from Standard input.
-    @pre Standard input text follows the input format for @ref Problem_repo, @ref Courses, and @ref Users.
-    @post Internal container interfaces have been initialized with their respective contained objects.
+    @param user_list Repository of User instances.
+    @pre No precondition.
+    @post The users currently registered on the platform are listed, sorted in ascending order by name and showing, for each user, how many total submissions they have made, how many problems they have successfully resolved, how many problems they have attempted to resolve (at least one submission), and the course identifier of the course they are enrolled in or a zero if they are not enrolled in any.
 */
-    void init(Problem_repo& problem_list, Sessions& session_list, Courses& course_list);
+void tell_users(Users& user_list);
 /**
-    Starts a command-line mode. Executes commands depending on the input. Abbrevations for every commad have been defined.
+    @param user_id Id of the specific User instance.
+    @param user_list Repository of User instances.
+    @pre No precondition.
+    @post Information about a User whose identifier is @p user_id is displayed (if it exists): how many total submissions he has made, how many problems he has successfully solved, how many problems he has attempted to solve (at least one submission), and the identifier of the course he is enrolled in or a zero if he is not enrolled in any. If the user does not exist on the platform an error message is printed.
 */
-    void console(Problem_repo& problem_list, Sessions& session_list, Courses& course_list);
+void tell_users(string user_id, Users& user_list);
+

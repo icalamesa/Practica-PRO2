@@ -98,7 +98,7 @@ using namespace std;
 	    @pre User with the @p user_id identifier exists. If it is coursing a @ref Course, that Course must exist in the @ref Course list.
 	    @post Lists in increasing order by identifier the problems that the user has not yet solved in the course in which he is currently enrolled, but to which he can already make a submission (because he fulfills all his prerequisites, direct and indirect). In addition to the identifiers, the number of submissions made by the user to each problem in the list (value greater than or equal to zero) is also printed in Standard output. 	
 	*/
-	void list_solvable_problems(string user_id, const Courses& courses_list);
+	void list_solvable_problems(string user_id);
 	/**
 	    @param user_id Id of the User instance to search for.
 	    @pre User with @p user_id identifier exists.
@@ -127,6 +127,11 @@ using namespace std;
 	    @return Integer with the size of the currently registered user list.
 	*/
 	int size();
+	/**
+	    @pre The implicit parameter has not been initialized.
+	    @post Read user identifiers from standard input have been created and inserted into the platform.
+	*/
+	void read_users();
 	/**
 	    Destructs the list of Users.
 	*/
