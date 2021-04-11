@@ -56,9 +56,15 @@ class Problem_repo
     */
 	void read_problems();
 	/**
+	    @pre Problem with the given @p problem_id exists.
 	    @post Returns a problem reference to the problem belonging to the given index. Prints error message if such a problem does not exist
 	*/
-	Problem& get_problem(int index);
+	Problem& get_problem(string problem_id);
+	/**
+	    @pre No precondition.
+	    @return Boolean True if a Problem with @p problem_id exists. False otherwise.
+	*/
+	bool problem_exists(string problem_id);
 	~Problem_repo();
 };
 #endif

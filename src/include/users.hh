@@ -10,7 +10,7 @@
 #include <vector>
 #include <map>
 /** @endcond */
-
+#include "user.hh"
 using namespace std;
 #ifndef USERS_HH
 #define USERS_HH
@@ -37,7 +37,7 @@ using namespace std;
 	    User& get_user(string user_id);
 	    /**
 		@param user_id is the id of the User whose existence is supposed to be found.
-		@pre @p user_id size is greater than zero.
+		@pre @p user_id size is greater than zero. 
 		@return True if a User with the given identifier exists, false otherwise.
 	    */
 	bool user_exists(string user_id);
@@ -93,23 +93,36 @@ using namespace std;
 	*/
 	void add_problem_to_list(string id, string problem_id, bool solved);
 	/**
+	    @param user_id Id of the User instance to search for.
+	    @param courses_list The @ref Course instances list.
+	    @pre User with the @p user_id identifier exists. If it is coursing a @ref Course, that Course must exist in the @ref Course list.
+	    @post Lists in increasing order by identifier the problems that the user has not yet solved in the course in which he is currently enrolled, but to which he can already make a submission (because he fulfills all his prerequisites, direct and indirect). In addition to the identifiers, the number of submissions made by the user to each problem in the list (value greater than or equal to zero) is also printed in Standard output. 	
+	*/
+	void list_solvable_problems(string user_id, const Courses& courses_list);
+	/**
+	    @param user_id Id of the User instance to search for.
+	    @pre User with @p user_id identifier exists.
+	    @post The problems successfully solved by the user are listed in increasing order by identifier, either in the course he/she is currently enrolled in (if any) or those solved in previous courses. In addition to the identifiers, the number of submissions made by the user to each problem in the list (value greater than or equal to one) is also printed.
+	*/
+	void list_solved_problems_by(string user_id);
+	/**
 	    @param id Id of the specific student to search for.
 	    @pre No precondition.
 	    @post The list of solved problems is blanked out.
 	*/
 	void restart_solved_list(string id);
 	/**
-	    @param id Id of the specific student to search for.
+	    @param user_id Id of the specific student to search for.
 	    @pre @p id size is greater than zero.
 	    @post If User with @p id identifier did not exist previously, it gets added to the user list and the number of Users after the inclusion is printed. If it did exist, an error message is printed in the standard output.
 	*/
-	void insert_user(string id);
+	void insert_user(string user_id);
 	/**
-	    @param id Id of the specific student to search for.
-	    @pre Size of the problem_repo instance is not 0. @p id size is greater than zero.
-	    @post If a User with @p id identifier existed, it no longer does and the number of Users after the inclusion is printed. If it didn't exist, an error message is printed in the standard output.
+	    @param user_id Id of the specific student to search for.
+	    @pre @ref User with @p id identifier exists. @p id size is greater than zero.
+	    @post If a User with @p id identifier existed, it no longer does and the number of Users after the inclusion is printed.	
 	*/
-	void remove_user(string id);
+	void remove_user(string user_id);
 	/**
 	    @return Integer with the size of the currently registered user list.
 	*/

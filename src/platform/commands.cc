@@ -2,14 +2,14 @@
 
 using namespace std;
 
-void Evaluator::init()
+void init(Problem_repo& problem_list, Sessions& session_list, Courses& course_list)
 {
     problem_list.read_problems();
     session_list.read_sessions();
     course_list.read_courses();
 }
 
-void Evaluator::console()
+void console(Problem_repo& problem_list, Sessions& session_list, Courses& course_list)
 {
     string command;
     cin >> command;
