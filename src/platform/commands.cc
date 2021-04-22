@@ -140,3 +140,205 @@ void console(Problem_repo& problem_list, Sessions& session_list, Courses& course
 	cin >> command;
     }
 }
+
+void add_problem(string problem_id, Problem_repo& problem_list)
+{
+    problem_list.insert_problem(problem_id);
+}
+
+void add_session(string session_id, Sessions& session_list)
+{
+    Session new_session;
+    new_session.read_session();
+    session_list.insert_session(session_id, new_session);
+}
+//important: does NOT read course id. It reads number of sessions to be read
+void add_course(int n, Courses& course_list)
+{
+    Course new_course;
+    new_course.read_course(int n);
+    if (new_course.is_legal())
+    {
+	course_list.insert_course(course_list);
+    }
+    else
+    {
+	//error msg course not legal
+    }
+}
+
+void add_user(string user_id, Users& user_list)
+{
+    //error message if required is printed from within the function
+    if (not user_list.user_exists(user_id))
+    {
+	user_list.insert_user(user_id);
+    }
+    else 
+    {
+	//error user already exists
+    }
+}
+
+void remove_user(string user_id, Users& user_list)
+{
+    if (user_list.user_exists(user_id))
+    {
+	user_list.remove_user(user_id);
+    }
+    else
+    {
+	//error message user does not exist
+    }
+}
+
+void add_to_course(string user_id, int course_id, Users& user_list, Courses& course_list)
+{
+    bool u_exist = false, c_exist = false;
+    u_exist = user_list.user_exists(user_id);
+    //need to add the method under this line
+    c_exist = course_list.course_exists(course_id);
+    if (u_exist and c_exist)
+    {
+	user_list.sign_in_course(user_id, course_id);
+    }
+    else
+    {
+	if (not u_exist) //error msg user does not exist
+	if (not c_exist) //error msg course does not exist
+    }
+}
+
+void tell_usr_course(string user_id, Users& user_list)
+{
+    if (user_list.user_exists(user_id))
+    {
+	user_list.get_user(user_id).tell_course();
+    }
+    else 
+    {
+	//error msg user does not exist
+    }
+}
+
+void find_problem_session(int course_id, string problem_id, Courses& course_list, Problem_repo& problem_list)
+{
+    bool c_exist = false, p_exist = false;
+    c_exist = course_list.course_exists(course_id);
+    p_exist = problem_exist(problem_id);
+    if (c_exist and p_exist)
+    {
+	string session = course_list.find_session_id(course_id, problem_id);
+	if (session.empty())
+	{
+	    //error message problem does not exist in given session
+	}
+	else
+	{
+	    //prints session name
+	}
+    }
+    else
+    {
+	if (not c_exist) //error msg course does not exist
+	if (not p_exist) //error msg problem does not exist
+    }
+}
+
+void tell_solved_probs(string user_id, Users& user_list)
+{
+    if (user_list.user_exists(user_id))
+    {
+	user_list.list_solved_problems_by(user_id);
+    }
+    else
+    {
+	//error message user does not exist
+    }
+}
+
+void tell_solvable_probs(string user_id, Users& user_list, Courses& course_list)
+{
+    if (user_list.user_exists(user_id))
+    {
+	user_list.list_solvable_problems(user_id, course_list);
+    }
+    else
+    {
+	//error message user does not exist
+    }
+}
+
+void deliver_problem(string user_id, string problem_id, bool successful, Users& user_list, Problem_repo& problem_list)
+{
+    //no info yet
+}
+
+void tell_prob_list(Problem_repo& problem_list)
+{
+    //need to add the method under this line
+    problem_list.list_problems();
+}
+void tell_prob_list(string problem_id, Problem_repo& problem_list)
+{
+    if (problem_list.problem_exists(problem_id))
+    {
+	problem_list.get_problem(problem_id).//doshit
+    }
+    else
+    {
+	//error msg no problem with the given id
+    }
+}
+
+void tell_session(const Session& session_list)
+{
+    //need to add this method
+    session_list.list_sessions();
+}
+
+void tell_session(string session_id, const Session& session_list)
+{
+    if (session_list.exists_session(session_id))
+    {
+	session_list.get_session(session_id);
+    }
+    else
+    {
+	//error msg session does not exist
+    }
+}
+
+
+void tell_courses(Courses& course_list)
+{
+    course_list.list_courses();
+}
+void tell_courses(int course_id, Courses& course_list)
+{
+    if (course_list.course_exists(course_id))
+    {
+	course_list.get_course().//do shit here;
+    }
+    else
+    {
+	//error msg course does not exist
+    }
+}
+void tell_users(Users& user_list)
+{
+    user_list.list_users();
+}
+void tell_users(string user_id, Users& user_list)
+{
+    if (user_list.user_exists(user_id))
+    {
+	user_list.get_user(user_id).//do shit here;
+    }
+    else
+    {
+	//error msg user does not exist
+    }
+}
+
+

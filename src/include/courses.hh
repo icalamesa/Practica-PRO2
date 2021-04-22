@@ -22,9 +22,9 @@ using namespace std;
 */
 class Courses
 {
-    //listar por orden de inclusión
     map<int, Course> course_list;
 
+    //listar por orden de inclusión
     public:
         Courses();	
 	/**
@@ -40,6 +40,12 @@ class Courses
 	    @post If there is no Problem intersection among the Session instances contained in the created Course, it is added to the @ref Course list. Course is not added and and error message is printed in Standard output otherwise.
 	*/
 	void insert_course();
+	/** COMPROBAR ESTA
+	  An existing Course instance is inserted into the Course list.
+	    @pre Course instance is guaranteed to not be equal to other existing courses.
+	    @post If there is no Problem intersection among the Session instances contained in the created Course, it is added to the @ref Course list. Course is not added and and error message is printed in Standard output otherwise.
+	*/
+	void insert_course(Course& new_course);
 	/**
         Reads @ref Course instances from standard input.
 	    @pre Course instances in standard input follow the valid specified format by the docs.

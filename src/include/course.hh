@@ -31,15 +31,24 @@ class Course
 	bool is_legal();
 	/**
 	    @param target_problem The problem id to be searched.
-        @pre @p target_problem is an string correctly formatted
+            @pre @p target_problem is an string correctly formatted. A problem with @p target_problem as an identifier exists.
 	    @return An std::string with the id of the internal session that contains the given problem id. If it does not exist, the string returned is empty.
 	*/
 	string find_session_id(string target_problem);
 	/**
-        @param id String with identifier of a session
-        @return Reference to @ref Session instance.
+	    @param Id String with identifier of a session.
+	    @pre Session with @p session_id as an identifier exists.
+	    @return Reference to @ref Session instance.
 	*/
-	Session& get_session(string id);
+	Session& get_session(string session_id);
+	/**
+	    @param session_id Id of the Session instance to search for.
+	    @pre No precondition.
+	    @return Boolean True if a Session with @p session_id as its identifier exists. False otherwise.
+	*/
+	bool session_exists(string session_id);
+	//reads n sessions, each with their specific id
+	void read_course(int n);
 	Session& operator[](string);
 
 	~Course();

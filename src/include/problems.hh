@@ -30,6 +30,7 @@ class Problem_repo
     vector<Problem> problem_list;
     void ratio_sort();
     void id_sort();
+    int binary_search(string problem_id);
 
     public:
 	Problem_repo();

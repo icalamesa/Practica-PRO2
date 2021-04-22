@@ -35,7 +35,7 @@ class Session
 	Session();
 	/**
 	    Reads problems from standard input to initialize the implicit parameter.
-	    @pre The implicit parameter is empty (no problems in it). It has not been initialized before. The standard input read problems do not repeat. Stanard input follows the format requirements(read in preorder).
+	    @pre The implicit parameter is empty (no problems in it). It has not been initialized before. The standard input read problems do not repeat. Standard input follows the format requirements(read in preorder).
 	    @post Problems read are inserted into the Session. 
 	*/
 	void read_session();
