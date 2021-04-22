@@ -43,13 +43,13 @@ using namespace std;
 	bool user_exists(string user_id);
 	/**
 	    @param id Id of the specific student to search for.
-	    @pre @p id size is greater than zero.
+	    @pre @p id size is greater than zero. User with @p user_id as identifier exists.
 	    @post If a @ref User instance with the given identifier exists, an integer with id of the course that the specific User is enrolled in is returned. The returned integer is set to 0 otherwise. If a @ref User instance with the given identifier does not exist, an error is printed in the Standard output.
 	*/
 	const int tell_course(string id);
 	/**
 	    @param id Id of the specific student to search for.
-	    @pre @p id size is greater than zero.
+	    @pre @p id size is greater than zero. User with @p id as identifier exists.
 	    @return True if the specific User is enrolled in a course, false if it is not.
 	*/
 	bool is_coursing(string id);
@@ -131,6 +131,11 @@ using namespace std;
 	    @post Read user identifiers from standard input have been created and inserted into the platform.
 	*/
 	void read_users();
+        /**
+            @pre No precondition
+            @post Information of all of the existing User instances contained in the implicit parameter is displayed on Standard output.
+        */
+        void list_users();
 	/**
 	    Destructs the list of Users.
 	*/

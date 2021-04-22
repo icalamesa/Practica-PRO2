@@ -152,6 +152,7 @@ void add_session(string session_id, Sessions& session_list)
     new_session.read_session();
     session_list.insert_session(session_id, new_session);
 }
+
 //important: does NOT read course id. It reads number of sessions to be read
 void add_course(int n, Courses& course_list)
 {
@@ -176,7 +177,7 @@ void add_user(string user_id, Users& user_list)
     }
     else 
     {
-	//error user already exists
+	cout << "error: el usuario ya existe" << endl;
     }
 }
 
@@ -188,7 +189,7 @@ void remove_user(string user_id, Users& user_list)
     }
     else
     {
-	//error message user does not exist
+	cout << "error: el usuario no existe" << endl;
     }
 }
 
@@ -204,8 +205,8 @@ void add_to_course(string user_id, int course_id, Users& user_list, Courses& cou
     }
     else
     {
-	if (not u_exist) //error msg user does not exist
-	if (not c_exist) //error msg course does not exist
+	if (not u_exist) cout << "error: el usuario no existe" << endl;
+	if (not c_exist) cout << "error: el curso no existe" << endl;
     }
 }
 
@@ -217,7 +218,7 @@ void tell_usr_course(string user_id, Users& user_list)
     }
     else 
     {
-	//error msg user does not exist
+	cout << "error: el usuario no existe" << endl;
     }
 }
 
@@ -231,17 +232,17 @@ void find_problem_session(int course_id, string problem_id, Courses& course_list
 	string session = course_list.find_session_id(course_id, problem_id);
 	if (session.empty())
 	{
-	    //error message problem does not exist in given session
+	    cout << "error: el problema no pertenece al curso" << endl;
 	}
 	else
 	{
-	    //prints session name
+	    cout << session << endl;
 	}
     }
     else
     {
-	if (not c_exist) //error msg course does not exist
-	if (not p_exist) //error msg problem does not exist
+	if (not c_exist) cout << "error: el curso no existe" << endl;
+	if (not p_exist) cout << "error: el problema no existe" << endl;
     }
 }
 
@@ -253,7 +254,7 @@ void tell_solved_probs(string user_id, Users& user_list)
     }
     else
     {
-	//error message user does not exist
+	cout << "error: el usuario no existe" << endl;
     }
 }
 
@@ -265,7 +266,7 @@ void tell_solvable_probs(string user_id, Users& user_list, Courses& course_list)
     }
     else
     {
-	//error message user does not exist
+	cout << "error: el usuario no existe" << endl;
     }
 }
 
@@ -279,15 +280,18 @@ void tell_prob_list(Problem_repo& problem_list)
     //need to add the method under this line
     problem_list.list_problems();
 }
+
 void tell_prob_list(string problem_id, Problem_repo& problem_list)
 {
     if (problem_list.problem_exists(problem_id))
     {
-	problem_list.get_problem(problem_id).//doshit
+	cout << problem_id << ' ';
+        problem_list.get_problem(problem_id).info_problem();
+        cout << endl; //doshit
     }
     else
     {
-	//error msg no problem with the given id
+        cout << "error: el problema no existe" << endl;
     }
 }
 
@@ -301,28 +305,28 @@ void tell_session(string session_id, const Session& session_list)
 {
     if (session_list.exists_session(session_id))
     {
-	session_list.get_session(session_id);
+	session_list.get_session(session_id).info_session();
     }
     else
     {
-	//error msg session does not exist
+        cout << "error: la sesion no existe" << endl;
     }
 }
-
 
 void tell_courses(Courses& course_list)
 {
     course_list.list_courses();
 }
+
 void tell_courses(int course_id, Courses& course_list)
 {
     if (course_list.course_exists(course_id))
     {
-	course_list.get_course().//do shit here;
+	course_list.get_course().info_course(); //do shit here
     }
     else
     {
-	//error msg course does not exist
+	cout << "error: el curso no existe" << endl;
     }
 }
 void tell_users(Users& user_list)
@@ -333,11 +337,11 @@ void tell_users(string user_id, Users& user_list)
 {
     if (user_list.user_exists(user_id))
     {
-	user_list.get_user(user_id).//do shit here;
+	user_list.get_user(user_id).info_user(); //do shit here;
     }
     else
     {
-	//error msg user does not exist
+        cout << "error: el usuario no existe" << endl;
     }
 }
 

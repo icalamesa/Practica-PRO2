@@ -49,7 +49,12 @@ class Problem
 	    @return Integer with the number of successful attempts/correct deliveries done to this problem.
 	*/
 	int get_solved();
-
+        /**
+            @pre No precondition.
+            @post Information on the problem is displayed on Standard output
+        */
+        void info_problem();
+        bool operator==(const Problem& other);
 	~Problem();
 
 };

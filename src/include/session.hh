@@ -51,7 +51,12 @@ class Session
 	    @return A std::string with the id of the implicit parameter.
 	*/
 	string get_id(string target_problem);
-
+        /**
+            @param session_id Id of the specific session.
+            @pre No precondition.
+            @post Info on the session is displayed on Standard output.
+        */
+        void info_session();
 	~Session();
 };
 

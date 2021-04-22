@@ -65,7 +65,7 @@ class User
 	/**
 	    Enrolls the specific User in a course if it is not in one (at function call). Prints an error message if it is already enrolled in a course.
 	    @param course_name Name of the course to enroll the user in.
-	    @pre @p course_id integer corresponds to the id of an existing @ref Course instance in the valid Course container.
+	    @pre @p course_name integer corresponds to the id of an existing @ref Course instance in the valid Course container.
 	    @post If the user was not enrolled in a course, it is then enrolled in one with @p course_name identifier. If it already was enrolled in a @ref Course, prints an error message. 
 
 	*/
@@ -83,9 +83,9 @@ class User
 	*/
 	void u_restart_solved_list();
 	/**
-	    @pre @p id identifier corresponds to an already existing user in the platform.
-	    @post User with the @p id identifier has been added to the user list.
-	    */
+            @pre No precondition.
+            @post Information of the User is displayed on Standard output.
+        */ 
 	~User();
 };
 

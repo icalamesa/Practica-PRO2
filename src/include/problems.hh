@@ -32,6 +32,10 @@ class Problem_repo
     void id_sort();
     int binary_search(string problem_id);
 
+    void insert_problem_no_sort(string problem_id);
+
+    void insertion(Problem new_problem);
+
     public:
 	Problem_repo();
     /**

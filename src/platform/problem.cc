@@ -27,3 +27,13 @@ int Problem::get_solved()
 {
     return this->successful_deliveries;
 }
+//TO DO
+void Problem::info_problem()
+{
+    string return_str = "";
+}
+
+bool Problem::operator==(const Problem& other)
+{
+    return this->get_id() == other.get_id();
+}
