@@ -36,7 +36,7 @@ class Problem
 	/**
 	    @return Problem id.
 	*/
-	string get_id();
+	string get_id() const;
 	/**
 	    @return The ratio, whose calculation is as follows: (successful_deliveries+1)/(total_deliveries+1)
 	*/
@@ -54,7 +54,8 @@ class Problem
             @post Information on the problem is displayed on Standard output
         */
         void info_problem();
-        bool operator==(const Problem& other);
+        bool operator==(const Problem& other) const;
+	bool operator<(const Problem& other) const;
 	~Problem();
 
 };

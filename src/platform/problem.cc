@@ -8,7 +8,7 @@ Problem::Problem(string problem_id)
     this->id = problem_id;
 }
 
-string Problem::get_id()
+string Problem::get_id() const
 {
     return this->id;
 }
@@ -33,7 +33,12 @@ void Problem::info_problem()
     string return_str = "";
 }
 
-bool Problem::operator==(const Problem& other)
+bool Problem::operator==(const Problem& other) const
 {
     return this->get_id() == other.get_id();
+}
+
+bool Problem::operator<(const Problem& other) const
+{
+    return this->get_id() < other.get_id();
 }

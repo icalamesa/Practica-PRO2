@@ -25,11 +25,9 @@ using namespace std;
 */
 class Problem_repo
 {
-    static bool comp_by_ratio(const Problem& a, const Problem& b);
     static bool comp_by_id(const Problem& a, const Problem& b);
     vector<Problem> problem_list;
     void ratio_sort();
-    void id_sort();
     int binary_search(string problem_id);
 
     void insert_problem_no_sort(string problem_id);
