@@ -20,7 +20,7 @@ using namespace std;
 */
 class User
 {
-    int coursing; ///< Curs actual cursat per l'usuari, buit si no cursa res
+    int coursing; //-1 if not coursing anything
     int total_successes = 0;
     int total_attempted = 0;
     //one of these
@@ -37,7 +37,7 @@ class User
 	    @pre No precondition.
 	    @post If the user is enrolled in a course, the id of the course is returned. If it is not, the returned integer is set to 0.
 	*/
-	const int u_tell_course();
+	int u_tell_course();
 	/**
 	    @pre No precondition.
 	    @return True if the specific User is enrolled in a course, false otherwise.
@@ -47,17 +47,17 @@ class User
 	    @pre No precondition.
 	    @return Integer with the amount of attempts(deliveries) the specific User has performed onto the platform.
 	*/
-	const int u_amount_attempts();
+	int u_amount_attempts();
 	/**
 	    @pre No precondition.	
 	    @return Integer with the amount of problems that have been solved so far by the specific User (deliveries flagged as correct). 
 	*/
-	const int u_amount_solved_problems();
+	int u_amount_solved_problems();
 	/**
 	    @pre No precondition.
 	    @return Integer with the amount of different problems that have been attempted so far by the specific User.
 	*/
-	const int u_different_attempts();
+	int u_different_attempts();
 	//if empty string, empty course
 
 	//MODIFICADORES
@@ -84,8 +84,9 @@ class User
 	void u_restart_solved_list();
 	/**
             @pre No precondition.
-            @post Information of the User is displayed on Standard output.
+            @post Solved problems by the User are displayed on Standard output.
         */ 
+	void u_list_solved() const;
 	~User();
 };
 

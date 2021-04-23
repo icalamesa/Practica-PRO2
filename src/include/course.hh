@@ -22,7 +22,7 @@ using namespace std;
 */
 class Course
 {
-    Sessions session_list;
+    vector<string> session_list;
     public:
 	Course();
 	/**

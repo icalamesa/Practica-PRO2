@@ -24,29 +24,30 @@ using namespace std;
     class Users
     {
 	map<string, User> user_list;
+	User& user_find(const string& user_id);
 	public:
-	    /**
-		Constructs an empty Users class.
-	    */
-	    Users();
-	    /**
-		@param user_id Id of the user to be searched for.
-		@pre @p id size is greater than zero. User with @p user_id as identifier exists.
-		@return Reference to @ref User instance that fulfills the id requirement.
-	    */
-	    User& get_user(string user_id);
-	    /**
-		@param user_id is the id of the User whose existence is supposed to be found.
-		@pre @p user_id size is greater than zero. 
-		@return True if a User with the given identifier exists, false otherwise.
-	    */
+	/**
+	    Constructs an empty Users class.
+	*/
+	Users();
+	/**
+	    @param user_id Id of the user to be searched for.
+	    @pre @p id size is greater than zero. User with @p user_id as identifier exists.
+	    @return Reference to @ref User instance that fulfills the id requirement.
+	*/
+	User& get_user(string user_id);
+	/**
+	    @param user_id is the id of the User whose existence is supposed to be found.
+	    @pre @p user_id size is greater than zero. 
+	    @return True if a User with the given identifier exists, false otherwise.
+	*/
 	bool user_exists(string user_id);
 	/**
 	    @param id Id of the specific student to search for.
 	    @pre @p id size is greater than zero. User with @p user_id as identifier exists.
 	    @post If a @ref User instance with the given identifier exists, an integer with id of the course that the specific User is enrolled in is returned. The returned integer is set to 0 otherwise. If a @ref User instance with the given identifier does not exist, an error is printed in the Standard output.
 	*/
-	const int tell_course(string id);
+	int tell_course(string id);
 	/**
 	    @param id Id of the specific student to search for.
 	    @pre @p id size is greater than zero. User with @p id as identifier exists.
@@ -59,20 +60,20 @@ using namespace std;
 	    @pre @p id size is greater than zero. @p id belongs to an existing user.
 	    @return Integer with the amount of attempts(deliveries) the specific User has performed onto the platform.
 	*/
-	const int amount_attempts(string id);
+	int amount_attempts(string id);
 	/**
 	    @param id Id of the specific student to search for.
 	    @pre @p id size is greater than zero. @p id belongs to an existing user.
 	    @return Integer with the amount of problems that have been solved so far by the specific User (deliveries flagged as correct). 
 
 	*/
-	const int amount_solved_problems(string id);
+	int amount_solved_problems(string id);
 	/**
 	    @param id of the specific student to search for.
 	    @pre @p id size is greater than zero. @p id belongs to an existing user.
 	    @return Integer with the amount of different problems that have been attempted so far by the specific User with the given id. If it does not exist, an error message is printed.
 	*/
-	const int different_attempts(string id);
+	int different_attempts(string id);
 	//if empty string, empty course
 
 	/**

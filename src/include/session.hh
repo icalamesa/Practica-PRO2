@@ -31,6 +31,8 @@ class Session
 	@return A std::set<std::string> containing the id of the problems contained in the implicit parameter.
     */
     set<string> list_of_problems();
+    void fill_problem_set(BinTree<string>& tree);
+    bool search_problem(const BinTree<string>& tree, string& target_problem);
     public:
 	Session();
 	Session(string session_id);

@@ -56,7 +56,7 @@ void Sessions::insert_session(string session_id)
 string Sessions::find_in_sessions(string prob)
 {
     string res = "";
-    for (auto the_session : this->session_list)
+    for (const auto& the_session : this->session_list)
     {
 	if (the_session.find(prob))
 	{
