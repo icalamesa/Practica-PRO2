@@ -10,7 +10,7 @@
 using namespace std;
 /** @cond */
 #include <set>
-#include <vector>
+#include <list>
 #include <map>
 /** @endcond */
 
@@ -24,12 +24,14 @@ using namespace std;
 */
 class Sessions
 {
-    vector<Session> session_list;
+    list<Session> session_list;
     set<string> list_of_problems(string session_id);
+    static bool comp_by_id(const Session& a, const Session& b);
     /**
 	Reads @ref Session instances from standard input and inserts them onto the list of sessions(read in preorder).
     */
-
+    void insertion(const Session& new_session);
+    void sort_list();
     public:
 	Sessions();	
 	/**
@@ -51,7 +53,8 @@ class Sessions
 	    @param id The id for the new session.
 	    @param new_session The already initialized @ref Session instance to be added.
 	*/
-	void insert_session(string id, Session new_session);
+	void insert_session(Session new_session);
+	void insert_session(string session_id);
 	/**
 	    @return Integer with the amount of @ref Session contained in the list.
 	*/

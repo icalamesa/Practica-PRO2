@@ -33,6 +33,7 @@ class Session
     set<string> list_of_problems();
     public:
 	Session();
+	Session(string session_id);
 	/**
 	    Reads problems from standard input to initialize the implicit parameter.
 	    @pre The implicit parameter is empty (no problems in it). It has not been initialized before. The standard input read problems do not repeat. Standard input follows the format requirements(read in preorder).
@@ -50,13 +51,15 @@ class Session
 	    @p target_problem size is greater than zero
 	    @return A std::string with the id of the implicit parameter.
 	*/
-	string get_id(string target_problem);
+	string get_session_with_problem_id(string target_problem);
         /**
             @param session_id Id of the specific session.
             @pre No precondition.
             @post Info on the session is displayed on Standard output.
         */
         void info_session();
+	string get_id() const;
+	bool operator< (const Session& other) const;
 	~Session();
 };
 
