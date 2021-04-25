@@ -1,4 +1,5 @@
 #include "problem.hh"
+#include <iostream>
 
 using namespace std;
 
@@ -13,24 +14,27 @@ string Problem::get_id() const
     return this->id;
 }
 
-double Problem::get_ratio()
+double Problem::get_ratio() const
 {
     return double(1+this->successful_deliveries) / (1 + this->deliveries);
 }
 
-int Problem::get_attempts()
+int Problem::get_attempts() const
 {
     return this->deliveries;
 }
 
-int Problem::get_solved()
+int Problem::get_solved() const
 {
     return this->successful_deliveries;
 }
 //TO DO
-void Problem::info_problem()
+void Problem::info_problem() const
 {
-    string return_str = "";
+    cout << this->get_id() << ' ';
+    cout << '(' << this->get_attempts() << ',';
+    cout << this->get_solved() << ',' << this->get_ratio();
+    cout << endl;
 }
 
 bool Problem::operator==(const Problem& other) const

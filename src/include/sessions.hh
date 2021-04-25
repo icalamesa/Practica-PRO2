@@ -43,11 +43,11 @@ class Sessions
 	/**
 	    @return An std::string with the id of the specific session that contains a given problem id. Blank string if no matches.
 	*/
-	string find_in_sessions(string prob);
+	string find_in_sessions(string prob) const;
 	/**
 	    @return True if a given Session id exists in the @ref Session list, false otherwise.
 	*/
-	bool exists_session(string target);
+	bool exists_session(string target) const;
 	/**
 	    Inserts session onto the list of sessions.
 	    @param id The id for the new session.
@@ -64,7 +64,8 @@ class Sessions
 	    @return Session isntane reference
 	*/
 	stringstream get_problems_in_session(string session_id);
-	Session& get_session(string id);
+	Session& get_session(string id) const;
+	void list_sessions() const;
 
 	~Sessions();
 };

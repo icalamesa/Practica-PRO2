@@ -3,6 +3,11 @@
 using namespace std;
 
 Course::Course(){}
+
+void Course::info_course() const
+{
+    //TO DO
+}
+
 Course::~Course(){}
 
-bool Course::is_legal()

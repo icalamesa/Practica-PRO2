@@ -1,4 +1,5 @@
 #include "user.hh"
+#include <iostream>
 
 using namespace std;
 
@@ -70,9 +71,9 @@ void User::u_list_solved() const
     //do crap here
 }
 
-void User::info_user()
+void User::info_user() const
 {
     cout << '(' << this->u_amount_attempts() << ',';
-    cout << this->total_successes() << ',' << this->u_different_attempts();
+    cout << this->u_amount_solved_problems() << ',' << this->u_different_attempts();
     cout << ',' << this->u_tell_course() << ')';
 }

@@ -112,6 +112,5 @@ void Users::read_users()
     }
 }
 
-res[ii][jj] += (*this)[ii][kk]*(*(other.content+(kk*other.rows()+jj)));
 
 

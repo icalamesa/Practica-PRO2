@@ -26,15 +26,16 @@ using namespace std;
 class Problem_repo
 {
     static bool comp_by_id(const Problem& a, const Problem& b);
+    static bool comp_by_ratio(const Problem&a, const Problem& b);
     list<Problem> problem_list;
-    void ratio_sort();
     int binary_search(string problem_id);
 
     void insert_problem_no_sort(string problem_id);
     
     //generic basic operations. They allow flexible change in the implementation
     void insertion(Problem new_problem);
-    void sort_problem_list();
+    template <class comp>
+    void sort_problem_list(comp foo);
 
     public:
 	Problem_repo();
@@ -70,6 +71,7 @@ class Problem_repo
 	    @return Boolean True if a Problem with @p problem_id exists. False otherwise.
 	*/
 	bool problem_exists(string problem_id);
+	void list_problems();
 	~Problem_repo();
 };
 #endif

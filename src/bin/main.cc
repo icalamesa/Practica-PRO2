@@ -42,6 +42,8 @@ int main()
 	}
 	else if (command == "nueva_sesion" or command == "ns")
 	{
+	    string session;
+	    cin >> session;
 	    add_session(session, session_list);
 	}
 	else if (command == "nuevo_curso" or command == "nc")

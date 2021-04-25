@@ -1,5 +1,7 @@
-#include "evaluator.hh"
-
+#include "users.hh"
+#include "sessions.hh"
+#include "courses.hh"
+#include <iostream>
 using namespace std;
 
 
@@ -21,10 +23,10 @@ void add_session(Sessions& session_list)
 void add_course(int n, Courses& course_list)
 {
     Course new_course;
-    new_course.read_course(int n);
+    new_course.read_course(n);
     if (new_course.is_legal())
     {
-	course_list.insert_course(course_list);
+	course_list.insert_course(new_course);
     }
     else
     {
@@ -78,7 +80,7 @@ void tell_usr_course(string user_id, Users& user_list)
 {
     if (user_list.user_exists(user_id))
     {
-	user_list.get_user(user_id).tell_course();
+	user_list.tell_course(user_id);
     }
     else 
     {
@@ -90,7 +92,7 @@ void find_problem_session(int course_id, string problem_id, Courses& course_list
 {
     bool c_exist = false, p_exist = false;
     c_exist = course_list.course_exists(course_id);
-    p_exist = problem_exist(problem_id);
+    p_exist = problem_list.problem_exists(problem_id);
     if (c_exist and p_exist)
     {
 	string session = course_list.find_session_id(course_id, problem_id);
@@ -126,7 +128,7 @@ void tell_solvable_probs(string user_id, Users& user_list, Courses& course_list)
 {
     if (user_list.user_exists(user_id))
     {
-	user_list.list_solvable_problems(user_id, course_list);
+	user_list.list_solvable_problems(user_id);
     }
     else
     {
@@ -159,13 +161,13 @@ void tell_prob_list(string problem_id, Problem_repo& problem_list)
     }
 }
 
-void tell_session(const Session& session_list)
+void tell_session(const Sessions& session_list)
 {
     //need to add this method
     session_list.list_sessions();
 }
 
-void tell_session(string session_id, const Session& session_list)
+void tell_session(string session_id, const Sessions& session_list)
 {
     if (session_list.exists_session(session_id))
     {
@@ -179,14 +181,14 @@ void tell_session(string session_id, const Session& session_list)
 
 void tell_courses(Courses& course_list)
 {
-    course_list.list_courses();
+    course_list.list_all_courses();
 }
 
 void tell_courses(int course_id, Courses& course_list)
 {
     if (course_list.course_exists(course_id))
     {
-	course_list.get_course().info_course(); //do shit here
+	course_list.get_course(course_id).info_course(); //do shit here
     }
     else
     {

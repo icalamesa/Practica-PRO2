@@ -40,20 +40,20 @@ class Problem
 	/**
 	    @return The ratio, whose calculation is as follows: (successful_deliveries+1)/(total_deliveries+1)
 	*/
-	double get_ratio();
+	double get_ratio() const;
 	/**
 	    @return Integer with the number of attempts/total deliveries done to this problem.
 	*/
-	int get_attempts();
+	int get_attempts() const;
 	/**
 	    @return Integer with the number of successful attempts/correct deliveries done to this problem.
 	*/
-	int get_solved();
+	int get_solved() const;
         /**
             @pre No precondition.
             @post Information on the problem is displayed on Standard output
         */
-        void info_problem();
+        void info_problem() const;
         bool operator==(const Problem& other) const;
 	bool operator<(const Problem& other) const;
 	~Problem();

@@ -32,7 +32,7 @@ class Session
     */
     set<string> list_of_problems();
     void fill_problem_set(BinTree<string>& tree);
-    bool search_problem(const BinTree<string>& tree, string& target_problem);
+    bool search_problem(const BinTree<string>& tree, string& target_problem) const;
     public:
 	Session();
 	Session(string session_id);
@@ -47,7 +47,7 @@ class Session
 	    @p target_problem size is greater than zero
 	    @return True if the target problem id is found in this session problem list. False otherwise.
 	*/
-	bool find(string target_problem);
+	bool find(string target_problem) const;
 	/**
 	    @param target_problem std::string containing the identifier of a problem
 	    @p target_problem size is greater than zero
@@ -59,7 +59,7 @@ class Session
             @pre No precondition.
             @post Info on the session is displayed on Standard output.
         */
-        void info_session();
+        void info_session() const;
 	string get_id() const;
 	bool operator< (const Session& other) const;
 	~Session();

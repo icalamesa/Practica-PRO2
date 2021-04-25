@@ -20,7 +20,7 @@
     @pre No precondition.
     @post Adds a new problem with identifier @p problem_id. If a problem already existed on the platform with the same identifier, an error message is printed. Otherwise the number of problems in the collection after adding is printed.
 */
-void add_problem(string problem_id, Problem_repo& problem_list);
+void add_problem(Problem_repo& problem_list);
 
 //2.
 /**

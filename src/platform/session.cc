@@ -20,7 +20,7 @@ string Session::get_id() const
     return this->id;
 }
 
-bool Session::search_problem(const BinTree<string>& tree, string& target_problem)
+bool Session::search_problem(const BinTree<string>& tree, string& target_problem) const
 {
     if (not tree.empty())
     {
@@ -36,7 +36,7 @@ bool Session::search_problem(const BinTree<string>& tree, string& target_problem
     return false;
 }
 
-bool Session::find(string target_problem)
+bool Session::find(string target_problem) const
 {
     return search_problem(this->problem_node, target_problem);
 }
@@ -60,7 +60,7 @@ void Session::read_session()
     fill_problem_set(problem_node);
 }
 
-void Session::info_session()
+void Session::info_session() const
 {
     cout << this->get_id() << ' ' << problem_node.value() << endl;
 }

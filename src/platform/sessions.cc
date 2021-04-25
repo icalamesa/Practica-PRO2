@@ -27,7 +27,7 @@ void Sessions::read_sessions()
     this->sort_session_list();
 }
 
-bool Sessions::exists_session(string target)
+bool Sessions::exists_session(string target) const
 {
     return std::binary_search(session_list.begin(), 
 	    session_list.end(),
@@ -53,7 +53,7 @@ void Sessions::insert_session(string session_id)
     this->sort_session_list();
 }
 
-string Sessions::find_in_sessions(string prob)
+string Sessions::find_in_sessions(string prob) const
 {
     string res = "";
     for (const auto& the_session : this->session_list)
@@ -70,4 +70,12 @@ string Sessions::find_in_sessions(string prob)
 int Sessions::size()
 {
     return session_list.size();
+}
+
+void Sessions::list_sessions() const
+{
+    for (const auto& session : this->session_list)
+    {
+	session.info_session();
+    }
 }

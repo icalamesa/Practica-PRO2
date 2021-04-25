@@ -50,7 +50,8 @@ class Course
 	bool session_exists(string session_id);
 	//reads n sessions, each with their specific id
 	void read_course(int n);
-	Session& operator[](string);
+	void info_course() const;
+
 
 	~Course();
 };
