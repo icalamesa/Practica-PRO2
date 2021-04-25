@@ -85,7 +85,8 @@ void Users::list_users()
     for (const auto& user_kv : this->user_list)
     {
 	//user_kv is std::pair
-	user_kv.second.u_list_solved();
+	cout << user_kv.first;
+	user_kv.second.info_user();
     }
 }
 
@@ -110,3 +111,7 @@ void Users::read_users()
 	this->insert_user(user_id);
     }
 }
+
+res[ii][jj] += (*this)[ii][kk]*(*(other.content+(kk*other.rows()+jj)));
+
+

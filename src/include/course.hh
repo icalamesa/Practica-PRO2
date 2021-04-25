@@ -23,6 +23,7 @@ using namespace std;
 class Course
 {
     vector<string> session_list;
+    int are_coursing = 0;
     public:
 	Course();
 	/**

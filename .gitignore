@@ -33,3 +33,7 @@
 
 # Other
 doc/*
+build/*
+*.cmake
+CMakeCache.txt
+CmakeFiles

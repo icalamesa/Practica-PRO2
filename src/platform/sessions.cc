@@ -9,9 +9,9 @@ bool Sessions::comp_by_id(const Session& a, const Session& b)
     return a.get_id() < a.get_id();
 }
 
-void Sessions::sort_list()
+void Sessions::sort_session_list()
 {
-    this->session_list.sort();
+    this->session_list.sort(std::less<Session>{});
 }
 
 void Sessions::read_sessions()
@@ -24,7 +24,7 @@ void Sessions::read_sessions()
 	the_session.read_session();
 	this->insertion(the_session);
     }
-    this->sort_list();
+    this->sort_session_list();
 }
 
 bool Sessions::exists_session(string target)
@@ -43,14 +43,14 @@ void Sessions::insert_session(Session new_session)
 {
     this->insertion(new_session);
     //this is using internal Session operator < overload
-    this->sort_list();
+    this->sort_session_list();
 }
 
 void Sessions::insert_session(string session_id)
 {
     this->insertion(Session(session_id));
     //this is using internal Session operator < overload
-    this->sort_list();
+    this->sort_session_list();
 }
 
 string Sessions::find_in_sessions(string prob)

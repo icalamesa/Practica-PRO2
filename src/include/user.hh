@@ -7,6 +7,7 @@
 /** @cond */
 #include <string>
 #include <map>
+#include <utility>
 /** @endcond */
 
 using namespace std;
@@ -20,12 +21,13 @@ using namespace std;
 */
 class User
 {
-    int coursing; //-1 if not coursing anything
+    int coursing = -1; //-1 if not coursing anything
     int total_successes = 0;
     int total_attempted = 0;
     //one of these
     //map<string, vector<string>> solved;
-    map<string, bool> solved;
+    map<string, pair<bool, int>> solved;
+    void insertion(string problem_id, bool solved);
     public:
 	//CONSULTORES
 
@@ -37,27 +39,27 @@ class User
 	    @pre No precondition.
 	    @post If the user is enrolled in a course, the id of the course is returned. If it is not, the returned integer is set to 0.
 	*/
-	int u_tell_course();
+	int u_tell_course() const;
 	/**
 	    @pre No precondition.
 	    @return True if the specific User is enrolled in a course, false otherwise.
 	*/
-	bool u_is_coursing();
+	bool u_is_coursing() const;
 	/**
 	    @pre No precondition.
 	    @return Integer with the amount of attempts(deliveries) the specific User has performed onto the platform.
 	*/
-	int u_amount_attempts();
+	int u_amount_attempts() const;
 	/**
 	    @pre No precondition.	
 	    @return Integer with the amount of problems that have been solved so far by the specific User (deliveries flagged as correct). 
 	*/
-	int u_amount_solved_problems();
+	int u_amount_solved_problems() const;
 	/**
 	    @pre No precondition.
 	    @return Integer with the amount of different problems that have been attempted so far by the specific User.
 	*/
-	int u_different_attempts();
+	int u_different_attempts() const;
 	//if empty string, empty course
 
 	//MODIFICADORES
@@ -65,7 +67,7 @@ class User
 	/**
 	    Enrolls the specific User in a course if it is not in one (at function call). Prints an error message if it is already enrolled in a course.
 	    @param course_name Name of the course to enroll the user in.
-	    @pre @p course_name integer corresponds to the id of an existing @ref Course instance in the valid Course container.
+	    @pre @p course_name integer corresponds to the id of an existing @ref Course instance in the valid Course container. User was not enrroled in any course previously.
 	    @post If the user was not enrolled in a course, it is then enrolled in one with @p course_name identifier. If it already was enrolled in a @ref Course, prints an error message. 
 
 	*/
@@ -87,6 +89,7 @@ class User
             @post Solved problems by the User are displayed on Standard output.
         */ 
 	void u_list_solved() const;
+	void info_user() const;
 	~User();
 };
 

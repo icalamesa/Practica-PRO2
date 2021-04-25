@@ -31,7 +31,7 @@ class Sessions
 	Reads @ref Session instances from standard input and inserts them onto the list of sessions(read in preorder).
     */
     void insertion(const Session& new_session);
-    void sort_list();
+    void sort_session_list();
     public:
 	Sessions();	
 	/**
@@ -59,11 +59,12 @@ class Sessions
 	    @return Integer with the amount of @ref Session contained in the list.
 	*/
 	int size();
-    /**
-        @param id Valid identifier of an exiting Session instance.
-        @return Session isntane reference
-    */
-    Session& get_session(string id);
+	/**
+	    @param id Valid identifier of an exiting Session instance.
+	    @return Session isntane reference
+	*/
+	stringstream get_problems_in_session(string session_id);
+	Session& get_session(string id);
 
 	~Sessions();
 };

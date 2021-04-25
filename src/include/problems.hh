@@ -10,7 +10,7 @@
 using namespace std;
 /** @cond */
 #include <string>
-#include <vector>
+#include <list>
 /** @endcond */
 
 #include "problem.hh"
@@ -26,13 +26,15 @@ using namespace std;
 class Problem_repo
 {
     static bool comp_by_id(const Problem& a, const Problem& b);
-    vector<Problem> problem_list;
+    list<Problem> problem_list;
     void ratio_sort();
     int binary_search(string problem_id);
 
     void insert_problem_no_sort(string problem_id);
-
+    
+    //generic basic operations. They allow flexible change in the implementation
     void insertion(Problem new_problem);
+    void sort_problem_list();
 
     public:
 	Problem_repo();

@@ -38,16 +38,10 @@ int main()
     {
 	if (command == "nuevo_problema" or command == "np")
 	{
-	    string problem;
-	    //reads p string
-	    cin >> problem;
-	    //calls function with the given strings
-	    add_problem(problem, problem_list);
+	    add_problem(problem_list);
 	}
 	else if (command == "nueva_sesion" or command == "ns")
 	{
-	    string session;
-	    cin >> session;
 	    add_session(session, session_list);
 	}
 	else if (command == "nuevo_curso" or command == "nc")
@@ -155,9 +149,6 @@ int main()
 	    tell_users(user, user_list);
 	}
 	
-	// no need to call destructor of args queue, since we assume
-	// it is empty after every function return
-
 	cin >> command;
     }
 }

@@ -28,16 +28,21 @@ void Problem_repo::insertion(Problem new_problem)
     this->problem_list.push_back(new_problem);
 }
 
+void Problem_repo::sort_problem_list()
+{
+    this->problem_list.sort(std::less<Problem>{});
+}
+
 void Problem_repo::insert_problem(string problem_id)
 {
     this->insertion(Problem(problem_id));
-    sort(this->problem_list.begin(), this->problem_list.end(), Problem_repo::comp_by_id);
+    this->sort_problem_list();
 }
 
 void Problem_repo::insert_problem(Problem new_problem)
 {
     this->insertion(new_problem);
-    sort(this->problem_list.begin(), this->problem_list.end(), Problem_repo::comp_by_id);
+    this->sort_problem_list();
 }
 
 void Problem_repo::read_problems()
@@ -50,12 +55,12 @@ void Problem_repo::read_problems()
         cin >> problem_id;
         this->insertion(problem_id);
     }
-    sort(this->problem_list.begin(), problem_list.end(), Problem_repo::comp_by_id);
+    this->sort_problem_list();
 }
 //we assume the internal list is sorted.
 Problem& Problem_repo::get_problem(string problem_id)
 { 
     Problem obj = Problem(problem_id);
-    return *(std::find(this->problem_list.begin(), this->problem_list.end(), obj ));
+    return *( std::find(this->problem_list.begin(), this->problem_list.end(), obj) );
 }
 
