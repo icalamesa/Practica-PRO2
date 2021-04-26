@@ -29,7 +29,7 @@ void add_problem(Problem_repo& problem_list);
     @pre No precondition.
     @post Add a new session with identifier s. First read the problem structure of the session, in the same way as for the initial sessions (ensure that the problems exist and are not repeated). If a session already existed on the platform with the same identifier, an error message is printed. Otherwise the number of sessions is printed in the repository after adding it. It is guaranteed that the new session is not the same as the existing ones.
 */
-void add_session(string session_id, Sessions& session_list);
+void add_session(Sessions& session_list);
 
 //3.
 /**
@@ -38,7 +38,7 @@ void add_session(string session_id, Sessions& session_list);
     @pre No precondition.
     @post Adds a new course with identifier size + 1 in case it meets the constraint of no repetition of problems in the same course. The command supports the short form nc. First a number of sessions is read and then a sequence of valid session identifiers. If there are no intersection of problems in the sessions, the course is added to the course set and its identifier is printed. its identifier is printed. Otherwise, it is not added to the set (so that the size does not change) and an error message is printed. It is guaranteed that the new course is not is not the same as the existing ones.
 */
-void add_course(int course_id, Courses& course_list);
+void add_course(Courses& course_list);
 
 //4.
 /**
@@ -69,7 +69,7 @@ void remove_user(string user_id, Users& user_list);
     @pre No precondition.
     @post Enrolls the user with identifier @p user_id in the course with identifier @p course_id. If the user or the course does not exist in the platform or is already enrolled in another course that has not been completed, an error message is printed. Otherwise the number of users enrolled in the course after adding the course is printed (it is guaranteed that the user has not been previously enrolled in the course).
 */
-void add_to_course(string user_id, int course_id, Users& user_list);
+void sign_in_course(string user_id, int course_id, Users& user_list, Courses& course_list);
 
 //7.
 /**
@@ -142,13 +142,13 @@ void tell_prob_list(string problem_id, Problem_repo& problem_list);
     @pre No precondition.
     @post The current sessions of the platform are listed, sorted in increasing order by their identifier and showing, for each session, the number of problems that form it and the identifiers of these problems, following their prerequisite structure in post order.
 */
-void tell_session(Sessions& session_list);
+void tell_session(const Sessions& session_list);
 /**
     @param session_id Id of the specific Session instance.
     @param session_list Repository of Session instances.
     @pre Information of the session whose identifier is @p session_id is displayed: the number of problems that form it and the identifiers of these problems, following its prerequisite structure in post order.
 */
-void tell_session(string session_id, Sessions& session_list);
+void tell_session(const string& session_id, const Sessions& session_list);
 
 //14.
 /**

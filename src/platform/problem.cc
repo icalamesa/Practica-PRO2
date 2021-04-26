@@ -3,6 +3,8 @@
 
 using namespace std;
 
+Problem::Problem(){}
+
 //constructor
 Problem::Problem(string problem_id)
 {
@@ -34,7 +36,7 @@ void Problem::info_problem() const
     cout << this->get_id() << ' ';
     cout << '(' << this->get_attempts() << ',';
     cout << this->get_solved() << ',' << this->get_ratio();
-    cout << endl;
+    cout << ')' <<endl;
 }
 
 bool Problem::operator==(const Problem& other) const
@@ -46,3 +48,5 @@ bool Problem::operator<(const Problem& other) const
 {
     return this->get_id() < other.get_id();
 }
+
+Problem::~Problem(){}

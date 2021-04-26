@@ -4,6 +4,8 @@
 
 using namespace std;
 
+Sessions::Sessions(){}
+
 bool Sessions::comp_by_id(const Session& a, const Session& b)
 {
     return a.get_id() < a.get_id();
@@ -79,3 +81,13 @@ void Sessions::list_sessions() const
 	session.info_session();
     }
 }
+
+void Sessions::list_sessions(const string& session_id) const
+{
+    auto& ses = *(std::find(this->session_list.begin(), 
+		this->session_list.end(), 
+		Session(session_id)));
+    ses.info_session();
+}
+
+Sessions::~Sessions(){}

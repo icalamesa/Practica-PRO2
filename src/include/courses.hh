@@ -24,28 +24,38 @@ class Courses
 {
     map<int, Course> course_list;
 
-    //listar por orden de inclusión
+    /**
+      A Course instance is read from Standard input following the format.
+	@pre Read Course instance is guaranteed to not be equal to other existing courses.
+	@post If there is no Problem intersection among the Session instances contained in the created Course, it is added to the @ref Course list. Course is not added and and error message is printed in Standard output otherwise.
+    */
+    void read_and_add_course();
+
+    Course& operator[](int index) const;
+
     public:
         Courses();	
 	/**
 	    @param course_id The id of the specific course to find the problem in.
 	    @param target_problem The id of the specific problem to be searched for.
-	    @pre course_id is not equal to 0 and the size of the target_problem id is not equal to zero
+	    @pre course_id is not equal to 0 and course_id corresponds to the id of an actual course in the implicit parameter.
 	    @post If the given problem is found within the problems of the given @ref Course, the name of the Session is returned. If the problem with the given identifier does not exist in the given course, or the Course does not exist, or even the problem, an error is printed in Standard output.
 	*/
-	string find_session_id(int course_id, string target_problem);
-	/**
-	  A Course instance is read from Standard input following the format.
-	    @pre Read Course instance is guaranteed to not be equal to other existing courses.
-	    @post If there is no Problem intersection among the Session instances contained in the created Course, it is added to the @ref Course list. Course is not added and and error message is printed in Standard output otherwise.
-	*/
-	void insert_course();
+	bool find_session_in_courselist(int course_id, string session_id) const;
 	/** COMPROBAR ESTA
 	  An existing Course instance is inserted into the Course list.
 	    @pre Course instance is guaranteed to not be equal to other existing courses.
 	    @post If there is no Problem intersection among the Session instances contained in the created Course, it is added to the @ref Course list. Course is not added and and error message is printed in Standard output otherwise.
 	*/
+
 	void insert_course(Course& new_course);
+	//listar por orden de inclusión
+	/**
+	    @param id Identifier of a Course instance.
+	    @pre @p id is an integer with a valid course id.
+	    @return Lvalue reference to a Course instance
+	*/
+	const Course& get_course(const int& id) const;
 	/**
         Reads @ref Course instances from standard input.
 	    @pre Course instances in standard input follow the valid specified format by the docs.
@@ -58,32 +68,25 @@ class Courses
 	    @pre No prerequisites.
 	    @return An integer with the amount of Course instances inside the implicit parameter internal list.
 	*/
-	int count_courses();
-	/**
-	    @param id Identifier of a Course instance.
-	    @pre @p id is an integer with a valid course id.
-	    @return Lvalue reference to a Course instance
-	*/
-	Course& get_course(int id);
-	Course& operator[](int index);
+	int size() const;
 	/**
 	    @param course_name The id of the course to be found.
 	    @pre No precondition
 	    @return Boolean True if @p course_name exists, False if it does not.
 	*/
-	bool course_exists(int course_name);
+	bool course_exists(int course_name) const;
 	/**
 	    @pre No precondition.
 	    @post Courses are listed, sorted by their id in strict weak ordering. For each course, the displayed information is: the number of current or past users who have completed the course, the number of users currently enrolled, the number of sessions that make up the course, and the session identifiers, in the same order in which they were read when the course was created.
 
 	*/
-	void list_all_courses();
+	void list_all_courses() const;
 	/**
 	    @param course_name The id of the course to be searched for.
 	    @pre No precondition.
 	    @post If the course exists, lists information for a single course. That information is: The number of current or past users who have completed the course, the number of users currently enrolled, the number of sessions that make up the course, and the session identifiers, in the same order in which they were read when the course was created. \n If the course does not exist, prints an error message in Standard output.
 	*/
-	void list_course(int course_name);
+	void list_course(int course_name) const;
 	~Courses();
 };
 #endif

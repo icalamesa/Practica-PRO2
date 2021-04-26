@@ -21,7 +21,7 @@ using namespace std;
 */
 class User
 {
-    int coursing = -1; //-1 if not coursing anything
+    int coursing = 0; //0 if not coursing anything
     int total_successes = 0;
     int total_attempted = 0;
     //one of these

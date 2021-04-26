@@ -66,7 +66,7 @@ class Sessions
 	stringstream get_problems_in_session(string session_id);
 	Session& get_session(string id) const;
 	void list_sessions() const;
-
+	void list_sessions(const string& session_id) const;
 	~Sessions();
 };
 #endif

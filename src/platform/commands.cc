@@ -14,16 +14,18 @@ void add_problem(Problem_repo& problem_list)
 
 void add_session(Sessions& session_list)
 {
-    Session new_session;
+    string id;
+    cin >> id;
+    Session new_session(id);
     new_session.read_session();
     session_list.insert_session(new_session);
 }
 
 //important: does NOT read course id. It reads number of sessions to be read
-void add_course(int n, Courses& course_list)
+void add_course(Courses& course_list)
 {
     Course new_course;
-    new_course.read_course(n);
+    new_course.read_course();
     if (new_course.is_legal())
     {
 	course_list.insert_course(new_course);
@@ -59,7 +61,7 @@ void remove_user(string user_id, Users& user_list)
     }
 }
 
-void add_to_course(string user_id, int course_id, Users& user_list, Courses& course_list)
+void sign_in_course(string user_id, int course_id, Users& user_list, Courses& course_list)
 {
     bool u_exist = false, c_exist = false;
     u_exist = user_list.user_exists(user_id);
@@ -95,7 +97,7 @@ void find_problem_session(int course_id, string problem_id, Courses& course_list
     p_exist = problem_list.problem_exists(problem_id);
     if (c_exist and p_exist)
     {
-	string session = course_list.find_session_id(course_id, problem_id);
+	string session; //= course_list.find_session_id(course_id, problem_id);
 	if (session.empty())
 	{
 	    cout << "error: el problema no pertenece al curso" << endl;
@@ -167,11 +169,11 @@ void tell_session(const Sessions& session_list)
     session_list.list_sessions();
 }
 
-void tell_session(string session_id, const Sessions& session_list)
+void tell_session(const string& session_id, const Sessions& session_list)
 {
     if (session_list.exists_session(session_id))
     {
-	session_list.get_session(session_id).info_session();
+	session_list.list_sessions(session_id);
     }
     else
     {

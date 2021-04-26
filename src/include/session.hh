@@ -33,6 +33,7 @@ class Session
     set<string> list_of_problems();
     void fill_problem_set(BinTree<string>& tree);
     bool search_problem(const BinTree<string>& tree, string& target_problem) const;
+    void print_session(const BinTree<string>&tree) const;
     public:
 	Session();
 	Session(string session_id);
@@ -62,6 +63,7 @@ class Session
         void info_session() const;
 	string get_id() const;
 	bool operator< (const Session& other) const;
+	bool operator== (const Session& other) const;
 	~Session();
 };
 

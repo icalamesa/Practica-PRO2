@@ -12,7 +12,12 @@ Session::Session(string session_id)
 
 bool Session::operator< (const Session& other) const
 {
-    return this->id < other.get_id();
+    return this->get_id() < other.get_id();
+}
+
+bool Session::operator== (const Session& other) const
+{
+    return this->get_id() == other.get_id();
 }
 
 string Session::get_id() const
@@ -60,7 +65,24 @@ void Session::read_session()
     fill_problem_set(problem_node);
 }
 
+void Session::print_session(const BinTree<string>& tree) const
+{
+    cout << '(';
+    if (not tree.left().empty())
+    {
+	this->print_session(tree.left());
+    }
+    if (not tree.right().empty())
+    {
+	this->print_session(tree.right());
+    }
+    cout << tree.value();
+    cout << ')';
+}
+
 void Session::info_session() const
 {
-    cout << this->get_id() << ' ' << problem_node.value() << endl;
+    cout << this->get_id() << ' ';
+    print_session(this->problem_node);
+    cout << endl;
 }

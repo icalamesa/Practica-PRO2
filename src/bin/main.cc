@@ -42,15 +42,11 @@ int main()
 	}
 	else if (command == "nueva_sesion" or command == "ns")
 	{
-	    string session;
-	    cin >> session;
-	    add_session(session, session_list);
+	    add_session(session_list);
 	}
 	else if (command == "nuevo_curso" or command == "nc")
 	{
-	    int course;
-	    cin >> course;
-	    add_course(course, course_list);
+	    add_course(course_list);
 	}
 	else if (command == "alta_usuario" or command == "a")
 	{
@@ -72,7 +68,7 @@ int main()
 	    int course;
 	    cin >> course;
 	    
-	    add_to_course(user, course, user_list);
+	    sign_in_course(user, course, user_list, course_list);
 	}
 	else if (command == "curso_usuario" or command == "cu")
 	{

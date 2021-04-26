@@ -4,6 +4,8 @@
 
 using namespace std;
 
+Problem_repo::Problem_repo(){}
+
 bool Problem_repo::comp_by_id(const Problem& a, const Problem& b)
 {
     return a.get_id() < b.get_id();
@@ -88,3 +90,5 @@ void Problem_repo::list_problems()
     }
     this->sort_problem_list(std::less<Problem>{});
 }
+
+Problem_repo::~Problem_repo(){}

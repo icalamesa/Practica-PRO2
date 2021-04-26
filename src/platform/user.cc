@@ -76,4 +76,6 @@ void User::info_user() const
     cout << '(' << this->u_amount_attempts() << ',';
     cout << this->u_amount_solved_problems() << ',' << this->u_different_attempts();
     cout << ',' << this->u_tell_course() << ')';
+    cout << endl;
 }
+

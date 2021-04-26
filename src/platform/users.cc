@@ -16,9 +16,9 @@ User& Users::get_user(string user_id)
     return this->user_find(user_id);
 }
 
-User& user_find(const string& user_id)
+User& Users::user_find(const string& user_id)
 {
-    return user_find(user_id);
+    return this->user_list.find(user_id)->second;
 }
 
 void Users::insert_user(string user_id)

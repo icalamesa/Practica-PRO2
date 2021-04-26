@@ -8,6 +8,8 @@
 */
 /** @cond */
 #include <string>
+#include <set>
+#include <vector>
 /** @endcond */
 
 #include "sessions.hh"
@@ -23,7 +25,9 @@ using namespace std;
 class Course
 {
     vector<string> session_list;
+    set<string> session_list_ordered;
     int are_coursing = 0;
+    void insertion(const string& ses);
     public:
 	Course();
 	/**
@@ -35,13 +39,7 @@ class Course
             @pre @p target_problem is an string correctly formatted. A problem with @p target_problem as an identifier exists.
 	    @return An std::string with the id of the internal session that contains the given problem id. If it does not exist, the string returned is empty.
 	*/
-	string find_session_id(string target_problem);
-	/**
-	    @param Id String with identifier of a session.
-	    @pre Session with @p session_id as an identifier exists.
-	    @return Reference to @ref Session instance.
-	*/
-	Session& get_session(string session_id);
+	bool find_session_in_course(string target_session) const;
 	/**
 	    @param session_id Id of the Session instance to search for.
 	    @pre No precondition.
@@ -49,7 +47,7 @@ class Course
 	*/
 	bool session_exists(string session_id);
 	//reads n sessions, each with their specific id
-	void read_course(int n);
+	void read_course();
 	void info_course() const;
 
 
