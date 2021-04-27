@@ -64,7 +64,8 @@ int Users::different_attempts(string user_id)
 
 void Users::sign_in_course(string user_id, int course_name)
 {
-    this->user_find(user_id).u_sign_in_course(course_name);
+    auto& user = this->user_find(user_id);
+    user.u_sign_in_course(course_name);
 }
 
 void Users::add_problem_to_list(string user_id, string problem_id, bool solved)

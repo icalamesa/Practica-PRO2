@@ -17,6 +17,7 @@ bool Course::is_legal(){}
 void Course::info_course() const
 {
     //TO DO
+    cout << "curso" << endl;
 }
 
 void Course::read_course()

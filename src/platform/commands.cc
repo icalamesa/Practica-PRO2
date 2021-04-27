@@ -69,7 +69,15 @@ void sign_in_course(string user_id, int course_id, Users& user_list, Courses& co
     c_exist = course_list.course_exists(course_id);
     if (u_exist and c_exist)
     {
-	user_list.sign_in_course(user_id, course_id);
+	if (not user_list.is_coursing(user_id))
+	{
+	    user_list.sign_in_course(user_id, course_id);
+	    cout << course_id << endl;
+	}
+	else
+	{
+	    cout << "error: usuario inscrito en otro curso" << endl;
+	}
     }
     else
     {
