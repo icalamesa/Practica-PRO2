@@ -37,3 +37,5 @@ build/*
 *.cmake
 CMakeCache.txt
 CmakeFiles
+*.tar
+delme/*
