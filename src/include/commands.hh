@@ -38,7 +38,7 @@ void add_session(Sessions& session_list);
     @pre No precondition.
     @post Adds a new course with identifier size + 1 in case it meets the constraint of no repetition of problems in the same course. The command supports the short form nc. First a number of sessions is read and then a sequence of valid session identifiers. If there are no intersection of problems in the sessions, the course is added to the course set and its identifier is printed. its identifier is printed. Otherwise, it is not added to the set (so that the size does not change) and an error message is printed. It is guaranteed that the new course is not is not the same as the existing ones.
 */
-void add_course(Courses& course_list);
+void add_course(Courses& course_list, Sessions& session_list);
 
 //4.
 /**

@@ -86,3 +86,8 @@ void Session::info_session() const
     print_session(this->problem_node);
     cout << endl;
 }
+
+int Session::size() const
+{
+    return this->list_of_problems.size();
+}

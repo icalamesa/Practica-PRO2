@@ -22,7 +22,7 @@ void add_session(Sessions& session_list)
 }
 
 //important: does NOT read course id. It reads number of sessions to be read
-void add_course(Courses& course_list)
+void add_course(Courses& course_list, Sessions& session_list)
 {
     Course new_course;
     new_course.read_course();
@@ -72,6 +72,7 @@ void sign_in_course(string user_id, int course_id, Users& user_list, Courses& co
 	if (not user_list.is_coursing(user_id))
 	{
 	    user_list.sign_in_course(user_id, course_id);
+	    course_list.increase_coursing(course_id);
 	    cout << course_list.are_coursing(course_id) << endl;
 	}
 	else
