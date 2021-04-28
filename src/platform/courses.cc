@@ -9,6 +9,11 @@ const Course& Courses::get_course(const int& course_id) const
     return this->course_list.at(course_id);
 }
 
+Course& Courses::get_course(const int& course_id)
+{
+    return this->course_list.at(course_id);
+}
+
 bool Courses::find_session_in_courselist(int course_id, string session_id) const
 {
     return this->get_course(course_id).find_session_in_course(session_id);
@@ -58,4 +63,19 @@ void Courses::list_course(int course_name) const
 bool Courses::course_exists(int course_name) const
 {
     return this->course_list.find(course_name) != this->course_list.end();
+}
+
+int Courses::are_coursing(const int& course_id) const
+{
+    return this->get_course(course_id).users_coursing();
+}
+
+void Courses::increase_coursing(const int& course_id)
+{
+    this->get_course(course_id).increase_coursing();
+}
+
+void Courses::decrease_coursing(const int& course_id)
+{
+    this->get_course(course_id).decrease_coursing();
 }

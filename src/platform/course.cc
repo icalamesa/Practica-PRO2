@@ -42,5 +42,20 @@ bool Course::find_session_in_course(string target_session) const
     return this->session_list_ordered.find(target_session) != this->session_list_ordered.end();
 }
 
+int Course::users_coursing() const
+{
+    return this->are_coursing;
+}
+
+void Course::increase_coursing()
+{
+    this->are_coursing++;
+}
+
+void Course::decrease_coursing()
+{
+    this->are_coursing--;
+}
+
 Course::~Course(){}
 

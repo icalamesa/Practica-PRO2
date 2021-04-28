@@ -56,6 +56,8 @@ class Courses
 	    @return Lvalue reference to a Course instance
 	*/
 	const Course& get_course(const int& id) const;
+	//NECESITA DOXYCOMENTARIOS
+	Course& get_course(const int& course_id);
 	/**
         Reads @ref Course instances from standard input.
 	    @pre Course instances in standard input follow the valid specified format by the docs.
@@ -87,6 +89,9 @@ class Courses
 	    @post If the course exists, lists information for a single course. That information is: The number of current or past users who have completed the course, the number of users currently enrolled, the number of sessions that make up the course, and the session identifiers, in the same order in which they were read when the course was created. \n If the course does not exist, prints an error message in Standard output.
 	*/
 	void list_course(int course_name) const;
+	void increase_coursing(const int& course_id);
+	void decrease_coursing(const int& course_id);
+	int are_coursing(const int& course_id) const;
 	~Courses();
 };
 #endif

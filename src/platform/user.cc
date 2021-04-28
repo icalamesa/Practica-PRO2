@@ -18,7 +18,7 @@ int User::u_tell_course() const
 
 bool User::u_is_coursing() const
 {
-    return coursing != -1;
+    return coursing != 0;
 }
 
 int User::u_amount_attempts() const

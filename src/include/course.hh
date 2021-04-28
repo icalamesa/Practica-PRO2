@@ -49,7 +49,10 @@ class Course
 	//reads n sessions, each with their specific id
 	void read_course();
 	void info_course() const;
-
+	
+	int users_coursing() const;
+	void increase_coursing();
+	void decrease_coursing();
 
 	~Course();
 };

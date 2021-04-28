@@ -72,7 +72,7 @@ void sign_in_course(string user_id, int course_id, Users& user_list, Courses& co
 	if (not user_list.is_coursing(user_id))
 	{
 	    user_list.sign_in_course(user_id, course_id);
-	    cout << course_id << endl;
+	    cout << course_list.are_coursing(course_id) << endl;
 	}
 	else
 	{
