@@ -6,12 +6,14 @@ Courses::~Courses(){}
 
 const Course& Courses::get_course(const int& course_id) const
 {
-    return this->course_list.at(course_id);
+    cout << "DEBUG GET COURSE: " << course_id << endl;
+    return this->course_list[course_id];
 }
 
 Course& Courses::get_course(const int& course_id)
 {
-    return this->course_list.at(course_id);
+    cout << "DEBUG GET COURSE: " << course_id << endl;
+    return this->course_list[course_id];
 }
 
 bool Courses::find_session_in_courselist(int course_id, string session_id) const
@@ -29,7 +31,9 @@ void Courses::read_and_add_course()
 void Courses::insert_course(Course& new_course)
 {
     int num = this->size();
-    this->course_list.insert(make_pair(num+1, new_course));
+    num++;
+    
+    this->course_list.insert(make_pair(num, new_course));
 }
 
 void Courses::read_courses()
@@ -70,6 +74,11 @@ int Courses::are_coursing(const int& course_id) const
     return this->get_course(course_id).users_coursing();
 }
 
+int Courses::historical_users(const int& course_id) const
+{
+    this->get_course(course_id).historical_users();
+}
+
 void Courses::increase_coursing(const int& course_id)
 {
     this->get_course(course_id).increase_coursing();
@@ -78,4 +87,14 @@ void Courses::increase_coursing(const int& course_id)
 void Courses::decrease_coursing(const int& course_id)
 {
     this->get_course(course_id).decrease_coursing();
+}
+
+int Courses::course_size(int course_id) const
+{
+    this->get_course(course_id).size();
+}
+
+void Courses::print_course_sessions(int course_id) const
+{
+    this->get_course(course_id).info_course();
 }

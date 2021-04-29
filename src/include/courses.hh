@@ -92,6 +92,9 @@ class Courses
 	void increase_coursing(const int& course_id);
 	void decrease_coursing(const int& course_id);
 	int are_coursing(const int& course_id) const;
+	int historical_users(const int& course_id) const;
+	int course_size(int course_id) const;
+	void print_course_sessions(int course_id) const;
 	~Courses();
 };
 #endif

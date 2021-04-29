@@ -1,6 +1,5 @@
 /** 
-    @file
-    @brief User class specification.
+        @brief User class specification.
     @author Ivan Cala Mesa
     @date 1st of april of 2021
 */

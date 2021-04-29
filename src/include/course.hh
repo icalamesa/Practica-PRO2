@@ -27,9 +27,11 @@ class Course
     vector<string> session_list;
     set<string> session_list_ordered;
     int are_coursing = 0;
+    int have_coursed = 0;
     void insertion(const string& ses);
     public:
 	Course();
+	int size() const;
 	/**
 	    @return True if there is no repeated problem across the different sessions stored in the implicit parameter. False otherwise.
 	*/
@@ -49,8 +51,9 @@ class Course
 	//reads n sessions, each with their specific id
 	void read_course();
 	void info_course() const;
-	
+
 	int users_coursing() const;
+	int historical_users() const;
 	void increase_coursing();
 	void decrease_coursing();
 

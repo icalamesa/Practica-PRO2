@@ -19,7 +19,7 @@ using namespace std;
 
 /** @brief Class that behaves as a problem set with completion requisites.
 
-    Class that represent a session, composed of multiple problems. A system of prerequisites is implemented so that problems may require other problems to be resolved first.
+    Class that represents a session, composed of multiple problems. A system of prerequisites is implemented so that problems may require other problems to be resolved first.
 */
 class Session
 {
@@ -62,7 +62,7 @@ class Session
         */
         void info_session() const;
 	string get_id() const;
-	int size() const;
+	int get_size() const;
 	bool operator< (const Session& other) const;
 	bool operator== (const Session& other) const;
 	~Session();

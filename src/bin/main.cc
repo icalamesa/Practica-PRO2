@@ -46,7 +46,7 @@ int main()
 	}
 	else if (command == "nuevo_curso" or command == "nc")
 	{
-	    add_course(course_list);
+	    add_course(course_list, session_list);
 	}
 	else if (command == "alta_usuario" or command == "a")
 	{

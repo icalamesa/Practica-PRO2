@@ -11,13 +11,22 @@ void Course::insertion(const string& ses)
     this->session_list_ordered.emplace(ses);
 }
 
+int Course::size() const
+{
+    return this->session_list.size();
+}
+
 //TO DO
 bool Course::is_legal(){}
 
+//THIS METHOD ONLY PRINTS SESSION IDS
 void Course::info_course() const
 {
-    //TO DO
-    cout << "curso" << endl;
+    for (const auto& session : this->session_list)
+    {
+	cout << session << ' ';
+    }
+    cout << endl;
 }
 
 void Course::read_course()
@@ -46,10 +55,15 @@ int Course::users_coursing() const
 {
     return this->are_coursing;
 }
+int Course::historical_users() const
+{
+    return this->have_coursed;
+}
 
 void Course::increase_coursing()
 {
     this->are_coursing++;
+    this->have_coursed++;
 }
 
 void Course::decrease_coursing()

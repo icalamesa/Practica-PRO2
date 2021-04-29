@@ -87,7 +87,7 @@ void Session::info_session() const
     cout << endl;
 }
 
-int Session::size() const
+int Session::get_size() const
 {
     return this->list_of_problems.size();
 }
