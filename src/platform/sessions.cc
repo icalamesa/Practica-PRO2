@@ -8,7 +8,7 @@ Sessions::Sessions(){}
 
 bool Sessions::comp_by_id(const Session& a, const Session& b)
 {
-    return a.get_id() < a.get_id();
+    return a.get_id() < b.get_id();
 }
 
 void Sessions::sort_session_list()

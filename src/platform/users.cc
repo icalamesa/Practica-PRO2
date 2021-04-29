@@ -75,6 +75,7 @@ void Users::add_problem_to_list(string user_id, string problem_id, bool solved)
 //need to do crap with this one
 void Users::list_solvable_problems(string user_id)
 {
+    (void) user_id;
     //this->user_find(user_id).u_
 }
 

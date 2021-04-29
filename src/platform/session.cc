@@ -7,7 +7,7 @@ Session::Session(){}
 Session::~Session(){}
 Session::Session(string session_id)
 {
-    this->id = id;
+    this->id = session_id;
 }
 
 bool Session::operator< (const Session& other) const

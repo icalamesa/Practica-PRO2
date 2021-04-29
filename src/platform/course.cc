@@ -17,7 +17,7 @@ int Course::size() const
 }
 
 //TO DO
-bool Course::is_legal(){}
+bool Course::is_legal(){ return true; }
 
 //THIS METHOD ONLY PRINTS SESSION IDS
 void Course::info_course() const

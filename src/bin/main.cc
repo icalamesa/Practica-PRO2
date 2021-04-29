@@ -94,7 +94,7 @@ int main()
 	{
 	    string user;
 	    cin >> user;
-	    tell_solvable_probs(user, user_list, course_list);
+	    //tell_solvable_probs(user, user_list, course_list);
 	}
 	else if (command == "envio" or command == "e")
 	{
@@ -104,7 +104,7 @@ int main()
 	    cin >> problem;
 	    bool successful;
 	    cin >> successful;
-	    deliver_problem(user, problem, successful, user_list, problem_list);
+	    //deliver_problem(user, problem, successful, user_list, problem_list);
 	}
 	else if (command == "listar_problemas" or command == "lp")
 	{

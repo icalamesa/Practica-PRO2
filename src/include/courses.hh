@@ -32,6 +32,7 @@ class Courses
     void read_and_add_course();
 
     Course& operator[](int index) const;
+    void list_course(decltype(course_list)::const_iterator& it) const;
 
     public:
         Courses();	

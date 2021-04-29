@@ -199,10 +199,8 @@ void tell_courses(int course_id, Courses& course_list)
 {
     if (course_list.course_exists(course_id))
     {
-	cout << course_id << ' ' << course_list.historical_users(course_id) << ' ' << course_list.are_coursing(course_id) << ' ';
-	course_list.print_course_sessions(course_id);
+	course_list.list_course(course_id);
     }
-    //
     else
     {
 	cout << "error: el curso no existe" << endl;

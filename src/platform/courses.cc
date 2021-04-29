@@ -6,14 +6,12 @@ Courses::~Courses(){}
 
 const Course& Courses::get_course(const int& course_id) const
 {
-    cout << "DEBUG GET COURSE: " << course_id << endl;
-    return this->course_list[course_id];
+    return this->course_list.at(course_id);
 }
 
 Course& Courses::get_course(const int& course_id)
 {
-    cout << "DEBUG GET COURSE: " << course_id << endl;
-    return this->course_list[course_id];
+    return this->course_list.at(course_id);
 }
 
 bool Courses::find_session_in_courselist(int course_id, string session_id) const
@@ -53,15 +51,27 @@ int Courses::size() const
 
 void Courses::list_all_courses() const
 {
-    for (const auto& course_kv : this->course_list)
+    for (auto it = this->course_list.begin(); it != this->course_list.end(); it++)
     {
-	course_kv.second.info_course();
+	this->list_course(it);
     }
+}
+
+void Courses::list_course(map<int, Course>::const_iterator& it) const
+{
+    cout << it->first << ' ';
+    cout << it->second.historical_users() << ' ';
+    cout << it->second.users_coursing() << ' ';
+    cout << it->second.size() << ' ';
+    it->second.info_course();
 }
 
 void Courses::list_course(int course_name) const
 {
-    this->get_course(course_name).info_course();
+    //NOTE: when std::map::find is const called, the returned type is
+    //const iterator.
+    auto it = this->course_list.find(course_name);
+    this->list_course(it);
 }
 
 bool Courses::course_exists(int course_name) const
@@ -76,7 +86,7 @@ int Courses::are_coursing(const int& course_id) const
 
 int Courses::historical_users(const int& course_id) const
 {
-    this->get_course(course_id).historical_users();
+    return this->get_course(course_id).historical_users();
 }
 
 void Courses::increase_coursing(const int& course_id)
@@ -91,7 +101,7 @@ void Courses::decrease_coursing(const int& course_id)
 
 int Courses::course_size(int course_id) const
 {
-    this->get_course(course_id).size();
+    return this->get_course(course_id).size();
 }
 
 void Courses::print_course_sessions(int course_id) const
