@@ -9,6 +9,9 @@
 */
 
 #include "courses.hh"
+#include "sessions.hh"
+#include "problems.hh"
+#include "users.hh"
 #include "commands.hh"
 /** @cond */
 #include <iostream>

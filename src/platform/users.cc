@@ -79,17 +79,28 @@ void Users::list_solvable_problems(string user_id)
     //this->user_find(user_id).u_
 }
 
-void Users::list_users()
+void Users::list_users() const
 {
     //instead of range-based for, we could actually
     //make use of std::for_each, with std::bind to allow use of public members.
     //but it really does not give us any benefit at all.
-    for (const auto& user_kv : this->user_list)
+    for (auto it = this->user_list.begin(); it != this->user_list.end(); it++)
     {
-	//user_kv is std::pair
-	cout << user_kv.first;
-	user_kv.second.info_user();
+	this->list_users(it);
     }
+}
+
+
+void Users::list_users(const string& user_id) const
+{
+    auto it = this->user_list.find(user_id);
+    this->list_users(it);
+}
+
+void Users::list_users(decltype(Users::user_list)::const_iterator it) const
+{
+    cout << it->first << ' ';
+    it->second.info_user();
 }
 
 void Users::list_solved_problems_by(string user_id)

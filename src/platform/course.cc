@@ -71,5 +71,12 @@ void Course::decrease_coursing()
     this->are_coursing--;
 }
 
+string Course::get_session_id(int i) const
+{
+    auto it = this->session_list.begin();
+    std::advance(it, i);
+    return *it;
+}
+
 Course::~Course(){}
 

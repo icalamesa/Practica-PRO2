@@ -10,9 +10,9 @@ using namespace std;
 #include "BinTree.hh"
 #include <set>
 #include <vector>
+#include <string>
 /** @endcond */
 
-#include "problems.hh"
 
 #ifndef SESSION_HH
 #define SESSION_HH
@@ -24,7 +24,7 @@ using namespace std;
 class Session
 {
     BinTree<string> problem_node;
-    int size = 0;
+    int _size = 0;
     void recalc_size();
     string id;
     /**
@@ -62,7 +62,8 @@ class Session
         */
         void info_session() const;
 	string get_id() const;
-	int get_size() const;
+	string get_i_problem(int i) const;
+	int size() const;
 	bool operator< (const Session& other) const;
 	bool operator== (const Session& other) const;
 	~Session();

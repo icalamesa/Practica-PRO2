@@ -25,6 +25,7 @@ using namespace std;
     {
 	map<string, User> user_list;
 	User& user_find(const string& user_id);
+	void list_users(decltype(user_list)::const_iterator it) const;
 	public:
 	/**
 	    Constructs an empty Users class.
@@ -136,7 +137,8 @@ using namespace std;
             @pre No precondition
             @post Information of all of the existing User instances contained in the implicit parameter is displayed on Standard output.
         */
-        void list_users();
+        void list_users() const;
+	void list_users(const string& user_id) const;
 	/**
 	    Destructs the list of Users.
 	*/

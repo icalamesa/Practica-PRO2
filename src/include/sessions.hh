@@ -64,9 +64,12 @@ class Sessions
 	    @return Session isntane reference
 	*/
 	stringstream get_problems_in_session(string session_id);
-	Session& get_session(string id) const;
+	const Session& get_session(const string& id) const;
+	Session& get_session(const string& session_id);
 	void list_sessions() const;
 	void list_sessions(const string& session_id) const;
+	int session_size(const string& session_id) const;
+	string get_i_problem_id(const string& session_id, int i) const;
 	~Sessions();
 };
 #endif

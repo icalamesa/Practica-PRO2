@@ -12,7 +12,6 @@
 #include <vector>
 /** @endcond */
 
-#include "sessions.hh"
 using namespace std;
 
 #ifndef COURSE_HH
@@ -56,6 +55,7 @@ class Course
 	int historical_users() const;
 	void increase_coursing();
 	void decrease_coursing();
+	string get_session_id(int i) const;
 
 	~Course();
 };

@@ -87,7 +87,14 @@ void Session::info_session() const
     cout << endl;
 }
 
-int Session::get_size() const
+int Session::size() const
 {
     return this->list_of_problems.size();
+}
+
+string Session::get_i_problem(int i) const
+{
+    auto it = this->list_of_problems.begin();
+    std::advance(it, i);
+    return *it;
 }

@@ -6,6 +6,18 @@ using namespace std;
 
 Sessions::Sessions(){}
 
+Session& Sessions::get_session(const string& session_id)
+{
+    auto ses = Session(session_id);
+    return *std::find(this->session_list.begin(), this->session_list.end(), ses);
+}
+
+const Session& Sessions::get_session(const string& session_id) const
+{
+    auto ses = Session(session_id);
+    return *std::find(this->session_list.begin(), this->session_list.end(), ses);
+}
+
 bool Sessions::comp_by_id(const Session& a, const Session& b)
 {
     return a.get_id() < b.get_id();
@@ -74,6 +86,11 @@ int Sessions::size()
     return session_list.size();
 }
 
+int Sessions::session_size(const string& session_id) const
+{
+    return this->get_session(session_id).size();
+}
+
 void Sessions::list_sessions() const
 {
     for (const auto& session : this->session_list)
@@ -88,6 +105,11 @@ void Sessions::list_sessions(const string& session_id) const
 		this->session_list.end(), 
 		Session(session_id)));
     ses.info_session();
+}
+
+string Sessions::get_i_problem_id(const string& session_id, int i) const
+{
+    this->get_session(session_id).get_i_problem(i);
 }
 
 Sessions::~Sessions(){}

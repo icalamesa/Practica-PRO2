@@ -108,3 +108,8 @@ void Courses::print_course_sessions(int course_id) const
 {
     this->get_course(course_id).info_course();
 }
+
+string Courses::get_session_id(int course_id, int i) const
+{
+    this->get_course(course_id).get_session_id(i);
+}

@@ -10,6 +10,7 @@
 
 /** @cond */
 #include <string>
+#include <map>
 /** @endcond */
 #include "course.hh"
 using namespace std;
@@ -96,6 +97,7 @@ class Courses
 	int historical_users(const int& course_id) const;
 	int course_size(int course_id) const;
 	void print_course_sessions(int course_id) const;
+	string get_session_id(int course_id, int i) const;
 	~Courses();
 };
 #endif
