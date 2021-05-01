@@ -111,5 +111,5 @@ void Courses::print_course_sessions(int course_id) const
 
 string Courses::get_session_id(int course_id, int i) const
 {
-    this->get_course(course_id).get_session_id(i);
+    return this->get_course(course_id).get_session_id(i);
 }

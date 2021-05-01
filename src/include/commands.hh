@@ -69,7 +69,7 @@ void remove_user(string user_id, Users& user_list);
     @pre No precondition.
     @post Enrolls the user with identifier @p user_id in the course with identifier @p course_id. If the user or the course does not exist in the platform or is already enrolled in another course that has not been completed, an error message is printed. Otherwise the number of users enrolled in the course after adding the course is printed (it is guaranteed that the user has not been previously enrolled in the course).
 */
-void sign_in_course(string user_id, int course_id, Users& user_list, Courses& course_list);
+void sign_in_course(string user_id, int course_id, Users& user_list, Courses& course_list, Sessions& session_list);
 
 //7.
 /**

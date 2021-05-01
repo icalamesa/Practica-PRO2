@@ -71,7 +71,7 @@ int main()
 	    int course;
 	    cin >> course;
 	    
-	    sign_in_course(user, course, user_list, course_list);
+	    sign_in_course(user, course, user_list, course_list, session_list);
 	}
 	else if (command == "curso_usuario" or command == "cu")
 	{

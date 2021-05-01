@@ -66,6 +66,9 @@ class Session
 	int size() const;
 	bool operator< (const Session& other) const;
 	bool operator== (const Session& other) const;
+
+
+	void insert_problem(const string& problem_id);
 	~Session();
 };
 

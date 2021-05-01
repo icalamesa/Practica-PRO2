@@ -6,6 +6,7 @@
 /** @cond */
 #include <string>
 #include <map>
+#include <set>
 #include <utility>
 /** @endcond */
 
@@ -24,7 +25,7 @@ class User
     int total_successes = 0;
     int total_attempted = 0;
     //one of these
-    //map<string, vector<string>> solved;
+    set<string> solvable;
     map<string, pair<bool, int>> solved;
     void insertion(string problem_id, bool solved);
     public:
@@ -89,6 +90,7 @@ class User
         */ 
 	void u_list_solved() const;
 	void info_user() const;
+	void u_push_problem(const string& problem_id);
 	~User();
 };
 

@@ -8,7 +8,7 @@ Course::Course(){}
 void Course::insertion(const string& ses)
 {
     this->session_list.push_back(ses);
-    this->session_list_ordered.emplace(ses);
+    this->session_list_ordered.insert(ses);
 }
 
 int Course::size() const
@@ -17,7 +17,10 @@ int Course::size() const
 }
 
 //TO DO
-bool Course::is_legal(){ return true; }
+bool Course::is_legal()
+{
+    return this->problem_set.size() == this->expected_size;
+}
 
 //THIS METHOD ONLY PRINTS SESSION IDS
 void Course::info_course() const
@@ -25,6 +28,12 @@ void Course::info_course() const
     for (const auto& session : this->session_list)
     {
 	cout << session << ' ';
+    }
+    cout << endl;
+    cout << this->problem_set.size();
+    for (const auto& str : this->problem_set)
+    {
+	cout << str << ' ';
     }
     cout << endl;
 }
@@ -73,9 +82,13 @@ void Course::decrease_coursing()
 
 string Course::get_session_id(int i) const
 {
-    auto it = this->session_list.begin();
-    std::advance(it, i);
-    return *it;
+    return this->session_list[i];
+}
+
+void Course::insert_problem(const string& problem_id)
+{
+    this->problem_set.insert(problem_id);
+    this->expected_size++;
 }
 
 Course::~Course(){}

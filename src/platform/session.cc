@@ -52,6 +52,7 @@ void Session::fill_problem_set(BinTree<string>& tree)
     cin >> aux;
     if (aux != "0")
     {
+	this->list_of_problems.insert(aux);
 	BinTree<string> left, right;
 	fill_problem_set(left);
 	fill_problem_set(right);
@@ -83,7 +84,12 @@ void Session::print_session(const BinTree<string>& tree) const
 void Session::info_session() const
 {
     cout << this->get_id() << ' ';
-    print_session(this->problem_node);
+    this->print_session(this->problem_node);
+    cout << endl;
+    for (const auto& str : this->list_of_problems)
+    {
+	cout << str << ' ';
+    }
     cout << endl;
 }
 
@@ -94,7 +100,14 @@ int Session::size() const
 
 string Session::get_i_problem(int i) const
 {
-    auto it = this->list_of_problems.begin();
-    std::advance(it, i);
-    return *it;
+    cout << "DEBUG SESSION: GET I PROBLEM ID " << i<< ' ' << this->list_of_problems.size() << endl;	
+    auto a = this->list_of_problems.begin();
+    std::advance(a, i);
+    /*for (const auto& str : this->list_of_problems)
+    {
+	cout << str << ' ';
+    }*/
+    return *a;
+
+    //std::advance(it, i);
 }

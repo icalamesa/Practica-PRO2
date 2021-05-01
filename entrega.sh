@@ -12,4 +12,5 @@ for i in ${paths}
 do
     cp ${i} ${1}/
 done
+cp ${2} ${1}
 tar -cvf entrega.tar $1

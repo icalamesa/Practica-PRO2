@@ -79,3 +79,12 @@ void User::info_user() const
     cout << endl;
 }
 
+void User::u_push_problem(const string& problem_id)
+{
+    if (this->solved.at(problem_id).first == false)
+    {
+	this->solvable.insert(problem_id);
+    }
+
+    
+}

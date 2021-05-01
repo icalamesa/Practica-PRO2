@@ -23,8 +23,10 @@ using namespace std;
 */
 class Course
 {
-    vector<string> session_list;
+    set<string> problem_set;
+    int expected_size = 0;
     set<string> session_list_ordered;
+    vector<string> session_list;
     int are_coursing = 0;
     int have_coursed = 0;
     void insertion(const string& ses);
@@ -56,6 +58,7 @@ class Course
 	void increase_coursing();
 	void decrease_coursing();
 	string get_session_id(int i) const;
+	void insert_problem(const string& problem_id);
 
 	~Course();
 };

@@ -1,23 +1,32 @@
-OPCIONES = -D_JUDGE_ -D_GLIBCXX_DEBUG -O2 -Wall -Wextra  -Wno-sign-compare -std=c++11
+OPCIONS = -D_GLIBCXX_DEBUG -O2 -Wall -Wextra -Werror -Wno-uninitialized -Wno-sign-compare -std=c++11
 
-program.exe: main.o user.o users.o problem.o problems.o course.o courses.o session.o sessions.o
-  g++ -o program.exe main.o user.o users.o problem.o problems.o course.o courses.o session.o sessions.o
-
-program.o: main.cc course.hh commands.hh ... (dependencias de program.cc, todos ficheros de #include)
-  g++ -c program.cc $(OPCIONES)
-
-Clase1.o: Clase1.cc Clase1.hh Clase2.hh Clase2.o Clase3.hh Clase3.o ... (dependencias de Clase1.cc, todos ficheros de #include)
-  g++ -c Clase1.cc $(OPCIONES)
+#the default goal is the one that is sxecuted when u run make without args.
+.DEFAULT_GOAL := main.exe
 
 
-Clase2.o: Clase2.cc Clase2.hh Clase3.hh Clase3.o ... (dependencias de Clase2.cc, todos ficheros de #include)
-  g++ -c Clase2.cc $(OPCIONES)
+#In a rule, the thing left tot he colon is the thing you wanna "make"
+# the things at the right side of the colon are the requisites
+# in the lines below the rule, u have what u gonna do to make the thing
+main.exe : courses.o commands.o course.o users.o user.o sessions.o session.o problems.o problem.o main.o
+	g++ -o main.exe $(OPCIONS) main.o courses.o course.o users.o user.o sessions.o session.o problems.o problem.o commands.o 
 
-<lo mismo para el resto de clases>
+# This rule says: "for any x.o file you need the x.cc file
+# $< means "the thing in the right side of the rule" i. e. the source file
+# in this case (right to the colon)
+%.o : %.cc
+	g++ -c $(OPCIONS) $<
 
-clean:
-  rm -f *.o
-  rm -f *.exe
+# This rule says the same with cpp, make will look for the first one that matches
+%.o : %.cpp
+	g++ -c $(OPCIONS) $< 
 
-program.tar: Makefile Doxyfile program.cc Clase1.cc Clase1.hh Clase2.cc Clase2.hh Clase3.cc Clase3.hh ... (todos ficheros .cc y .hh del vuestro programa)
-   tar -cvf program.tar Makefile Doxyfile program.cc Clase1.cc Clase1.hh Clase2.cc Clase2.hh Clase3.cc Clase3.hh ... (todos ficheros .cc y .hh del vuestro programa)
+# Phony mean "fake" and allows us to put false targets and use them for special
+# things, in this case, make (or make all) woud only make the main program.
+.PHONY : all
+all : main.exe
+
+# The same with clean, but we'll delete the files.
+.PHONY : clean
+clean :
+	rm *.o *.exe
+

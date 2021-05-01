@@ -125,5 +125,9 @@ void Users::read_users()
     }
 }
 
+void Users::push_problem(const string& user_id, const string& problem_id)
+{
+    this->get_user(user_id).u_push_problem(problem_id);
+}
 
 

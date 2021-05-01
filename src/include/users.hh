@@ -139,6 +139,7 @@ using namespace std;
         */
         void list_users() const;
 	void list_users(const string& user_id) const;
+	void push_problem(const string& user_id, const string& problem_id);
 	/**
 	    Destructs the list of Users.
 	*/

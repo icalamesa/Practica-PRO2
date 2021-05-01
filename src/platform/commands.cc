@@ -29,6 +29,38 @@ void add_course(Courses& course_list, Sessions& session_list)
 {
     Course new_course;
     new_course.read_course();
+
+    vector<string> probs;
+    cout << "VECTOR " << endl;
+    int course_size = new_course.size();
+    cout << "HOLA " << endl;
+    cout << "COURSE SIZE: "<<course_size << endl;
+    for (int i = 0; i < course_size; i++)
+    {
+	string target_session = new_course.get_session_id(i);
+	cout << "PAST COURSE " << endl;
+	//int session_size = session_list.session_size(target_session);
+	cout << "FIRST FOR: " << target_session << ' ' << "session_size" << endl;
+	Session& ses = session_list.get_session(target_session);
+	int session_size = ses.size();
+	for (int j = 0; j < session_size; j++)
+	{
+	    string problem = ses.get_i_problem(j);
+	    cout << problem << "\t";
+	    probs.push_back(problem);
+	    /*cout << "Entro al for" << ' ' << endl;
+	    cout << "puta" << ' ';
+	    probs.push_back(session_list.get_i_problem_id(target_session, j));
+	    cout << "puta" << ' ';*/
+	}
+	cout << endl;
+    }
+    for ( const auto& str : probs )
+    {
+	cout << str << ' ';
+	new_course.insert_problem(str);
+    }
+    cout << endl;
     if (new_course.is_legal())
     {
 	course_list.insert_course(new_course);
@@ -69,27 +101,13 @@ void sign_in_course(string user_id, int course_id, Users& user_list, Courses& co
     bool u_exist = false, c_exist = false;
     u_exist = user_list.user_exists(user_id);
     //need to add the method under this line
+    cout << "PREIF " << endl;
     c_exist = course_list.course_exists(course_id);
     if (u_exist and c_exist)
     {
 	if (not user_list.is_coursing(user_id))
 	{
 	    user_list.sign_in_course(user_id, course_id);
-	    vector<string> probs; 
-	    int course_size = course_list.course_size(course_id);
-	    for (int i = 0; i < course_size; i++)
-	    {
-		string target_session = course_list.get_session_id(course_id, i);
-		int session_size = session_list.session_size(target_session);
-		for (int j = 0; j < session_size; j++)
-		{
-		    probs.push_back(session_list.get_i_problem_id(target_session, j));
-		}
-	    }
-	    for ( const auto& str : probs )
-	    {
-		user_list.push_problem(str);
-	    }
 
 	    course_list.increase_coursing(course_id);
 	    cout << course_list.are_coursing(course_id) << endl;

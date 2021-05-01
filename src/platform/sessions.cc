@@ -6,6 +6,9 @@ using namespace std;
 
 Sessions::Sessions(){}
 
+
+//when I made this function, only god and I knew what this did
+//now, only god knows.
 Session& Sessions::get_session(const string& session_id)
 {
     auto ses = Session(session_id);
@@ -14,6 +17,7 @@ Session& Sessions::get_session(const string& session_id)
 
 const Session& Sessions::get_session(const string& session_id) const
 {
+    cout << " entro getter ";
     auto ses = Session(session_id);
     return *std::find(this->session_list.begin(), this->session_list.end(), ses);
 }
@@ -52,6 +56,7 @@ void Sessions::insertion(const Session& new_session)
 {
     session_list.emplace_back(new_session);
 }
+//
 
 void Sessions::insert_session(Session new_session)
 {
@@ -109,7 +114,8 @@ void Sessions::list_sessions(const string& session_id) const
 
 string Sessions::get_i_problem_id(const string& session_id, int i) const
 {
-    this->get_session(session_id).get_i_problem(i);
+    cout << "DEBUG SESSIONS: GET I PROBLEM ID " << session_id << ' ' << i<< endl;	
+    return this->get_session(session_id).get_i_problem(i);
 }
 
 Sessions::~Sessions(){}
