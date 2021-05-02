@@ -1,6 +1,7 @@
 #include "problems.hh"
 #include <algorithm>
 #include <iostream>
+#include <set>
 
 using namespace std;
 
@@ -77,27 +78,27 @@ Problem& Problem_repo::get_problem(const string& problem_id)
 
 void Problem_repo::list_problems()
 {
-    auto lamb = [](const pair<double, string>& a, const pair<double, string>& b)->bool
+    auto lamb = [](const Problem& a, const Problem& b)->bool
     {
-	double a_r = a.first, b_r = b.first;
+	double a_r = a.get_ratio(), b_r = b.get_ratio();
 	if (a_r < b_r)
 	{
 	    return true;
 	}
 	else if (a_r == b_r) 
 	{
-	    return a.second < b.second;
+	    return a.get_id() < b.get_id();
 	}
 	else return false;
     };
-    map<pair<double, string>, Problem, decltype(lamb)> aux_problem_list(lamb);
+    set<Problem, decltype(lamb)> aux_problem_list(lamb);
     for (const auto& problem : this->problem_list)
     {
-	aux_problem_list.insert(make_pair(make_pair(problem.second.get_ratio(), problem.first), problem.second));
+	aux_problem_list.insert(problem.second);
     }
     for (const auto& problem : aux_problem_list)
     {
-	problem.second.info_problem();
+	problem.info_problem();
     }
 }
 

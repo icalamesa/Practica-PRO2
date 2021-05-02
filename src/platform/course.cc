@@ -103,7 +103,7 @@ void Course::insert_problem(const string& problem_id)
     this->expected_size++;
 }
 
-bool Course::find_problem(const string problem_id) const
+bool Course::find_problem(const string& problem_id) const
 {
     return this->problem_set.find(problem_id) != this->problem_set.end();
 }

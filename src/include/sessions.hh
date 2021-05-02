@@ -54,7 +54,7 @@ class Sessions
 	    @param new_session The already initialized @ref Session instance to be added.
 	*/
 	void insert_session(const Session& new_session);
-	void insert_session(string session_id);
+	void insert_session(const string& session_id);
 	/**
 	    @return Integer with the amount of @ref Session contained in the list.
 	*/

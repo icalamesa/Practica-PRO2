@@ -43,7 +43,7 @@ void User::u_sign_in_course(int course_name)
     this->coursing = course_name;
 }
 
-void User::u_add_problem_to_list(string problem_id, bool solved)
+void User::u_add_problem_to_list(const string& problem_id, bool solved)
 {
     this->total_attempted++;
     this->total_successes += solved;

@@ -24,6 +24,8 @@ class Problem
     string id;
     int deliveries = 0;
     int successful_deliveries = 0;
+    double ratio = 1;
+    void recalculate_ratio();
     Problem();
     public:
 	/**
@@ -32,7 +34,7 @@ class Problem
 	    @pre No precondition.
 	    @post A problem instance with @p problem_id as its id is created.
 	*/
-	Problem(string problem_id);
+	Problem(const string& problem_id);
 	/**
 	    @return Problem id.
 	*/

@@ -5,7 +5,7 @@ using namespace std;
 
 Session::Session(){}
 Session::~Session(){}
-Session::Session(string session_id)
+Session::Session(const string& session_id)
 {
     this->id = session_id;
 }

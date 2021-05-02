@@ -6,7 +6,7 @@ using namespace std;
 Problem::Problem(){}
 
 //constructor
-Problem::Problem(string problem_id)
+Problem::Problem(const string& problem_id)
 {
     this->id = problem_id;
 }
@@ -18,7 +18,7 @@ string Problem::get_id() const
 
 double Problem::get_ratio() const
 {
-    return double(1+this->successful_deliveries) / (1 + this->deliveries);
+    return this->ratio;
 }
 
 int Problem::get_attempts() const

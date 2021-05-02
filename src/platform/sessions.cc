@@ -64,7 +64,7 @@ void Sessions::insert_session(const Session& new_session)
     this->sort_session_list();
 }
 
-void Sessions::insert_session(string session_id)
+void Sessions::insert_session(const string& session_id)
 {
     this->insertion(Session(session_id));
     //this is using internal Session operator < overload

@@ -36,7 +36,7 @@ class Session
     void print_session(const BinTree<string>&tree) const;
     public:
 	Session();
-	Session(string session_id);
+	Session(const string& session_id);
 	/**
 	    Reads problems from standard input to initialize the implicit parameter.
 	    @pre The implicit parameter is empty (no problems in it). It has not been initialized before. The standard input read problems do not repeat. Standard input follows the format requirements(read in preorder).

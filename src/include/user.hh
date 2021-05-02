@@ -78,7 +78,7 @@ class User
 	    @pre @p problem_id string corresponds to the identifier of an existing problem in the platform that has not already been solved by the user with the given @p id as string id. The @p problem_id identifier corresponds to a problem that the user can solve(because he belongs to a course with it, and it is a solvable problem).
 	    @post Registers a problem to the list of attempted problems by the user. Specifies whether the problem is solved and allows modification of the state of the problem (has been solved). If the problem delivery completes the list of problems of a Course, User stops being enrolled to it.
 	*/
-	void u_add_problem_to_list(string problem_id, bool solved);
+	void u_add_problem_to_list(const string& problem_id, bool solved);
 	/**
 	    @pre No precondition.
 	    @post The list of solved problems by the implicit parameter is blanked out.

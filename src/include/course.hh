@@ -61,7 +61,7 @@ class Course
 	string get_session_id(int i) const;
 	string get_problem_id(int i) const;
 	void insert_problem(const string& problem_id);
-	bool find_problem(const string problem_id) const;
+	bool find_problem(const string& problem_id) const;
 
 	~Course();
 };
