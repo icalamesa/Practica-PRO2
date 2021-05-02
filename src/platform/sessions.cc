@@ -7,7 +7,7 @@ using namespace std;
 Sessions::Sessions(){}
 
 
-//when I made this function, only god and I knew what this did
+//when I made this function, only god and I knew what it did
 //now, only god knows.
 Session& Sessions::get_session(const string& session_id)
 {
@@ -17,7 +17,6 @@ Session& Sessions::get_session(const string& session_id)
 
 const Session& Sessions::get_session(const string& session_id) const
 {
-    cout << " entro getter ";
     auto ses = Session(session_id);
     return *std::find(this->session_list.begin(), this->session_list.end(), ses);
 }
@@ -54,11 +53,11 @@ bool Sessions::exists_session(string target) const
 
 void Sessions::insertion(const Session& new_session)
 {
-    session_list.emplace_back(new_session);
+    session_list.push_back(new_session);
 }
 //
 
-void Sessions::insert_session(Session new_session)
+void Sessions::insert_session(const Session& new_session)
 {
     this->insertion(new_session);
     //this is using internal Session operator < overload
@@ -72,7 +71,7 @@ void Sessions::insert_session(string session_id)
     this->sort_session_list();
 }
 
-string Sessions::find_in_sessions(string prob) const
+string Sessions::find_in_sessions(const string& prob) const
 {
     string res = "";
     for (const auto& the_session : this->session_list)
@@ -116,6 +115,11 @@ string Sessions::get_i_problem_id(const string& session_id, int i) const
 {
     cout << "DEBUG SESSIONS: GET I PROBLEM ID " << session_id << ' ' << i<< endl;	
     return this->get_session(session_id).get_i_problem(i);
+}
+
+string Sessions::get_first_problem_id(const string& session_id) const
+{
+    return this->get_session(session_id).get_first_problem_id();
 }
 
 Sessions::~Sessions(){}

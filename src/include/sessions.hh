@@ -43,7 +43,7 @@ class Sessions
 	/**
 	    @return An std::string with the id of the specific session that contains a given problem id. Blank string if no matches.
 	*/
-	string find_in_sessions(string prob) const;
+	string find_in_sessions(const string& prob) const;
 	/**
 	    @return True if a given Session id exists in the @ref Session list, false otherwise.
 	*/
@@ -53,7 +53,7 @@ class Sessions
 	    @param id The id for the new session.
 	    @param new_session The already initialized @ref Session instance to be added.
 	*/
-	void insert_session(Session new_session);
+	void insert_session(const Session& new_session);
 	void insert_session(string session_id);
 	/**
 	    @return Integer with the amount of @ref Session contained in the list.
@@ -70,6 +70,7 @@ class Sessions
 	int session_size(const string& session_id) const;
 
 	string get_i_problem_id(const string& session_id, int i) const;
+	string get_first_problem_id(const string& session_id) const;
 	~Sessions();
 };
 #endif

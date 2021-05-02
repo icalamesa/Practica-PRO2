@@ -89,6 +89,7 @@ class User
             @post Solved problems by the User are displayed on Standard output.
         */ 
 	void u_list_solved() const;
+	void u_list_solvable() const;
 	void info_user() const;
 	void u_push_problem(const string& problem_id);
 	~User();

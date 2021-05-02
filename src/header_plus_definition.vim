@@ -22,9 +22,10 @@ badd +30 include/users.hh
 badd +1 platform/users.cc
 badd +1 include/course.hh
 badd +1 platform/course.cc
-badd +1 platform/commands.cc
+badd +11 platform/commands.cc
 badd +1 platform/user.cc
 badd +3 include/user.hh
+badd +2 include/commands.hh
 argglobal
 silent! argdel *
 $argadd platform/problems.cc
@@ -210,7 +211,7 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 43 - ((39 * winheight(0) + 20) / 41)
+let s:l = 43 - ((38 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -233,7 +234,7 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 36
-normal! 024|
+normal! 08|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 77 + 90) / 180)
 exe 'vert 2resize ' . ((&columns * 102 + 90) / 180)
@@ -314,11 +315,11 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 20) / 41)
+let s:l = 10 - ((0 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+10
 normal! 0
 wincmd w
 argglobal
@@ -332,11 +333,11 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 20) / 41)
+let s:l = 79 - ((0 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+79
 normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 77 + 90) / 180)
@@ -464,14 +465,18 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 34 - ((1 * winheight(0) + 20) / 41)
+let s:l = 44 - ((21 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-34
-normal! 04|
+44
+normal! 042|
 tabedit platform/commands.cc
 set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
 set nosplitbelow
 set nosplitright
 wincmd t
@@ -479,6 +484,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
+exe 'vert 1resize ' . ((&columns * 90 + 90) / 180)
+exe 'vert 2resize ' . ((&columns * 89 + 90) / 180)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -489,13 +496,34 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 94 - ((0 * winheight(0) + 20) / 41)
+let s:l = 11 - ((10 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-94
-normal! 017|
-tabnext 6
+11
+normal! 0
+wincmd w
+argglobal
+if bufexists('include/commands.hh') | buffer include/commands.hh | else | edit include/commands.hh | endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 1 - ((0 * winheight(0) + 20) / 41)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+exe 'vert 1resize ' . ((&columns * 90 + 90) / 180)
+exe 'vert 2resize ' . ((&columns * 89 + 90) / 180)
+tabnext 10
 set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

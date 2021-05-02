@@ -16,6 +16,11 @@ int Course::size() const
     return this->session_list.size();
 }
 
+int Course::amount_problems() const
+{
+    return problem_set.size();
+}
+
 //TO DO
 bool Course::is_legal()
 {
@@ -25,16 +30,17 @@ bool Course::is_legal()
 //THIS METHOD ONLY PRINTS SESSION IDS
 void Course::info_course() const
 {
-    for (const auto& session : this->session_list)
+    cout << '(';
+    for(auto i = session_list.cbegin(); i != this->session_list.cend(); ++i)
     {
-	cout << session << ' ';
+        std::cout << *i;
+        auto aux = i;
+        if(++aux != this->session_list.cend())
+	{
+            std::cout << " ";
+        }
     }
-    cout << endl;
-    cout << this->problem_set.size();
-    for (const auto& str : this->problem_set)
-    {
-	cout << str << ' ';
-    }
+    cout << ')';
     cout << endl;
 }
 
@@ -50,14 +56,14 @@ void Course::read_course()
     }
 }
 
-bool Course::session_exists(string session_id)
+bool Course::session_exists(const string& session_id) const
 {
     return this->session_list_ordered.find(session_id) != this->session_list_ordered.end();
 }
 
-bool Course::find_session_in_course(string target_session) const
+bool Course::find_problem_in_course(const string& target_problem) const
 {
-    return this->session_list_ordered.find(target_session) != this->session_list_ordered.end();
+    return this->problem_set.find(target_problem) != this->problem_set.end();
 }
 
 int Course::users_coursing() const
@@ -72,7 +78,6 @@ int Course::historical_users() const
 void Course::increase_coursing()
 {
     this->are_coursing++;
-    this->have_coursed++;
 }
 
 void Course::decrease_coursing()
@@ -85,10 +90,22 @@ string Course::get_session_id(int i) const
     return this->session_list[i];
 }
 
+string Course::get_problem_id(int i) const
+{
+    auto it = this->problem_set.begin();
+    std::advance(it, i);
+    return *it;
+}
+
 void Course::insert_problem(const string& problem_id)
 {
     this->problem_set.insert(problem_id);
     this->expected_size++;
+}
+
+bool Course::find_problem(const string problem_id) const
+{
+    return this->problem_set.find(problem_id) != this->problem_set.end();
 }
 
 Course::~Course(){}

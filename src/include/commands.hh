@@ -20,7 +20,7 @@
     @pre No precondition.
     @post Adds a new problem with identifier @p problem_id. If a problem already existed on the platform with the same identifier, an error message is printed. Otherwise the number of problems in the collection after adding is printed.
 */
-void add_problem(Problem_repo& problem_list);
+void add_problem(Problem_repo& problem_list, const string& problem_id);
 
 //2.
 /**
@@ -29,7 +29,7 @@ void add_problem(Problem_repo& problem_list);
     @pre No precondition.
     @post Add a new session with identifier s. First read the problem structure of the session, in the same way as for the initial sessions (ensure that the problems exist and are not repeated). If a session already existed on the platform with the same identifier, an error message is printed. Otherwise the number of sessions is printed in the repository after adding it. It is guaranteed that the new session is not the same as the existing ones.
 */
-void add_session(Sessions& session_list);
+void add_session(Sessions& session_list, const string& session_id);
 
 //3.
 /**
@@ -59,7 +59,7 @@ void add_user(string user_id, Users& user_list);
     
     If another user with the same name is registered later, it is as if the previous user did not exist.
 */
-void remove_user(string user_id, Users& user_list);
+void remove_user(string user_id, Users& user_list, Courses& course_list);
 
 //6.
 /**
@@ -90,7 +90,7 @@ void tell_usr_course(string user_id, Users& user_list);
     @pre No precondition.
     @post Queries the session of the problem whose identifier is @p problem_id in the course with identifier @p course_id. If the course does not exist or if the problem does not exist or if the problem does not belong to the course, an error message is printed. Otherwise, the identifier of the session where the problem occurs in the course is printed.
 */
-void find_problem_session(int course_id, string problem_id, Courses& course_list, Problem_repo& problem_list);
+void find_problem_session(int course_id, string problem_id, Courses& course_list, Problem_repo& problem_list, Sessions& session_list);
 
 //9.
 /**

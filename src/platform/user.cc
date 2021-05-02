@@ -50,7 +50,7 @@ void User::u_add_problem_to_list(string problem_id, bool solved)
     decltype(this->solved)::iterator it = this->solved.find(problem_id);
     if (it != this->solved.end())
     {
-	it->second.first |= solved;
+	it->second.first or_eq solved;
 	it->second.second++;
     }
     else
@@ -65,10 +65,29 @@ void User::u_restart_solved_list()
     this->total_successes = 0;
     this->solved.clear();
 }
-
+//CONTINUAR
 void User::u_list_solved() const
 {
-    //do crap here
+    for (const auto& problem : this->solved)
+    {
+	cout << problem.first << '(';
+	//auto it = this->solved.find(problem); 
+	//cout << (it != this->solved.end() ? it->second.second : '0');
+	cout << '0';
+	cout << ')' << endl;
+    }
+}
+
+void User::u_list_solvable() const
+{
+    for (const auto& problem : this->solvable)
+    {
+	cout << problem << '(';
+	//auto it = this->solved.find(problem); 
+	//cout << (it != this->solved.end() ? it->second.second : '0');
+	cout << '0';
+	cout << ')' << endl;
+    }
 }
 
 void User::info_user() const
@@ -81,10 +100,10 @@ void User::info_user() const
 
 void User::u_push_problem(const string& problem_id)
 {
-    if (this->solved.at(problem_id).first == false)
+    auto it = this->solved.find(problem_id);
+    if ((it == this->solved.end()) or (it != this->solved.end() and it->second.first == false))
     {
 	this->solvable.insert(problem_id);
     }
-
     
 }

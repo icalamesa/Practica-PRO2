@@ -75,8 +75,7 @@ void Users::add_problem_to_list(string user_id, string problem_id, bool solved)
 //need to do crap with this one
 void Users::list_solvable_problems(string user_id)
 {
-    (void) user_id;
-    //this->user_find(user_id).u_
+    this->user_find(user_id).u_list_solvable();
 }
 
 void Users::list_users() const
@@ -99,7 +98,7 @@ void Users::list_users(const string& user_id) const
 
 void Users::list_users(decltype(Users::user_list)::const_iterator it) const
 {
-    cout << it->first << ' ';
+    cout << it->first;
     it->second.info_user();
 }
 

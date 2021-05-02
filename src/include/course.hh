@@ -33,6 +33,7 @@ class Course
     public:
 	Course();
 	int size() const;
+	int amount_problems() const;
 	/**
 	    @return True if there is no repeated problem across the different sessions stored in the implicit parameter. False otherwise.
 	*/
@@ -42,13 +43,13 @@ class Course
             @pre @p target_problem is an string correctly formatted. A problem with @p target_problem as an identifier exists.
 	    @return An std::string with the id of the internal session that contains the given problem id. If it does not exist, the string returned is empty.
 	*/
-	bool find_session_in_course(string target_session) const;
+	bool find_problem_in_course(const string& target_problem) const;
 	/**
 	    @param session_id Id of the Session instance to search for.
 	    @pre No precondition.
 	    @return Boolean True if a Session with @p session_id as its identifier exists. False otherwise.
 	*/
-	bool session_exists(string session_id);
+	bool session_exists(const string& session_id) const;
 	//reads n sessions, each with their specific id
 	void read_course();
 	void info_course() const;
@@ -58,7 +59,9 @@ class Course
 	void increase_coursing();
 	void decrease_coursing();
 	string get_session_id(int i) const;
+	string get_problem_id(int i) const;
 	void insert_problem(const string& problem_id);
+	bool find_problem(const string problem_id) const;
 
 	~Course();
 };

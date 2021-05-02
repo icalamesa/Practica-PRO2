@@ -96,8 +96,11 @@ class Courses
 	int are_coursing(const int& course_id) const;
 	int historical_users(const int& course_id) const;
 	int course_size(int course_id) const;
+	int amount_problems(int course_id) const;
 	void print_course_sessions(int course_id) const;
 	string get_session_id(int course_id, int i) const;
+	string get_problem_id(int course_id, int i) const;
+	bool find_problem_in_course(int course_id, const string& problem_id) const;
 	~Courses();
 };
 #endif

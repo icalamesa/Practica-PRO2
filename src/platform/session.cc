@@ -41,9 +41,9 @@ bool Session::search_problem(const BinTree<string>& tree, string& target_problem
     return false;
 }
 
-bool Session::find(string target_problem) const
+bool Session::find(const string& target_problem) const
 {
-    return search_problem(this->problem_node, target_problem);
+    return this->list_of_problems.find(target_problem) != this->list_of_problems.end();
 }
 
 void Session::fill_problem_set(BinTree<string>& tree)
@@ -66,6 +66,11 @@ void Session::read_session()
     fill_problem_set(problem_node);
 }
 
+void Session::read_session_problems()
+{
+    fill_problem_set(problem_node);
+}
+
 void Session::print_session(const BinTree<string>& tree) const
 {
     cout << '(';
@@ -83,13 +88,8 @@ void Session::print_session(const BinTree<string>& tree) const
 
 void Session::info_session() const
 {
-    cout << this->get_id() << ' ';
+    cout << this->get_id() << ' ' << this->size() << ' ';
     this->print_session(this->problem_node);
-    cout << endl;
-    for (const auto& str : this->list_of_problems)
-    {
-	cout << str << ' ';
-    }
     cout << endl;
 }
 
@@ -100,7 +100,6 @@ int Session::size() const
 
 string Session::get_i_problem(int i) const
 {
-    cout << "DEBUG SESSION: GET I PROBLEM ID " << i<< ' ' << this->list_of_problems.size() << endl;	
     auto a = this->list_of_problems.begin();
     std::advance(a, i);
     /*for (const auto& str : this->list_of_problems)
@@ -110,4 +109,9 @@ string Session::get_i_problem(int i) const
     return *a;
 
     //std::advance(it, i);
+}
+
+string Session::get_first_problem_id() const
+{
+    return problem_node.value();
 }

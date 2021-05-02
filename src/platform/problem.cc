@@ -33,7 +33,7 @@ int Problem::get_solved() const
 //TO DO
 void Problem::info_problem() const
 {
-    cout << this->get_id() << ' ';
+    cout << this->get_id();
     cout << '(' << this->get_attempts() << ',';
     cout << this->get_solved() << ',' << this->get_ratio();
     cout << ')' <<endl;

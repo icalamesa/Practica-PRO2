@@ -25,19 +25,15 @@ bool Problem_repo::comp_by_ratio(const Problem& a, const Problem& b)
     else return false;
 }
 
-template <class comp>
-void Problem_repo::sort_problem_list(comp foo)
-{
-    this->problem_list.sort(foo);
-}
+//template <class comp>
+//void Problem_repo::sort_problem_list(comp foo)
+//{
+    //this->problem_list.sort(foo);
+//}
 
-bool Problem_repo::problem_exists(string problem_id)
+bool Problem_repo::problem_exists(const string& problem_id)
 {
-    return std::binary_search(
-	    this->problem_list.begin(), 
-	    this->problem_list.end(), 
-	    Problem(problem_id),
-	    std::less<Problem>{});
+    return this->problem_list.find(problem_id) != this->problem_list.end();
 }
 
 int Problem_repo::size()
@@ -45,22 +41,20 @@ int Problem_repo::size()
     return problem_list.size();
 }
 
-void Problem_repo::insertion(Problem new_problem)
+//void Problem_repo::insertion(Problem new_problem)
+//{
+    //this->problem_list.insert(make_pair(new_problem);
+//}
+
+void Problem_repo::insert_problem(const string& problem_id)
 {
-    this->problem_list.push_back(new_problem);
+    this->problem_list.insert(make_pair(problem_id, Problem(problem_id)));
 }
 
-void Problem_repo::insert_problem(string problem_id)
-{
-    this->insertion(Problem(problem_id));
-    this->sort_problem_list(std::less<Problem>{});
-}
-
-void Problem_repo::insert_problem(Problem new_problem)
-{
-    this->insertion(new_problem);
-    this->sort_problem_list(std::less<Problem>{});
-}
+//void Problem_repo::insert_problem(Problem new_problem)
+//{
+    //this->insertion(new_problem);
+//}
 
 void Problem_repo::read_problems()
 {
@@ -70,25 +64,41 @@ void Problem_repo::read_problems()
     for (int i = 0; i < n; i++)
     {
         cin >> problem_id;
-        this->insertion(problem_id);
+        this->insert_problem(problem_id);
     }
-    this->sort_problem_list(std::less<Problem>{});
 }
 //we assume the internal list is sorted.
-Problem& Problem_repo::get_problem(string problem_id)
+Problem& Problem_repo::get_problem(const string& problem_id)
 { 
-    Problem obj = Problem(problem_id);
-    return *( std::find(this->problem_list.begin(), this->problem_list.end(), obj) );
+    //Problem obj = Problem(problem_id);
+    //return *( std::find(this->problem_list.begin(), this->problem_list.end(), obj) );
+    return this->problem_list.find(problem_id)->second;
 }
 
 void Problem_repo::list_problems()
 {
-    this->sort_problem_list(Problem_repo::comp_by_ratio);
+    auto lamb = [](const pair<double, string>& a, const pair<double, string>& b)->bool
+    {
+	double a_r = a.first, b_r = b.first;
+	if (a_r < b_r)
+	{
+	    return true;
+	}
+	else if (a_r == b_r) 
+	{
+	    return a.second < b.second;
+	}
+	else return false;
+    };
+    map<pair<double, string>, Problem, decltype(lamb)> aux_problem_list(lamb);
     for (const auto& problem : this->problem_list)
     {
-	problem.info_problem();
+	aux_problem_list.insert(make_pair(make_pair(problem.second.get_ratio(), problem.first), problem.second));
     }
-    this->sort_problem_list(std::less<Problem>{});
+    for (const auto& problem : aux_problem_list)
+    {
+	problem.second.info_problem();
+    }
 }
 
 Problem_repo::~Problem_repo(){}

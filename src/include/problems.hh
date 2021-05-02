@@ -11,6 +11,7 @@ using namespace std;
 /** @cond */
 #include <string>
 #include <list>
+#include <map>
 /** @endcond */
 
 #include "problem.hh"
@@ -27,7 +28,7 @@ class Problem_repo
 {
     static bool comp_by_id(const Problem& a, const Problem& b);
     static bool comp_by_ratio(const Problem&a, const Problem& b);
-    list<Problem> problem_list;
+    map<string, Problem> problem_list;
     int binary_search(string problem_id);
 
     void insert_problem_no_sort(string problem_id);
@@ -54,7 +55,7 @@ class Problem_repo
         @pre @p id size is greater than zero.
         @post if @p id does not exist, it is added to the problem repository. Otherwise throws error in Standard output.
     */
-	void insert_problem(string id);
+	void insert_problem(const string& id);
     /**
         Method that reads an integer n, and n strings(problem ids) are followed.
         @pre Standard input follows the format.
@@ -65,12 +66,12 @@ class Problem_repo
 	    @pre Problem with the given @p problem_id exists.
 	    @post Returns a problem reference to the problem belonging to the given index. Prints error message if such a problem does not exist
 	*/
-	Problem& get_problem(string problem_id);
+	Problem& get_problem(const string& problem_id);
 	/**
 	    @pre No precondition.
 	    @return Boolean True if a Problem with @p problem_id exists. False otherwise.
 	*/
-	bool problem_exists(string problem_id);
+	bool problem_exists(const string& problem_id);
 	void list_problems();
 	~Problem_repo();
 };

@@ -43,12 +43,13 @@ class Session
 	    @post Problems read are inserted into the Session. 
 	*/
 	void read_session();
+	void read_session_problems();
 	
 	/**
 	    @p target_problem size is greater than zero
 	    @return True if the target problem id is found in this session problem list. False otherwise.
 	*/
-	bool find(string target_problem) const;
+	bool find(const string& target_problem) const;
 	/**
 	    @param target_problem std::string containing the identifier of a problem
 	    @p target_problem size is greater than zero
@@ -63,6 +64,7 @@ class Session
         void info_session() const;
 	string get_id() const;
 	string get_i_problem(int i) const;
+	string get_first_problem_id() const;
 	int size() const;
 	bool operator< (const Session& other) const;
 	bool operator== (const Session& other) const;

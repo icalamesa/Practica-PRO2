@@ -16,7 +16,7 @@ Course& Courses::get_course(const int& course_id)
 
 bool Courses::find_session_in_courselist(int course_id, string session_id) const
 {
-    return this->get_course(course_id).find_session_in_course(session_id);
+    return this->get_course(course_id).session_exists(session_id);
 }
 
 void Courses::read_and_add_course()
@@ -104,6 +104,11 @@ int Courses::course_size(int course_id) const
     return this->get_course(course_id).size();
 }
 
+int Courses::amount_problems(int course_id) const
+{
+    return this->get_course(course_id).amount_problems();
+}
+
 void Courses::print_course_sessions(int course_id) const
 {
     this->get_course(course_id).info_course();
@@ -112,4 +117,14 @@ void Courses::print_course_sessions(int course_id) const
 string Courses::get_session_id(int course_id, int i) const
 {
     return this->get_course(course_id).get_session_id(i);
+}
+
+string Courses::get_problem_id(int course_id, int i) const
+{
+    return this->get_course(course_id).get_problem_id(i);
+}
+
+bool Courses::find_problem_in_course(int course_id, const string& problem_id) const
+{
+    return this->get_course(course_id).find_problem(problem_id);
 }
