@@ -55,7 +55,7 @@ class Problem_repo
         @pre @p id size is greater than zero.
         @post if @p id does not exist, it is added to the problem repository. Otherwise throws error in Standard output.
     */
-	void insert_problem(const string& id);
+	bool insert_problem(const string& id);
     /**
         Method that reads an integer n, and n strings(problem ids) are followed.
         @pre Standard input follows the format.

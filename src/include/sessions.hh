@@ -24,13 +24,17 @@ using namespace std;
 */
 class Sessions
 {
-    list<Session> session_list;
+    //struct comp_by_id
+    //{
+	//bool operator()(const Session& a, const Session& b);
+    //}
+    map<string, Session> session_list;
     set<string> list_of_problems(string session_id);
-    static bool comp_by_id(const Session& a, const Session& b);
+    //static bool comp_by_id(const Session& a, const Session& b);
     /**
 	Reads @ref Session instances from standard input and inserts them onto the list of sessions(read in preorder).
     */
-    void insertion(const Session& new_session);
+    bool insertion(const Session& new_session);
     void sort_session_list();
     public:
 	Sessions();	
@@ -47,14 +51,14 @@ class Sessions
 	/**
 	    @return True if a given Session id exists in the @ref Session list, false otherwise.
 	*/
-	bool exists_session(string target) const;
+	bool exists_session(const string& target) const;
 	/**
 	    Inserts session onto the list of sessions.
 	    @param id The id for the new session.
 	    @param new_session The already initialized @ref Session instance to be added.
 	*/
-	void insert_session(const Session& new_session);
-	void insert_session(const string& session_id);
+	bool insert_session(const Session& new_session);
+	bool insert_session(const string& session_id);
 	/**
 	    @return Integer with the amount of @ref Session contained in the list.
 	*/

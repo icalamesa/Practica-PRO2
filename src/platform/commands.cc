@@ -10,9 +10,8 @@ using namespace std;
 
 void add_problem(Problem_repo& problem_list, const string& problem_id)
 {
-    if (not problem_list.problem_exists(problem_id))
+    if (problem_list.insert_problem(problem_id))
     {
-	problem_list.insert_problem(problem_id);
 	cout << problem_list.size() << endl;
     }
     else
@@ -25,9 +24,8 @@ void add_session(Sessions& session_list, const string& session_id)
 {
     Session new_session(session_id);
     new_session.read_session_problems();
-    if (not session_list.exists_session(session_id))
+    if (session_list.insert_session(new_session))
     {
-	session_list.insert_session(new_session);
 	cout << session_list.size() << endl;
     }
     else

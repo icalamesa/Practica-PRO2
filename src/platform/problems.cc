@@ -47,9 +47,9 @@ int Problem_repo::size()
     //this->problem_list.insert(make_pair(new_problem);
 //}
 
-void Problem_repo::insert_problem(const string& problem_id)
+bool Problem_repo::insert_problem(const string& problem_id)
 {
-    this->problem_list.insert(make_pair(problem_id, Problem(problem_id)));
+    return this->problem_list.insert(make_pair(problem_id, Problem(problem_id))).second;
 }
 
 //void Problem_repo::insert_problem(Problem new_problem)
