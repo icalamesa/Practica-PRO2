@@ -38,9 +38,11 @@ int User::u_different_attempts() const
 
 //Value modification member function
 
-void User::u_sign_in_course(int course_name)
+void User::u_sign_in_course(int course_id, Sessions& session_list, Courses& course_list)
 {
-    this->coursing = course_name;
+    this->coursing = course_id;
+    this->u_insert_solvable_problems(course_id, session_list, course_list);
+    course_list.increase_coursing(course_id);
 }
 
 void User::u_add_problem_to_list(const string& problem_id, bool solved)
@@ -98,7 +100,7 @@ void User::info_user() const
     cout << endl;
 }
 
-void User::u_push_problem(const string& problem_id)
+void User::insert_solvable(const string& problem_id)
 {
     auto it = this->solved.find(problem_id);
     if ((it == this->solved.end()) or (it != this->solved.end() and it->second.first == false))
@@ -106,4 +108,14 @@ void User::u_push_problem(const string& problem_id)
 	this->solvable.insert(problem_id);
     }
     
+}
+
+void User::u_insert_solvable_problems(const int& course_id, Sessions& session_list, Courses& course_list)
+{
+    int course_size = course_list.course_size(course_id);
+    for (int i = 0; i < course_size; i++)
+    {
+	this->insert_solvable(session_list.get_first_problem_id(course_list.get_session_id(course_id, i)));
+
+    }
 }

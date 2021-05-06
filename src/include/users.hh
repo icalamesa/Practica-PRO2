@@ -85,7 +85,8 @@ using namespace std;
 	    @post User with @p id identifier has been enrolled in a course with @p course_name identifier. 
 
 	*/
-	void sign_in_course(const string& id, int course_name);
+	//CORREGIR
+	void sign_in_course(const string& id, int course_name, Sessions& session_list, Courses& course_list);
 	/**
 	    @param id Id of the specific student to search for.
 	    @param problem_id The id of the newly solved problem
@@ -139,10 +140,12 @@ using namespace std;
         */
         void list_users() const;
 	void list_users(const string& user_id) const;
-	void push_problem(const string& user_id, const string& problem_id);
+	//void push_problem(const string& user_id, const string& problem_id);
 	/**
 	    Destructs the list of Users.
 	*/
+	void push_problems_from_sessions(const string& user_id, int course_id, Sessions& session_list, Courses& course_list);
+
 	~Users();
 };
 #endif

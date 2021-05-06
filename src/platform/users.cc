@@ -62,10 +62,9 @@ int Users::different_attempts(const string& user_id)
     return this->user_find(user_id).u_different_attempts();
 }
 
-void Users::sign_in_course(const string& user_id, int course_name)
+void Users::sign_in_course(const string& user_id, int course_id, Sessions& session_list, Courses& course_list)
 {
-    auto& user = this->user_find(user_id);
-    user.u_sign_in_course(course_name);
+    this->get_user(user_id).u_sign_in_course(course_id, session_list, course_list);
 }
 
 void Users::add_problem_to_list(const string& user_id, const string& problem_id, bool solved)
@@ -124,9 +123,8 @@ void Users::read_users()
     }
 }
 
-void Users::push_problem(const string& user_id, const string& problem_id)
-{
-    this->get_user(user_id).u_push_problem(problem_id);
-}
-
+//void Users::push_problem(const string& user_id, const string& problem_id)
+//{
+    //this->get_user(user_id).u_push_problem(problem_id);
+//}
 

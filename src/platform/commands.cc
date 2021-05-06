@@ -118,14 +118,7 @@ void sign_in_course(string user_id, int course_id, Users& user_list, Courses& co
     {
 	if (not user_list.is_coursing(user_id))
 	{
-	    user_list.sign_in_course(user_id, course_id);
-
-	    int course_size = course_list.course_size(course_id);
-	    for (int i = 0; i < course_size; i++)
-	    {
-		user_list.push_problem(user_id, session_list.get_first_problem_id(course_list.get_session_id(course_id, i)));
-	    }
-	    course_list.increase_coursing(course_id);
+	    user_list.sign_in_course(user_id, course_id, session_list, course_list);
 	    cout << course_list.are_coursing(course_id) << endl;
 	}
 	else
