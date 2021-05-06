@@ -19,10 +19,10 @@ bool Courses::find_session_in_courselist(int course_id, string session_id) const
     return this->get_course(course_id).session_exists(session_id);
 }
 
-void Courses::read_and_add_course()
+void Courses::read_and_add_course(Sessions& session_list)
 {
     Course new_course;
-    new_course.read_course();
+    new_course.read_course(session_list);
     this->insert_course(new_course);
 }
 
@@ -34,13 +34,13 @@ void Courses::insert_course(Course& new_course)
     this->course_list.insert(make_pair(num, new_course));
 }
 
-void Courses::read_courses()
+void Courses::read_courses(Sessions& session_list)
 {
     int n;
     cin >> n;
     for (int i = 0; i < n; i++)
     {
-	this->read_and_add_course();
+	this->read_and_add_course(session_list);
     }
 }
 

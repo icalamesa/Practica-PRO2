@@ -11,6 +11,7 @@
 #include <set>
 #include <vector>
 /** @endcond */
+#include "sessions.hh"
 
 using namespace std;
 
@@ -51,7 +52,7 @@ class Course
 	*/
 	bool session_exists(const string& session_id) const;
 	//reads n sessions, each with their specific id
-	void read_course();
+	void read_course(const Sessions& session_list);
 	void info_course() const;
 
 	int users_coursing() const;

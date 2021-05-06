@@ -44,7 +44,7 @@ void Course::info_course() const
     cout << endl;
 }
 
-void Course::read_course()
+void Course::read_course(const Sessions& session_list)
 {
     int n;
     cin >> n;
@@ -53,6 +53,28 @@ void Course::read_course()
     {
 	cin >> ses_ids;
 	this->insertion(ses_ids);
+    }
+    vector<string> probs;
+    int course_size = this->size();
+    for (int i = 0; i < course_size; i++)
+    {
+	string target_session = this->get_session_id(i);
+	//int session_size = session_list.session_size(target_session);
+	auto& ses = session_list.get_session(target_session);
+	int session_size = ses.size();
+	for (int j = 0; j < session_size; j++)
+	{
+	    string problem = ses.get_i_problem(j);
+	    probs.push_back(problem);
+	    /*cout << "Entro al for" << ' ' << endl;
+	    cout << "puta" << ' ';
+	    probs.push_back(session_list.get_i_problem_id(target_session, j));
+	    cout << "puta" << ' ';*/
+	}
+    }
+    for ( const auto& str : probs )
+    {
+	this->insert_problem(str);
     }
 }
 

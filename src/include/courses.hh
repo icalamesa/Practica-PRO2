@@ -30,7 +30,7 @@ class Courses
 	@pre Read Course instance is guaranteed to not be equal to other existing courses.
 	@post If there is no Problem intersection among the Session instances contained in the created Course, it is added to the @ref Course list. Course is not added and and error message is printed in Standard output otherwise.
     */
-    void read_and_add_course();
+    void read_and_add_course(Sessions& session_list);
 
     Course& operator[](int index) const;
     void list_course(decltype(course_list)::const_iterator& it) const;
@@ -67,7 +67,7 @@ class Courses
 	For more insight into the reading format, see @ref Problem and @ref Session.
 
 	*/
-	void read_courses();
+	void read_courses(Sessions& session_list);
 	/**
 	    @pre No prerequisites.
 	    @return An integer with the amount of Course instances inside the implicit parameter internal list.

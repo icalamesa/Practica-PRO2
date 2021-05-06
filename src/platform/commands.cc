@@ -38,32 +38,8 @@ void add_session(Sessions& session_list, const string& session_id)
 void add_course(Courses& course_list, Sessions& session_list)
 {
     Course new_course;
-    new_course.read_course();
+    new_course.read_course(session_list);
 
-    vector<string> probs;
-    int course_size = new_course.size();
-    for (int i = 0; i < course_size; i++)
-    {
-	string target_session = new_course.get_session_id(i);
-	//int session_size = session_list.session_size(target_session);
-	Session& ses = session_list.get_session(target_session);
-	int session_size = ses.size();
-	for (int j = 0; j < session_size; j++)
-	{
-	    string problem = ses.get_i_problem(j);
-	    //cout << problem << "\t";
-	    probs.push_back(problem);
-	    /*cout << "Entro al for" << ' ' << endl;
-	    cout << "puta" << ' ';
-	    probs.push_back(session_list.get_i_problem_id(target_session, j));
-	    cout << "puta" << ' ';*/
-	}
-    }
-    for ( const auto& str : probs )
-    {
-	//cout << str << ' ';
-	new_course.insert_problem(str);
-    }
     //cout << endl;
     if (new_course.is_legal())
     {
