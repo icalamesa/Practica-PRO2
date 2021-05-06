@@ -92,13 +92,8 @@ void add_user(string user_id, Users& user_list)
 
 void remove_user(string user_id, Users& user_list, Courses& course_list)
 {
-    if (user_list.user_exists(user_id))
+    if (user_list.remove_user(user_id, course_list))
     {
-	if (user_list.is_coursing(user_id))
-	{
-	    course_list.decrease_coursing(user_list.tell_course(user_id));
-	}
-	user_list.remove_user(user_id);
 	cout << user_list.size() << endl;
     }
     else

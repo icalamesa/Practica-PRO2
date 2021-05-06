@@ -26,9 +26,19 @@ void Users::insert_user(const string& user_id)
     this->user_list.emplace(std::make_pair(user_id, User()));
 }
 
-void Users::remove_user(const string& user_id)
+bool Users::remove_user(const string& user_id, Courses& course_list)
 {
-    this->user_list.erase(this->user_list.find(user_id));
+    auto it = this->user_list.find(user_id);
+    if (it != this->user_list.end())
+    {
+	if (it->second.u_is_coursing())
+	{
+	    course_list.decrease_coursing(this->tell_course(user_id));
+	}
+	this->user_list.erase(it);
+	return true;
+    }
+    else return false;
 }
 
 bool Users::user_exists(const string& user_id)

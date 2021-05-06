@@ -124,7 +124,7 @@ using namespace std;
 	    @pre @ref User with @p id identifier exists. @p id size is greater than zero.
 	    @post If a User with @p id identifier existed, it no longer does and the number of Users after the inclusion is printed.	
 	*/
-	void remove_user(const string& user_id);
+	bool remove_user(const string& user_id, Courses& course_list);
 	/**
 	    @return Integer with the size of the currently registered user list.
 	*/
