@@ -57,6 +57,11 @@ void Session::fill_problem_set(BinTree<string>& tree)
 	fill_problem_set(left);
 	fill_problem_set(right);
 	tree = BinTree<string>(aux, left, right);
+	string l = "0";
+	string r = "0";
+	if (not left.empty()) l = left.value();
+	if (not right.empty()) r = right.value();
+	this->tree_map.insert(make_pair(aux, make_pair(l, r)));
     }
 }
 
@@ -114,4 +119,18 @@ string Session::get_i_problem(int i) const
 string Session::get_first_problem_id() const
 {
     return problem_node.value();
+}
+
+//we assume problem_id is never incorrect
+pair<string, string> Session::get_next_problems(const string& problem_id) const
+{
+    //cout << "llego" << endl;
+    //cout << problem_id << endl;
+    return this->tree_map.at(problem_id);
+}
+
+//push solvable problems
+void init_solvable_problems_from_user(const string& user_id, Users& user_list)
+{
+
 }

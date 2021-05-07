@@ -77,10 +77,10 @@ void Users::sign_in_course(const string& user_id, int course_id, Sessions& sessi
     this->get_user(user_id).u_sign_in_course(course_id, session_list, course_list);
 }
 
-void Users::add_problem_to_list(const string& user_id, const string& problem_id, bool solved)
-{
-    this->user_find(user_id).u_add_problem_to_list(problem_id, solved);
-}
+//void Users::add_problem_to_list(const string& user_id, const string& problem_id, bool solved)
+//{
+    //this->user_find(user_id).u_add_problem_to_list(problem_id, solved);
+//}
 //need to do crap with this one
 void Users::list_solvable_problems(const string& user_id)
 {
@@ -131,6 +131,11 @@ void Users::read_users()
 	cin >> user_id;
 	this->insert_user(user_id);
     }
+}
+
+void Users::deliver_problem(const string& user_id, const string& problem_id, bool success, Sessions& session_list, Courses& course_list)
+{
+    this->get_user(user_id).u_deliver_problem(problem_id, success, session_list, course_list);
 }
 
 //void Users::push_problem(const string& user_id, const string& problem_id)

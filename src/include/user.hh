@@ -95,6 +95,7 @@ class User
 	void u_list_solvable() const;
 	void info_user() const;
 	void u_insert_solvable_problems(const int& course_id, Sessions& session_list, Courses& course_list);
+	void u_deliver_problem(const string& problem_id, bool success, Sessions& session_list, Courses& course_list);
 	~User();
 };
 

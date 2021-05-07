@@ -66,10 +66,6 @@ void Course::read_course(const Sessions& session_list)
 	{
 	    string problem = ses.get_i_problem(j);
 	    probs.push_back(problem);
-	    /*cout << "Entro al for" << ' ' << endl;
-	    cout << "puta" << ' ';
-	    probs.push_back(session_list.get_i_problem_id(target_session, j));
-	    cout << "puta" << ' ';*/
 	}
     }
     for ( const auto& str : probs )
@@ -83,16 +79,16 @@ bool Course::session_exists(const string& session_id) const
     return this->session_list_ordered.find(session_id) != this->session_list_ordered.end();
 }
 
-bool Course::find_problem_in_course(const string& target_problem) const
+string Course::find_session_of_problem(const string& target_problem, Sessions& session_list) const
 {
-    return this->problem_set.find(target_problem) != this->problem_set.end();
+    //return this->problem_set.find(target_problem) != this->problem_set.end();
 }
 
 int Course::users_coursing() const
 {
     return this->are_coursing;
 }
-int Course::historical_users() const
+int Course::have_completed() const
 {
     return this->have_coursed;
 }
@@ -100,6 +96,11 @@ int Course::historical_users() const
 void Course::increase_coursing()
 {
     this->are_coursing++;
+}
+
+void Course::increase_completed()
+{
+    this->have_coursed++;
 }
 
 void Course::decrease_coursing()

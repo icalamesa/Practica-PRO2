@@ -102,4 +102,9 @@ void Problem_repo::list_problems()
     }
 }
 
+void Problem_repo::problem_delivery(const string& problem_id, bool sucess)
+{
+    this->get_problem(problem_id).problem_delivery(sucess);
+}
+
 Problem_repo::~Problem_repo(){}

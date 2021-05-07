@@ -56,6 +56,7 @@ class Problem
             @post Information on the problem is displayed on Standard output
         */
         void info_problem() const;
+	void problem_delivery(bool sucess);
         bool operator==(const Problem& other) const;
 	bool operator<(const Problem& other) const;
 	~Problem();

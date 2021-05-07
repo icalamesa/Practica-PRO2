@@ -49,4 +49,16 @@ bool Problem::operator<(const Problem& other) const
     return this->get_id() < other.get_id();
 }
 
+void Problem::recalculate_ratio()
+{
+    this->ratio = double(1 + deliveries)/(1 +successful_deliveries );
+}
+
+void Problem::problem_delivery(bool success)
+{
+    this->deliveries++;
+    this->successful_deliveries += success;
+    this->recalculate_ratio();
+}
+
 Problem::~Problem(){}

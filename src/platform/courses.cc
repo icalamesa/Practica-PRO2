@@ -60,7 +60,7 @@ void Courses::list_all_courses() const
 void Courses::list_course(map<int, Course>::const_iterator& it) const
 {
     cout << it->first << ' ';
-    cout << it->second.historical_users() << ' ';
+    cout << it->second.have_completed() << ' ';
     cout << it->second.users_coursing() << ' ';
     cout << it->second.size() << ' ';
     it->second.info_course();
@@ -84,14 +84,19 @@ int Courses::are_coursing(const int& course_id) const
     return this->get_course(course_id).users_coursing();
 }
 
-int Courses::historical_users(const int& course_id) const
+int Courses::have_completed(const int& course_id) const
 {
-    return this->get_course(course_id).historical_users();
+    return this->get_course(course_id).have_completed();
 }
 
 void Courses::increase_coursing(const int& course_id)
 {
     this->get_course(course_id).increase_coursing();
+}
+
+void Courses::increase_completed(const int& course_id)
+{
+    this->get_course(course_id).increase_completed();
 }
 
 void Courses::decrease_coursing(const int& course_id)

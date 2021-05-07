@@ -119,7 +119,7 @@ void tell_solvable_probs(string user_id, Users& user_list, Courses& course_list)
     @pre It is ensured that the User whose identifier is @p user_id is registered and enrolled in a course where the problem appears and that the problem belongs to the set of problems to which he can submit a solution by fulfilling the prerequisites.
     @post The outcome (r= 1 if success or= 0 if failure) of a user's new submission to the problem is noted. All submissions result in updating the statistics of the user and the problem. In addition, in case= 1 it is also necessary to update the user's solved and submittable problems and check if he has completed the course he was enrolled in. If completed, the user is no longer enrolled in the course.
 */
-void deliver_problem(string user_id, string problem_id, bool successful, Users& user_list, Problem_repo& problem_list);
+void deliver_problem(string user_id, string problem_id, bool successful, Users& user_list, Problem_repo& problem_list, Sessions& session_list, Courses& course_list);
 
 //12.
 /**

@@ -73,6 +73,7 @@ class Problem_repo
 	*/
 	bool problem_exists(const string& problem_id);
 	void list_problems();
+	void problem_delivery(const string& problem_id, bool sucess);
 	~Problem_repo();
 };
 #endif

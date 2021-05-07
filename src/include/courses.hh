@@ -92,9 +92,10 @@ class Courses
 	*/
 	void list_course(int course_name) const;
 	void increase_coursing(const int& course_id);
+	void increase_completed(const int& course_id);
 	void decrease_coursing(const int& course_id);
 	int are_coursing(const int& course_id) const;
-	int historical_users(const int& course_id) const;
+	int have_completed(const int& course_id) const;
 	int course_size(int course_id) const;
 	int amount_problems(int course_id) const;
 	void print_course_sessions(int course_id) const;

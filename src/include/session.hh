@@ -9,6 +9,7 @@ using namespace std;
 /** @cond */
 #include "BinTree.hh"
 #include <set>
+#include <map>
 #include <vector>
 #include <string>
 /** @endcond */
@@ -24,6 +25,7 @@ using namespace std;
 class Session
 {
     BinTree<string> problem_node;
+    map<string, std::pair<string, string>> tree_map;
     int _size = 0;
     void recalc_size();
     string id;
@@ -65,6 +67,7 @@ class Session
 	string get_id() const;
 	string get_i_problem(int i) const;
 	string get_first_problem_id() const;
+	pair<string, string> get_next_problems(const string& problem_id) const;
 	int size() const;
 	bool operator< (const Session& other) const;
 	bool operator== (const Session& other) const;

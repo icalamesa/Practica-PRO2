@@ -44,7 +44,8 @@ class Course
             @pre @p target_problem is an string correctly formatted. A problem with @p target_problem as an identifier exists.
 	    @return An std::string with the id of the internal session that contains the given problem id. If it does not exist, the string returned is empty.
 	*/
-	bool find_problem_in_course(const string& target_problem) const;
+	//NEED REVISION
+	string find_session_of_problem(const string& target_problem, Sessions& session_list) const;
 	/**
 	    @param session_id Id of the Session instance to search for.
 	    @pre No precondition.
@@ -56,8 +57,9 @@ class Course
 	void info_course() const;
 
 	int users_coursing() const;
-	int historical_users() const;
+	int have_completed() const;
 	void increase_coursing();
+	void increase_completed();
 	void decrease_coursing();
 	string get_session_id(int i) const;
 	string get_problem_id(int i) const;

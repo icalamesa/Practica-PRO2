@@ -100,4 +100,9 @@ string Sessions::get_first_problem_id(const string& session_id) const
     return this->get_session(session_id).get_first_problem_id();
 }
 
+pair<string, string> Sessions::get_next_problems(const string& session_id, const string& problem_id) const
+{
+    return this->get_session(session_id).get_next_problems(problem_id);
+}
+
 Sessions::~Sessions(){}

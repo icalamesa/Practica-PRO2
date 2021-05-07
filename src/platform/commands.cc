@@ -44,10 +44,12 @@ void add_course(Courses& course_list, Sessions& session_list)
     if (new_course.is_legal())
     {
 	course_list.insert_course(new_course);
+	cout << course_list.size();
     }
     else
     {
 	//error msg course not legal
+	cout << "error: curso mal formado";
     }
 }
 
@@ -181,10 +183,11 @@ void tell_solvable_probs(string user_id, Users& user_list, Courses& course_list)
     }
 }
 
-/*void deliver_problem(string user_id, string problem_id, bool successful, Users& user_list, Problem_repo& problem_list)
+void deliver_problem(string user_id, string problem_id, bool successful, Users& user_list, Problem_repo& problem_list, Sessions& session_list, Courses& course_list)
 {
-    //no info yet
-}*/
+    user_list.deliver_problem(user_id, problem_id, successful, session_list, course_list);
+    problem_list.problem_delivery(problem_id, successful);
+}
 
 void tell_prob_list(Problem_repo& problem_list)
 {

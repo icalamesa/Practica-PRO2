@@ -75,6 +75,7 @@ class Sessions
 
 	string get_i_problem_id(const string& session_id, int i) const;
 	string get_first_problem_id(const string& session_id) const;
+	pair<string, string> get_next_problems(const string& session_id, const string& problem_id) const;
 	~Sessions();
 };
 #endif
