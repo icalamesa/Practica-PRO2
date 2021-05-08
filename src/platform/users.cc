@@ -13,7 +13,12 @@ User& Users::get_user(const string& user_id)
 {
     //no need to say this will crash if prerequisites are not met
     //dereferencing user_list.end() is not a good idea.
-    return this->user_find(user_id);
+    return this->user_list.find(user_id)->second;
+}
+
+const User& Users::get_user(const string& user_id) const
+{
+    return this->user_list.find(user_id)->second;
 }
 
 User& Users::user_find(const string& user_id)
@@ -26,19 +31,20 @@ void Users::insert_user(const string& user_id)
     this->user_list.emplace(std::make_pair(user_id, User()));
 }
 
-bool Users::remove_user(const string& user_id, Courses& course_list)
+pair<bool, int> Users::remove_user(const string& user_id)
 {
     auto it = this->user_list.find(user_id);
+    int course = -1;
     if (it != this->user_list.end())
     {
-	if (it->second.u_is_coursing())
+	if (this->is_coursing(user_id))
 	{
-	    course_list.decrease_coursing(this->tell_course(user_id));
+	    course = this->tell_course(user_id);
 	}
 	this->user_list.erase(it);
-	return true;
+	return make_pair(true, course);
     }
-    else return false;
+    else return make_pair(false, course);
 }
 
 bool Users::user_exists(const string& user_id)
@@ -72,9 +78,9 @@ int Users::different_attempts(const string& user_id)
     return this->user_find(user_id).u_different_attempts();
 }
 
-void Users::sign_in_course(const string& user_id, int course_id, Sessions& session_list, Courses& course_list)
+void Users::sign_in_course(const string& user_id, int course_id)
 {
-    this->get_user(user_id).u_sign_in_course(course_id, session_list, course_list);
+    this->get_user(user_id).u_sign_in_course(course_id);
 }
 
 //void Users::add_problem_to_list(const string& user_id, const string& problem_id, bool solved)
@@ -133,9 +139,9 @@ void Users::read_users()
     }
 }
 
-void Users::deliver_problem(const string& user_id, const string& problem_id, bool success, Sessions& session_list, Courses& course_list)
+void Users::deliver_problem(const string& user_id, const string& problem_id, bool success)
 {
-    this->get_user(user_id).u_deliver_problem(problem_id, success, session_list, course_list);
+    this->get_user(user_id).u_deliver_problem(problem_id, success);
 }
 
 //void Users::push_problem(const string& user_id, const string& problem_id)
@@ -143,3 +149,7 @@ void Users::deliver_problem(const string& user_id, const string& problem_id, boo
     //this->get_user(user_id).u_push_problem(problem_id);
 //}
 
+bool Users::has_solved_problem(const string& problem_id, const string& user_id) const
+{
+    return this->get_user(user_id).u_has_solved_problem(problem_id);
+}

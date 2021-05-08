@@ -37,6 +37,7 @@ using namespace std;
 	    @return Reference to @ref User instance that fulfills the id requirement.
 	*/
 	User& get_user(const string& user_id);
+	const User& get_user(const string& user_id) const;
 	/**
 	    @param user_id is the id of the User whose existence is supposed to be found.
 	    @pre @p user_id size is greater than zero. 
@@ -86,7 +87,7 @@ using namespace std;
 
 	*/
 	//CORREGIR
-	void sign_in_course(const string& id, int course_name, Sessions& session_list, Courses& course_list);
+	void sign_in_course(const string& id, int course_name);
 	/**
 	    @param id Id of the specific student to search for.
 	    @param problem_id The id of the newly solved problem
@@ -124,7 +125,8 @@ using namespace std;
 	    @pre @ref User with @p id identifier exists. @p id size is greater than zero.
 	    @post If a User with @p id identifier existed, it no longer does and the number of Users after the inclusion is printed.	
 	*/
-	bool remove_user(const string& user_id, Courses& course_list);
+	//EDIT
+	pair<bool, int> remove_user(const string& user_id);
 	/**
 	    @return Integer with the size of the currently registered user list.
 	*/
@@ -144,9 +146,10 @@ using namespace std;
 	/**
 	    Destructs the list of Users.
 	*/
-	void push_problems_from_sessions(const string& user_id, int course_id, Sessions& session_list, Courses& course_list);
+	//void push_problems_from_sessions(const string& user_id, int course_id, Sessions& session_list, Courses& course_list);
 
-	void deliver_problem(const string& user_id, const string& problem_id, bool success, Sessions& session_list, Courses& course_list);
+	void deliver_problem(const string& user_id, const string& problem_id, bool success);
+	bool has_solved_problem(const string& user_id, const string& problem_id) const;
 
 	~Users();
 };

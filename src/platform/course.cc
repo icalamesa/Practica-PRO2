@@ -79,10 +79,10 @@ bool Course::session_exists(const string& session_id) const
     return this->session_list_ordered.find(session_id) != this->session_list_ordered.end();
 }
 
-string Course::find_session_of_problem(const string& target_problem, Sessions& session_list) const
-{
-    //return this->problem_set.find(target_problem) != this->problem_set.end();
-}
+//string Course::find_session_of_problem(const string& target_problem, Sessions& session_list) const
+//{
+    ////return this->problem_set.find(target_problem) != this->problem_set.end();
+//}
 
 int Course::users_coursing() const
 {
@@ -129,6 +129,29 @@ void Course::insert_problem(const string& problem_id)
 bool Course::find_problem(const string& problem_id) const
 {
     return this->problem_set.find(problem_id) != this->problem_set.end();
+}
+
+string Course::session_of_problem(const string& problem_id, const Sessions& session_list)
+{
+    for (const auto& session_id : this->session_list)
+    {
+	auto& the_session = session_list.get_session(session_id);
+	if (the_session.find(problem_id))
+	{
+	    return session_id;
+	}
+    }
+    return string("0");
+}
+
+void Course::init_solvable_from_sessions(Sessions& session_list, const string& user_id, Users& user_list)
+{
+    //this is the internal session_list. Do not get confused.
+    for (const auto& session : this->session_list)
+    {
+	session_list.get_session(session).init_solvable_problems_from_user(user_id, user_list);
+
+    }
 }
 
 Course::~Course(){}

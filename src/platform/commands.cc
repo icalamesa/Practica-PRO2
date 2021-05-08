@@ -70,9 +70,14 @@ void add_user(string user_id, Users& user_list)
 
 void remove_user(string user_id, Users& user_list, Courses& course_list)
 {
-    if (user_list.remove_user(user_id, course_list))
+    pair<bool, int> result = user_list.remove_user(user_id);
+    if (result.first)
     {
 	cout << user_list.size() << endl;
+	if (result.second != -1)
+	{
+	    course_list.decrease_coursing(result.second);
+	}
     }
     else
     {
@@ -91,7 +96,10 @@ void sign_in_course(string user_id, int course_id, Users& user_list, Courses& co
     {
 	if (not user_list.is_coursing(user_id))
 	{
-	    user_list.sign_in_course(user_id, course_id, session_list, course_list);
+	    user_list.sign_in_course(user_id, course_id);
+	    course_list.increase_coursing(course_id);
+	    //need to push problems
+	    course_list.get_course(course_id).init_solvable_from_sessions(session_list, user_id, user_list);
 	    cout << course_list.are_coursing(course_id) << endl;
 	}
 	else
@@ -185,8 +193,20 @@ void tell_solvable_probs(string user_id, Users& user_list, Courses& course_list)
 
 void deliver_problem(string user_id, string problem_id, bool successful, Users& user_list, Problem_repo& problem_list, Sessions& session_list, Courses& course_list)
 {
-    user_list.deliver_problem(user_id, problem_id, successful, session_list, course_list);
+    User& usr = user_list.get_user(user_id);
+    int course = usr.u_tell_course();
+    usr.u_deliver_problem(problem_id, successful);
     problem_list.problem_delivery(problem_id, successful);
+    if (successful)
+    {
+	string session_id = course_list.get_course(usr.u_tell_course()).session_of_problem(problem_id, session_list);
+	session_list.get_session(session_id).problem_fetching(usr, problem_id);
+	if (usr.u_update_course())
+	{
+	    course_list.decrease_coursing(course);
+	    course_list.increase_completed(course);
+	}
+    }
 }
 
 void tell_prob_list(Problem_repo& problem_list)

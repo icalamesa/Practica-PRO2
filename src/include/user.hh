@@ -9,8 +9,6 @@
 #include <set>
 #include <utility>
 /** @endcond */
-#include "sessions.hh"
-#include "courses.hh"
 
 using namespace std;
 
@@ -30,7 +28,6 @@ class User
     set<string> solvable;
     map<string, pair<bool, int>> solved;
     void insertion(string problem_id, bool solved);
-    void insert_solvable(const string& problem_id);
     public:
 	//CONSULTORES
 
@@ -74,7 +71,7 @@ class User
 	    @post If the user was not enrolled in a course, it is then enrolled in one with @p course_name identifier. If it already was enrolled in a @ref Course, prints an error message. 
 
 	*/
-	void u_sign_in_course(int course_id, Sessions& session_list, Courses& course_list);
+	void u_sign_in_course(int course_id);
 	/**
 	    @param problem_id The id of the newly solved problem
 	    @param solved True if the given problem is solved, false otherwise.
@@ -94,8 +91,11 @@ class User
 	void u_list_solved() const;
 	void u_list_solvable() const;
 	void info_user() const;
-	void u_insert_solvable_problems(const int& course_id, Sessions& session_list, Courses& course_list);
-	void u_deliver_problem(const string& problem_id, bool success, Sessions& session_list, Courses& course_list);
+	//void u_insert_solvable_problems(const int& course_id, Sessions& session_list, Courses& course_list);
+	void insert_solvable(const string& problem_id);
+	void u_deliver_problem(const string& problem_id, bool success);
+	bool u_has_solved_problem(const string& problem_id) const;
+	bool u_update_course();
 	~User();
 };
 

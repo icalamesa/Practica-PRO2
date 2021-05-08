@@ -13,6 +13,7 @@ using namespace std;
 #include <vector>
 #include <string>
 /** @endcond */
+#include "users.hh"
 
 
 #ifndef SESSION_HH
@@ -36,6 +37,7 @@ class Session
     void fill_problem_set(BinTree<string>& tree);
     bool search_problem(const BinTree<string>& tree, string& target_problem) const;
     void print_session(const BinTree<string>&tree) const;
+    void initial_problem_fetching(User& usr, const BinTree<string>& tree);
     public:
 	Session();
 	Session(const string& session_id);
@@ -72,7 +74,9 @@ class Session
 	bool operator< (const Session& other) const;
 	bool operator== (const Session& other) const;
 
-
+	
+	void init_solvable_problems_from_user(const string& user_id, Users& user_list);
+	void problem_fetching(User& usr, const string& problem_id);
 	void insert_problem(const string& problem_id);
 	~Session();
 };

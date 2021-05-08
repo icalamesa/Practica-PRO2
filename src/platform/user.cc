@@ -38,11 +38,10 @@ int User::u_different_attempts() const
 
 //Value modification member function
 
-void User::u_sign_in_course(int course_id, Sessions& session_list, Courses& course_list)
+void User::u_sign_in_course(int course_id)
 {
     this->coursing = course_id;
-    this->u_insert_solvable_problems(course_id, session_list, course_list);
-    course_list.increase_coursing(course_id);
+    //this->u_insert_solvable_problems(course_id, session_list, course_list);
 }
 
 //void User::u_add_problem_to_list(const string& problem_id, bool solved)
@@ -117,17 +116,17 @@ void User::insert_solvable(const string& problem_id)
     
 }
 
-void User::u_insert_solvable_problems(const int& course_id, Sessions& session_list, Courses& course_list)
-{
-    int course_size = course_list.course_size(course_id);
-    for (int i = 0; i < course_size; i++)
-    {
-	this->insert_solvable(session_list.get_first_problem_id(course_list.get_session_id(course_id, i)));
+//void User::u_insert_solvable_problems(const int& course_id, Sessions& session_list, Courses& course_list)
+//{
+    //int course_size = course_list.course_size(course_id);
+    //for (int i = 0; i < course_size; i++)
+    //{
+	//this->insert_solvable(session_list.get_first_problem_id(course_list.get_session_id(course_id, i)));
 
-    }
-}
+    //}
+//}
 
-void User::u_deliver_problem(const string& problem_id, bool success, Sessions& session_list, Courses& course_list)
+void User::u_deliver_problem(const string& problem_id, bool success)
 {
     this->total_successes += success;
     this->total_attempted++;
@@ -146,34 +145,21 @@ void User::u_deliver_problem(const string& problem_id, bool success, Sessions& s
     {
 	this->solvable.erase(problem_id);
     }
+}
 
-    pair<string, string> solvable_candidates;
-    int course_size = course_list.course_size(this->u_tell_course());
-    string target_session_id;
-    for (int i = 0; i < course_size; i++)
-    {
-	target_session_id = course_list.get_session_id(this->u_tell_course(), i);
-	if (session_list.get_session(target_session_id).find(problem_id))
-	{
-	    break;
-	}
-    }
-    solvable_candidates = session_list.get_next_problems(target_session_id, problem_id);
-    if (solvable_candidates.first != string("0"))
-    {
-	this->insert_solvable(solvable_candidates.first);
-    }
+bool User::u_has_solved_problem(const string& problem_id) const
+{
+    auto it = this->solved.find(problem_id);
+    return it != this->solved.end() and it->second.first == 1;
+}
 
-    if (solvable_candidates.second != string("0"))
-    {
-	this->insert_solvable(solvable_candidates.second);
-    }
-
+bool User::u_update_course()
+{
     if (this->solvable.empty())
     {
-	course_list.decrease_coursing(this->coursing);
-	course_list.increase_completed(this->coursing);
 	this->coursing = 0;
+	return true;
     }
+    return false;
 }
 
