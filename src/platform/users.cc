@@ -83,11 +83,6 @@ void Users::sign_in_course(const string& user_id, int course_id)
     this->get_user(user_id).u_sign_in_course(course_id);
 }
 
-//void Users::add_problem_to_list(const string& user_id, const string& problem_id, bool solved)
-//{
-    //this->user_find(user_id).u_add_problem_to_list(problem_id, solved);
-//}
-//need to do crap with this one
 void Users::list_solvable_problems(const string& user_id)
 {
     this->user_find(user_id).u_list_solvable();
@@ -95,9 +90,6 @@ void Users::list_solvable_problems(const string& user_id)
 
 void Users::list_users() const
 {
-    //instead of range-based for, we could actually
-    //make use of std::for_each, with std::bind to allow use of public members.
-    //but it really does not give us any benefit at all.
     for (auto it = this->user_list.begin(); it != this->user_list.end(); it++)
     {
 	this->list_users(it);
@@ -143,11 +135,6 @@ void Users::deliver_problem(const string& user_id, const string& problem_id, boo
 {
     this->get_user(user_id).u_deliver_problem(problem_id, success);
 }
-
-//void Users::push_problem(const string& user_id, const string& problem_id)
-//{
-    //this->get_user(user_id).u_push_problem(problem_id);
-//}
 
 bool Users::has_solved_problem(const string& problem_id, const string& user_id) const
 {

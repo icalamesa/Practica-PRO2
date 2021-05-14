@@ -26,12 +26,6 @@ bool Problem_repo::comp_by_ratio(const Problem& a, const Problem& b)
     else return false;
 }
 
-//template <class comp>
-//void Problem_repo::sort_problem_list(comp foo)
-//{
-    //this->problem_list.sort(foo);
-//}
-
 bool Problem_repo::problem_exists(const string& problem_id)
 {
     return this->problem_list.find(problem_id) != this->problem_list.end();
@@ -42,20 +36,10 @@ int Problem_repo::size()
     return problem_list.size();
 }
 
-//void Problem_repo::insertion(Problem new_problem)
-//{
-    //this->problem_list.insert(make_pair(new_problem);
-//}
-
 bool Problem_repo::insert_problem(const string& problem_id)
 {
     return this->problem_list.insert(make_pair(problem_id, Problem(problem_id))).second;
 }
-
-//void Problem_repo::insert_problem(Problem new_problem)
-//{
-    //this->insertion(new_problem);
-//}
 
 void Problem_repo::read_problems()
 {
@@ -71,9 +55,7 @@ void Problem_repo::read_problems()
 //we assume the internal list is sorted.
 Problem& Problem_repo::get_problem(const string& problem_id)
 { 
-    //Problem obj = Problem(problem_id);
-    //return *( std::find(this->problem_list.begin(), this->problem_list.end(), obj) );
-    return this->problem_list.find(problem_id)->second;
+   return this->problem_list.find(problem_id)->second;
 }
 
 void Problem_repo::list_problems()

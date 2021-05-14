@@ -31,13 +31,6 @@ int main()
 
     Courses course_list;
     course_list.read_courses(session_list);
-    //course_list.read_courses();
-    //int n;
-    //cin >> n;
-    //for (int i = 0; i < n; i++)
-    //{
-	//add_course(course_list, session_list);
-    //}
 
     Users user_list;
     user_list.read_users();

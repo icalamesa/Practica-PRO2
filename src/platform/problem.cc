@@ -5,7 +5,6 @@ using namespace std;
 
 Problem::Problem(){}
 
-//constructor
 Problem::Problem(const string& problem_id)
 {
     this->id = problem_id;

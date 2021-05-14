@@ -71,13 +71,13 @@ class Session
 	string get_first_problem_id() const;
 	pair<string, string> get_next_problems(const string& problem_id) const;
 	int size() const;
-	bool operator< (const Session& other) const;
-	bool operator== (const Session& other) const;
 
-	
 	void init_solvable_problems_from_user(const string& user_id, Users& user_list);
 	void problem_fetching(User& usr, const string& problem_id);
 	void insert_problem(const string& problem_id);
+
+	bool operator< (const Session& other) const;
+	bool operator== (const Session& other) const;
 	~Session();
 };
 

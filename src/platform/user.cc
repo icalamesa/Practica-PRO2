@@ -4,7 +4,6 @@
 using namespace std;
 
 User::User(){}
-User::~User(){}
 
 void User::insertion(string problem_id, bool solved)
 {
@@ -41,24 +40,7 @@ int User::u_different_attempts() const
 void User::u_sign_in_course(int course_id)
 {
     this->coursing = course_id;
-    //this->u_insert_solvable_problems(course_id, session_list, course_list);
 }
-
-//void User::u_add_problem_to_list(const string& problem_id, bool solved)
-//{
-    //this->total_attempted++;
-    //this->total_successes += solved;
-    //decltype(this->solved)::iterator it = this->solved.find(problem_id);
-    //if (it != this->solved.end())
-    //{
-	//it->second.first or_eq solved;
-	//it->second.second++;
-    //}
-    //else
-    //{
-	//this->insertion(problem_id, solved);
-    //}
-//}
 
 void User::u_restart_solved_list()
 {
@@ -116,16 +98,6 @@ void User::insert_solvable(const string& problem_id)
     
 }
 
-//void User::u_insert_solvable_problems(const int& course_id, Sessions& session_list, Courses& course_list)
-//{
-    //int course_size = course_list.course_size(course_id);
-    //for (int i = 0; i < course_size; i++)
-    //{
-	//this->insert_solvable(session_list.get_first_problem_id(course_list.get_session_id(course_id, i)));
-
-    //}
-//}
-
 void User::u_deliver_problem(const string& problem_id, bool success)
 {
     this->total_successes += success;
@@ -163,3 +135,4 @@ bool User::u_update_course()
     return false;
 }
 
+User::~User(){}

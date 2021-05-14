@@ -39,13 +39,6 @@ class Course
 	    @return True if there is no repeated problem across the different sessions stored in the implicit parameter. False otherwise.
 	*/
 	bool is_legal();
-	//[>*
-	    //@param target_problem The problem id to be searched.
-            //@pre @p target_problem is an string correctly formatted. A problem with @p target_problem as an identifier exists.
-	    //@return An std::string with the id of the internal session that contains the given problem id. If it does not exist, the string returned is empty.
-	//*/
-	////NEED REVISION
-	//string find_session_of_problem(const string& target_problem, Sessions& session_list) const;
 	/**
 	    @param session_id Id of the Session instance to search for.
 	    @pre No precondition.

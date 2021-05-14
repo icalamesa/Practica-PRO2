@@ -24,13 +24,8 @@ using namespace std;
 */
 class Sessions
 {
-    //struct comp_by_id
-    //{
-	//bool operator()(const Session& a, const Session& b);
-    //}
     map<string, Session> session_list;
     set<string> list_of_problems(string session_id);
-    //static bool comp_by_id(const Session& a, const Session& b);
     /**
 	Reads @ref Session instances from standard input and inserts them onto the list of sessions(read in preorder).
     */

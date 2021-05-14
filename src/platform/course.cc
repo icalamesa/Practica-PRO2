@@ -79,11 +79,6 @@ bool Course::session_exists(const string& session_id) const
     return this->session_list_ordered.find(session_id) != this->session_list_ordered.end();
 }
 
-//string Course::find_session_of_problem(const string& target_problem, Sessions& session_list) const
-//{
-    ////return this->problem_set.find(target_problem) != this->problem_set.end();
-//}
-
 int Course::users_coursing() const
 {
     return this->are_coursing;

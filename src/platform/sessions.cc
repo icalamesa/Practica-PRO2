@@ -7,8 +7,6 @@ using namespace std;
 Sessions::Sessions(){}
 
 
-//when I made this function, only god and I knew what it did
-//now, only god knows.
 Session& Sessions::get_session(const string& session_id)
 {
     return this->session_list.at(session_id);
@@ -35,11 +33,6 @@ bool Sessions::exists_session(const string& target) const
 {
     return this->session_list.find(target) != this->session_list.end();
 }
-
-//bool Sessions::insertion(const Session& new_session)
-//{
-//}
-////
 
 bool Sessions::insert_session(const Session& new_session)
 {

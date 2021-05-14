@@ -107,13 +107,7 @@ string Session::get_i_problem(int i) const
 {
     auto a = this->list_of_problems.begin();
     std::advance(a, i);
-    /*for (const auto& str : this->list_of_problems)
-    {
-	cout << str << ' ';
-    }*/
     return *a;
-
-    //std::advance(it, i);
 }
 
 string Session::get_first_problem_id() const
@@ -124,8 +118,6 @@ string Session::get_first_problem_id() const
 //we assume problem_id is never incorrect
 pair<string, string> Session::get_next_problems(const string& problem_id) const
 {
-    //cout << "llego" << endl;
-    //cout << problem_id << endl;
     return this->tree_map.at(problem_id);
 }
 
@@ -183,32 +175,4 @@ void Session::init_solvable_problems_from_user(const string& user_id, Users& use
     auto& usr = user_list.get_user(user_id);
     initial_problem_fetching(usr, this->problem_node);
 }
-    //pair<string, string> solvable_candidates;
-    //int course_size = course_list.course_size(this->u_tell_course());
-    //string target_session_id;
-    //for (int i = 0; i < course_size; i++)
-    //{
-	//target_session_id = course_list.get_session_id(this->u_tell_course(), i);
-	//if (session_list.get_session(target_session_id).find(problem_id))
-	//{
-	    //break;
-	//}
-    //}
-    //solvable_candidates = session_list.get_next_problems(target_session_id, problem_id);
-    //if (solvable_candidates.first != string("0"))
-    //{
-	//this->insert_solvable(solvable_candidates.first);
-    //}
-
-    //if (solvable_candidates.second != string("0"))
-    //{
-	//this->insert_solvable(solvable_candidates.second);
-    //}
-
-    //if (this->solvable.empty())
-    //{
-	//course_list.decrease_coursing(this->coursing);
-	//course_list.increase_completed(this->coursing);
-	//this->coursing = 0;
-    //}
 
