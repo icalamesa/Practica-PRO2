@@ -22,15 +22,20 @@ using namespace std;
 */
 class User
 {
+    /** @brief Integer that represents the currently coursing Course identifier. 0 if not coursing any.*/
     int coursing = 0; //0 if not coursing anything
+    /** @brief Total successful deliveries counter.*/
     int total_successes = 0;
+    /** @brief Total deliveries attempted counter.*/
     int total_attempted = 0;
     //one of these
+    /** @brief List of solvable problems by the User. Theoretically empty if not coursing anything.*/
     set<string> solvable;
+    /** @brief Register of the different attempted problems. The key represents the problem identifier. The value is a std::pair of a Boolean (whether the problem has been solved) and an integer (total amount of deliveries performed onto that specific problem).*/
     map<string, pair<bool, int>> solved;
     /**
 	@param problem_id Id of a problem.
-	@param solved Boolean that tells whetther the problem has been solved or not.
+	@param solved Boolean that tells whether the problem has been solved or not.
 	@pre Always true.
 	@post The given @p problem_id has been inserted in the list of at least attempted problems, along with information on whether it has been solved or not.
     */

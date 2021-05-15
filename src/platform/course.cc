@@ -5,7 +5,7 @@ using namespace std;
 
 Course::Course(){}
 
-void Course::insertion(const string& session_id)
+void Course::session_insertion(const string& session_id)
 {
     this->session_list.push_back(session_id);
     this->session_list_ordered.insert(session_id);
@@ -51,7 +51,7 @@ void Course::read_course(const Sessions& session_list)
     for (int i = 0; i < n; i++)
     {
 	cin >> ses_ids;
-	this->insertion(ses_ids);
+	this->session_insertion(ses_ids);
     }
     vector<string> probs;
     int course_size = this->size();

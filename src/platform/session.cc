@@ -110,11 +110,6 @@ string Session::get_i_problem(int i) const
     return *a;
 }
 
-string Session::get_first_problem_id() const
-{
-    return problem_node.value();
-}
-
 //we assume problem_id is never incorrect
 pair<string, string> Session::get_next_problems(const string& problem_id) const
 {

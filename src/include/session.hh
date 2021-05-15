@@ -38,14 +38,26 @@ class Session
     void print_session(const BinTree<string>&tree) const;
     void immersion_init_solvable_problems_from_user(User& usr, const BinTree<string>& tree);
     public:
+	/**
+	    @brief Declares uninitialized and unidentified Session.
+	*/
 	Session();
+	/**
+	  @param session_id Identifier for the newly constructed Session.
+	  @brief Declares Session with its identifier initialized as @p session_id. 
+	*/
 	Session(const string& session_id);
 	/**
-	    Reads problems from standard input to initialize the implicit parameter.
+	    @brief Reads id and problems from standard input to initialize the implicit parameter.
 	    @pre The implicit parameter is empty (no problems in it). It has not been initialized before. The standard input read problems do not repeat. Standard input follows the format requirements(read in preorder).
-	    @post Problems read are inserted into the Session. 
+	    @post Session Identifier and problems read are inserted into the Session. 
 	*/
 	void read_session();
+	/**
+	    @brief Reads problems from standard input to initialize the implicit parameter.
+	    @pre The implicit parameter is empty (no problems in it). It has not been initialized before. The standard input read problems do not repeat. Standard input follows the format requirements(read in preorder).
+	    @post Session problems are read and inserted into the Session. 
+	*/
 	void read_session_problems();
 	
 	/**
@@ -65,14 +77,12 @@ class Session
 	*/
 	string get_id() const;
 	/**
+	  @brief Index-based (vector-like) problem_id getter.
 	  @param i Integer that performs as an index
 	  @pre @p i is lesser that the implicit parameter size.
 	  @return Id of the problem in the given (sorted) position set by the @p i index.
 	*/
 	string get_i_problem(int i) const;
-	/**
-	*/
-	string get_first_problem_id() const;
 	/**
 	  @param problem_id Id of a problem contained inside the implicit parameter.
 	  @pre @p problem_id exists inside the Session instance.
@@ -85,6 +95,7 @@ class Session
 	*/
 	int size() const;
 	/**
+	  @brief Solvable problems initializer (used on signing in Course).
 	  @param user_id Id of a User instance.
 	  @param user_list List of User instances.
 	  @pre User with the given @p user_id exists withing the @p user_list
@@ -92,6 +103,9 @@ class Session
 	*/
 	void init_solvable_problems_from_user(const string& user_id, Users& user_list);
 	/**
+	  @brief Recursive method to insert solvable problems on delivery.
+	  @pre Always true.
+	  @post Recursively adds problems from the prerequisites tree into the User solvable problems list with @p problem_id as its root.
 	*/
 	void problem_fetching(User& usr, const string& problem_id);
 
