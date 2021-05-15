@@ -7,25 +7,6 @@ using namespace std;
 
 Problem_repo::Problem_repo(){}
 
-bool Problem_repo::comp_by_id(const Problem& a, const Problem& b)
-{
-    return a.get_id() < b.get_id();
-}
-
-bool Problem_repo::comp_by_ratio(const Problem& a, const Problem& b)
-{
-    double a_r = a.get_ratio(), b_r = b.get_ratio();
-    if (a_r < b_r)
-    {
-	return true;
-    }
-    else if (a_r == b_r) 
-    {
-	return a.get_id() < b.get_id();
-    }
-    else return false;
-}
-
 bool Problem_repo::problem_exists(const string& problem_id)
 {
     return this->problem_list.find(problem_id) != this->problem_list.end();
@@ -82,11 +63,6 @@ void Problem_repo::list_problems()
     {
 	problem.info_problem();
     }
-}
-
-void Problem_repo::problem_delivery(const string& problem_id, bool sucess)
-{
-    this->get_problem(problem_id).problem_delivery(sucess);
 }
 
 Problem_repo::~Problem_repo(){}

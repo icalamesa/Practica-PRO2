@@ -26,13 +26,16 @@ class Sessions
 {
     map<string, Session> session_list;
     set<string> list_of_problems(string session_id);
-    /**
-	Reads @ref Session instances from standard input and inserts them onto the list of sessions(read in preorder).
-    */
-    bool insertion(const Session& new_session);
-    void sort_session_list();
     public:
 	Sessions();	
+	/**
+	    @param id Valid identifier of an exiting Session instance.
+	    @return Session instance reference
+	*/
+	const Session& get_session(const string& id) const;
+	/**
+	*/
+	Session& get_session(const string& session_id);
 	/**
 	    Reads n sessions, where n>=1, from standard input.
 	    @pre The implicit parameter is empty (no sessions in it). It has not been initialized before. No problems repeat within individual sessions. Standard input follows the format requirements.
@@ -59,28 +62,11 @@ class Sessions
 	*/
 	int size();
 	/**
-	    @param id Valid identifier of an exiting Session instance.
-	    @return Session isntane reference
-	*/
-	const Session& get_session(const string& id) const;
-	/**
-	*/
-	Session& get_session(const string& session_id);
-	/**
 	*/
 	void list_sessions() const;
 	/**
 	*/
 	void list_sessions(const string& session_id) const;
-	/**
-	*/
-	int session_size(const string& session_id) const;
-	/**
-	*/
-	string get_i_problem_id(const string& session_id, int i) const;
-	/**
-	*/
-	pair<string, string> get_next_problems(const string& session_id, const string& problem_id) const;
 	/**
 	*/
 	~Sessions();

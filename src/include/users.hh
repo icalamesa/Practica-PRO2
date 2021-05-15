@@ -88,9 +88,6 @@ using namespace std;
 	/**
 	    Destructs the list of Users.
 	*/
-	//void push_problems_from_sessions(const string& user_id, int course_id, Sessions& session_list, Courses& course_list);
-
-
 	~Users();
 };
 #endif

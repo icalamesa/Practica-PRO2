@@ -79,57 +79,7 @@ bool Courses::course_exists(int course_name) const
     return this->course_list.find(course_name) != this->course_list.end();
 }
 
-int Courses::are_coursing(int course_id) const
-{
-    return this->get_course(course_id).users_coursing();
-}
-
-int Courses::have_completed(int course_id) const
-{
-    return this->get_course(course_id).have_completed();
-}
-
-void Courses::increase_coursing(int course_id)
-{
-    this->get_course(course_id).increase_coursing();
-}
-
-void Courses::increase_completed(int course_id)
-{
-    this->get_course(course_id).increase_completed();
-}
-
-void Courses::decrease_coursing(int course_id)
-{
-    this->get_course(course_id).decrease_coursing();
-}
-
-int Courses::course_size(int course_id) const
-{
-    return this->get_course(course_id).size();
-}
-
-int Courses::amount_problems(int course_id) const
-{
-    return this->get_course(course_id).amount_problems();
-}
-
 void Courses::print_course_sessions(int course_id) const
 {
     this->get_course(course_id).info_course();
-}
-
-string Courses::get_session_id(int course_id, int i) const
-{
-    return this->get_course(course_id).get_session_id(i);
-}
-
-string Courses::get_problem_id(int course_id, int i) const
-{
-    return this->get_course(course_id).get_problem_id(i);
-}
-
-bool Courses::find_problem_in_course(int course_id, const string& problem_id) const
-{
-    return this->get_course(course_id).find_problem(problem_id);
 }

@@ -99,39 +99,7 @@ class Courses
 	void list_course(int course_name) const;
 	/**
 	*/
-	void increase_coursing(int course_id);
-	/**
-	*/
-	void increase_completed(int course_id);
-	/**
-	*/
-	void decrease_coursing(int course_id);
-	/**
-	*/
-	int are_coursing(int course_id) const;
-	/**
-	*/
-	int have_completed(int course_id) const;
-	/**
-	*/
-	int course_size(int course_id) const;
-	/**
-	*/
-	int amount_problems(int course_id) const;
-	/**
-	*/
 	void print_course_sessions(int course_id) const;
-	/**
-	*/
-	string get_session_id(int course_id, int i) const;
-	/**
-	*/
-	string get_problem_id(int course_id, int i) const;
-	/**
-	*/
-	bool find_problem_in_course(int course_id, const string& problem_id) const;
-	/**
-	*/
 	~Courses();
 };
 #endif

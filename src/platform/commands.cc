@@ -40,7 +40,7 @@ void add_course(Courses& course_list, Sessions& session_list)
     Course new_course;
     new_course.read_course(session_list);
 
-    //cout << endl;
+
     if (new_course.is_legal())
     {
 	course_list.insert_course(new_course);
@@ -97,15 +97,12 @@ void sign_in_course(string user_id, int course_id, Users& user_list, Courses& co
 	User& the_user = user_list.get_user(user_id);
 	if (not the_user.u_is_coursing())
 	{
-	    //user_list.sign_in_course(user_id, course_id);
 	    the_user.u_sign_in_course(course_id);
-	    //course_list.increase_coursing(course_id);
 	    Course& the_course = course_list.get_course(course_id);
 	    the_course.increase_coursing();
 	    //need to push problems
-	    //course_list.get_course(course_id).init_solvable_from_sessions(session_list, user_id, user_list);
 	    the_course.init_solvable_from_sessions(session_list, user_id, user_list);
-	    cout << course_list.are_coursing(course_id) << endl;
+	    cout << the_course.users_coursing() << endl;
 	}
 	else
 	{
@@ -138,13 +135,14 @@ void find_problem_session(int course_id, string problem_id, Courses& course_list
     p_exist = problem_list.problem_exists(problem_id);
     if (c_exist and p_exist)
     {
-	if (course_list.get_course(course_id).find_problem(problem_id))
+	Course& the_course = course_list.get_course(course_id);
+	if (the_course.find_problem(problem_id))
 	{
-	    int course_size = course_list.course_size(course_id);
+	    int course_size = the_course.size();
 	    string session;
 	    for (int i = 0; i < course_size; i++)
 	    {
-		session = course_list.get_course(course_id).get_session_id(i);
+		session = the_course.get_session_id(i);
 		Session& ses = session_list.get_session(session);
 		if (ses.find(problem_id))
 		{

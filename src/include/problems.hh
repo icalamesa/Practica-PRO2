@@ -26,17 +26,7 @@ using namespace std;
 */
 class Problem_repo
 {
-    static bool comp_by_id(const Problem& a, const Problem& b);
-    static bool comp_by_ratio(const Problem&a, const Problem& b);
     map<string, Problem> problem_list;
-    int binary_search(string problem_id);
-
-    void insert_problem_no_sort(string problem_id);
-    
-    //generic basic operations. They allow flexible change in the implementation
-    void insertion(Problem new_problem);
-    template <class comp>
-    void sort_problem_list(comp foo);
 
     public:
 	Problem_repo();
@@ -75,9 +65,6 @@ class Problem_repo
 	/**
 	*/
 	void list_problems();
-	/**
-	*/
-	void problem_delivery(const string& problem_id, bool sucess);
 	/**
 	*/
 	~Problem_repo();

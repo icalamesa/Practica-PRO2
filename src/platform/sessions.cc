@@ -64,11 +64,6 @@ int Sessions::size()
     return session_list.size();
 }
 
-int Sessions::session_size(const string& session_id) const
-{
-    return this->get_session(session_id).size();
-}
-
 void Sessions::list_sessions() const
 {
     for (const auto& session : this->session_list)
@@ -80,17 +75,6 @@ void Sessions::list_sessions() const
 void Sessions::list_sessions(const string& session_id) const
 {
     this->get_session(session_id).info_session();
-}
-
-
-string Sessions::get_i_problem_id(const string& session_id, int i) const
-{
-    return this->get_session(session_id).get_i_problem(i);
-}
-
-pair<string, string> Sessions::get_next_problems(const string& session_id, const string& problem_id) const
-{
-    return this->get_session(session_id).get_next_problems(problem_id);
 }
 
 Sessions::~Sessions(){}
