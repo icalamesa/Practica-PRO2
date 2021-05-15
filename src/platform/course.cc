@@ -137,7 +137,7 @@ string Course::session_of_problem(const string& problem_id, const Sessions& sess
     return string("0");
 }
 
-void Course::init_solvable_from_sessions(Sessions& session_list, const string& user_id, Users& user_list)
+void Course::init_solvable_from_sessions(Sessions& session_list, const string& user_id, User_repo& user_list)
 {
     //this is the internal session_list. Do not get confused.
     for (const auto& session : this->session_list)

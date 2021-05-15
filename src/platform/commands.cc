@@ -35,7 +35,7 @@ void add_session(Sessions& session_list, const string& session_id)
 }
 
 //important: does NOT read course id. It reads number of sessions to be read
-void add_course(Courses& course_list, Sessions& session_list)
+void add_course(Course_repo& course_list, Sessions& session_list)
 {
     Course new_course;
     new_course.read_course(session_list);
@@ -53,7 +53,7 @@ void add_course(Courses& course_list, Sessions& session_list)
     }
 }
 
-void add_user(string user_id, Users& user_list)
+void add_user(string user_id, User_repo& user_list)
 {
     //error message if required is printed from within the function
     if (not user_list.user_exists(user_id))
@@ -68,7 +68,7 @@ void add_user(string user_id, Users& user_list)
     }
 }
 
-void remove_user(string user_id, Users& user_list, Courses& course_list)
+void remove_user(string user_id, User_repo& user_list, Course_repo& course_list)
 {
     pair<bool, int> result = user_list.remove_user(user_id);
     if (result.first)
@@ -85,7 +85,7 @@ void remove_user(string user_id, Users& user_list, Courses& course_list)
     }
 }
 
-void sign_in_course(string user_id, int course_id, Users& user_list, Courses& course_list, Sessions& session_list)
+void sign_in_course(string user_id, int course_id, User_repo& user_list, Course_repo& course_list, Sessions& session_list)
 {
     (void) session_list;
     bool u_exist = false, c_exist = false;
@@ -116,7 +116,7 @@ void sign_in_course(string user_id, int course_id, Users& user_list, Courses& co
     }
 }
 
-void tell_usr_course(string user_id, Users& user_list)
+void tell_usr_course(string user_id, User_repo& user_list)
 {
     if (user_list.user_exists(user_id))
     {
@@ -128,7 +128,7 @@ void tell_usr_course(string user_id, Users& user_list)
     }
 }
 
-void find_problem_session(int course_id, string problem_id, Courses& course_list, Problem_repo& problem_list, Sessions& session_list)
+void find_problem_session(int course_id, string problem_id, Course_repo& course_list, Problem_repo& problem_list, Sessions& session_list)
 {
     bool c_exist = false, p_exist = false;
     c_exist = course_list.course_exists(course_id);
@@ -162,7 +162,7 @@ void find_problem_session(int course_id, string problem_id, Courses& course_list
     }
 }
 
-void tell_solved_probs(string user_id, Users& user_list)
+void tell_solved_probs(string user_id, User_repo& user_list)
 {
     if (user_list.user_exists(user_id))
     {
@@ -174,7 +174,7 @@ void tell_solved_probs(string user_id, Users& user_list)
     }
 }
 
-void tell_solvable_probs(string user_id, Users& user_list, Courses& course_list)
+void tell_solvable_probs(string user_id, User_repo& user_list, Course_repo& course_list)
 {
     (void) course_list;
     if (user_list.user_exists(user_id))
@@ -195,7 +195,7 @@ void tell_solvable_probs(string user_id, Users& user_list, Courses& course_list)
     }
 }
 
-void deliver_problem(string user_id, string problem_id, bool successful, Users& user_list, Problem_repo& problem_list, Sessions& session_list, Courses& course_list)
+void deliver_problem(string user_id, string problem_id, bool successful, User_repo& user_list, Problem_repo& problem_list, Sessions& session_list, Course_repo& course_list)
 {
     User& usr = user_list.get_user(user_id);
     int course = usr.u_tell_course();
@@ -249,12 +249,12 @@ void tell_session(const string& session_id, const Sessions& session_list)
     }
 }
 
-void tell_courses(Courses& course_list)
+void tell_courses(Course_repo& course_list)
 {
     course_list.list_all_courses();
 }
 
-void tell_courses(int course_id, Courses& course_list)
+void tell_courses(int course_id, Course_repo& course_list)
 {
     if (course_list.course_exists(course_id))
     {
@@ -265,11 +265,11 @@ void tell_courses(int course_id, Courses& course_list)
 	cout << "error: el curso no existe" << endl;
     }
 }
-void tell_users(Users& user_list)
+void tell_users(User_repo& user_list)
 {
     user_list.list_users();
 }
-void tell_users(string user_id, Users& user_list)
+void tell_users(string user_id, User_repo& user_list)
 {
     if (user_list.user_exists(user_id))
     {

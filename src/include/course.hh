@@ -96,7 +96,7 @@ class Course
 	*/
 	int have_completed() const;
 	/**
-	  @brief Increaser of counter of active Users coursing the given Course.
+	  @brief Increaser of counter of active User_repo coursing the given Course.
 	  @pre Always true.
 	  @return Increases by one unit the counter of active users coursing the Course.
 	*/
@@ -108,7 +108,7 @@ class Course
 	*/
 	void increase_completed();
 	/**
-	  @brief Decreaser of counter of active Users coursing the given Course.
+	  @brief Decreaser of counter of active User_repo coursing the given Course.
 	  @pre Always true.
 	  @return Decreases by one unit the counter of active users coursing the Course.
 	*/
@@ -158,7 +158,7 @@ class Course
 	  @pre User with the given @p user_id exists in the @p user_list.
 	  @post For each session contained inside the implicit parameter, problems from inside it are pushed into the solvable problems list of the User by the id of @p user_id.
 	*/
-	void init_solvable_from_sessions(Sessions& session_list, const string& user_id, Users& user_list);
+	void init_solvable_from_sessions(Sessions& session_list, const string& user_id, User_repo& user_list);
 
 	~Course();
 };

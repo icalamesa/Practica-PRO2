@@ -16,21 +16,21 @@ using namespace std;
 #define USERS_HH
 
 
-    /** @class Users
+    /** @class User_repo
 	@brief General interface to store and access the user list. 
 
 	This class is a generic interface that allows us to create, modify and delete entries for the users that are registered in the Platform. Designed for a dynamic use regardless of the storage model (memory and/or persistent database).
     */
-    class Users
+    class User_repo
     {
 	map<string, User> user_list;
 	User& user_find(const string& user_id);
 	void list_users(decltype(user_list)::const_iterator& it) const;
 	public:
 	/**
-	    Constructs an empty Users class.
+	    Constructs an empty User_repo class.
 	*/
-	Users();
+	User_repo();
 	/**
 	    @param user_id Id of the user to be searched for.
 	    @pre @p id size is greater than zero. User with @p user_id as identifier exists.
@@ -59,13 +59,13 @@ using namespace std;
 	/**
 	    @param user_id Id of the specific student to search for.
 	    @pre @p id size is greater than zero.
-	    @post If User with @p id identifier did not exist previously, it gets added to the user list and the number of Users after the inclusion is printed. If it did exist, an error message is printed in the standard output.
+	    @post If User with @p id identifier did not exist previously, it gets added to the user list and the number of User_repo after the inclusion is printed. If it did exist, an error message is printed in the standard output.
 	*/
 	void insert_user(const string& user_id);
 	/**
 	    @param user_id Id of the specific student to search for.
 	    @pre @ref User with @p id identifier exists. @p id size is greater than zero.
-	    @post If a User with @p id identifier existed, it no longer does and the number of Users after the inclusion is printed.	
+	    @post If a User with @p id identifier existed, it no longer does and the number of User_repo after the inclusion is printed.	
 	*/
 	//EDIT
 	pair<bool, int> remove_user(const string& user_id);
@@ -86,8 +86,8 @@ using namespace std;
 	void list_users(const string& user_id) const;
 	//void push_problem(const string& user_id, const string& problem_id);
 	/**
-	    Destructs the list of Users.
+	    Destructs the list of User_repo.
 	*/
-	~Users();
+	~User_repo();
 };
 #endif

@@ -1,7 +1,7 @@
 
 /**
     @file
-    @brief Courses list interface specification.
+    @brief Course_repo list interface specification.
 
     @author Ivan Cala Mesa
     @date 1st of April of 2021
@@ -18,10 +18,10 @@ using namespace std;
 #define COURSES_HH
 /** @brief Interface of a repository of different courses, uniquely identified by their id.
 
-  The Courses class acts as one of the main classes. In essence, it allows an implementation-agnostic generalised use of the Evaluator main specifications.
-  Courses class stores a repository of different @ref Course instances.
+  The Course_repo class acts as one of the main classes. In essence, it allows an implementation-agnostic generalised use of the Evaluator main specifications.
+  Course_repo class stores a repository of different @ref Course instances.
 */
-class Courses
+class Course_repo
 {
     /** @brief Container of Course instances. */
     map<int, Course> course_list;
@@ -41,7 +41,7 @@ class Courses
     void list_course(const decltype(course_list)::const_iterator& it) const;
 
     public:
-        Courses();	
+        Course_repo();	
 	/**
 	    @param course_id The id of the specific course to find the problem in.
 	    @param target_problem The id of the specific problem to be searched for.
@@ -86,7 +86,7 @@ class Courses
 	bool course_exists(int course_name) const;
 	/**
 	    @pre Always true.
-	    @post Courses are listed, sorted by their id in strict weak ordering. For each course, the displayed information is: the number of current or past users who have completed the course, the number of users currently enrolled, the number of sessions that make up the course, and the session identifiers, in the same order in which they were read when the course was created.
+	    @post Course_repo are listed, sorted by their id in strict weak ordering. For each course, the displayed information is: the number of current or past users who have completed the course, the number of users currently enrolled, the number of sessions that make up the course, and the session identifiers, in the same order in which they were read when the course was created.
 
 	*/
 	void list_all_courses() const;
@@ -100,6 +100,6 @@ class Courses
 	/**
 	*/
 	void print_course_sessions(int course_id) const;
-	~Courses();
+	~Course_repo();
 };
 #endif

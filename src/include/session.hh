@@ -105,7 +105,7 @@ class Session
 	  @pre User with the given @p user_id exists withing the @p user_list
 	  @post Problems contained inside the implicit parameter have been pushed inside the solvable problems list of the User instance by the id of @p user_id, if not solved before.
 	*/
-	void init_solvable_problems_from_user(const string& user_id, Users& user_list);
+	void init_solvable_problems_from_user(const string& user_id, User_repo& user_list);
 	/**
 	  @brief Recursive method to insert solvable problems on delivery.
 	  @pre Always true.

@@ -165,7 +165,7 @@ void Session::immersion_init_solvable_problems_from_user(User& usr, const BinTre
 }
 
 //push solvable problems
-void Session::init_solvable_problems_from_user(const string& user_id, Users& user_list)
+void Session::init_solvable_problems_from_user(const string& user_id, User_repo& user_list)
 {
     auto& usr = user_list.get_user(user_id);
     immersion_init_solvable_problems_from_user(usr, this->problem_node);

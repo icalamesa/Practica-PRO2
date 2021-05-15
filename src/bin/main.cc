@@ -26,10 +26,10 @@ int main()
     Sessions session_list;
     session_list.read_sessions();
 
-    Courses course_list;
+    Course_repo course_list;
     course_list.read_courses(session_list);
 
-    Users user_list;
+    User_repo user_list;
     user_list.read_users();
     
     string command;

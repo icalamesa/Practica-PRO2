@@ -38,7 +38,7 @@ void add_session(Sessions& session_list, const string& session_id);
     @pre Always true.
     @post Adds a new course with identifier size + 1 in case it meets the constraint of no repetition of problems in the same course. The command supports the short form nc. First a number of sessions is read and then a sequence of valid session identifiers. If there are no intersection of problems in the sessions, the course is added to the course set and its identifier is printed. its identifier is printed. Otherwise, it is not added to the set (so that the size does not change) and an error message is printed. It is guaranteed that the new course is not is not the same as the existing ones.
 */
-void add_course(Courses& course_list, Sessions& session_list);
+void add_course(Course_repo& course_list, Sessions& session_list);
 
 //4.
 /**
@@ -48,7 +48,7 @@ void add_course(Courses& course_list, Sessions& session_list);
     @post Registers a new user with identifier @p user_id. If a user with the same identifier already exists on the platform, an error message is printed. Otherwise the number of registered users is printed after adding it.
 
 */
-void add_user(string user_id, Users& user_list);
+void add_user(string user_id, User_repo& user_list);
 
 //5.
 /**
@@ -59,7 +59,7 @@ void add_user(string user_id, Users& user_list);
     
     If another user with the same name is registered later, it is as if the previous user did not exist.
 */
-void remove_user(string user_id, Users& user_list, Courses& course_list);
+void remove_user(string user_id, User_repo& user_list, Course_repo& course_list);
 
 //6.
 /**
@@ -69,7 +69,7 @@ void remove_user(string user_id, Users& user_list, Courses& course_list);
     @pre Always true.
     @post Enrolls the user with identifier @p user_id in the course with identifier @p course_id. If the user or the course does not exist in the platform or is already enrolled in another course that has not been completed, an error message is printed. Otherwise the number of users enrolled in the course after adding the course is printed (it is guaranteed that the user has not been previously enrolled in the course).
 */
-void sign_in_course(string user_id, int course_id, Users& user_list, Courses& course_list, Sessions& session_list);
+void sign_in_course(string user_id, int course_id, User_repo& user_list, Course_repo& course_list, Sessions& session_list);
 
 //7.
 /**
@@ -79,7 +79,7 @@ void sign_in_course(string user_id, int course_id, Users& user_list, Courses& co
     @post Queries the course in which the user with the identifier @p user_id is enrolled in. If the user does not exist in the platform, an error message is printed. Otherwise, the course identifier or a zero is printed if the user is not enrolled in any course.
 
 */
-void tell_usr_course(string user_id, Users& user_list);
+void tell_usr_course(string user_id, User_repo& user_list);
 
 //8.
 /**
@@ -90,7 +90,7 @@ void tell_usr_course(string user_id, Users& user_list);
     @pre Always true.
     @post Queries the session of the problem whose identifier is @p problem_id in the course with identifier @p course_id. If the course does not exist or if the problem does not exist or if the problem does not belong to the course, an error message is printed. Otherwise, the identifier of the session where the problem occurs in the course is printed.
 */
-void find_problem_session(int course_id, string problem_id, Courses& course_list, Problem_repo& problem_list, Sessions& session_list);
+void find_problem_session(int course_id, string problem_id, Course_repo& course_list, Problem_repo& problem_list, Sessions& session_list);
 
 //9.
 /**
@@ -99,7 +99,7 @@ void find_problem_session(int course_id, string problem_id, Courses& course_list
     @pre Always true.
     @post The problems successfully solved by the user are listed in increasing order by identifier, either those existing in the course in which the user is currently enrolled (if any) or those solved in previous courses. In addition to the identifiers, the number of submissions made by the user to each problem in the list is also printed (value greater than or equal to one). If the user does not exist in the platform, an error message is printed.
 */
-void tell_solved_probs(string user_id, Users& user_list);
+void tell_solved_probs(string user_id, User_repo& user_list);
 
 //10.
 /**
@@ -109,7 +109,7 @@ void tell_solved_probs(string user_id, Users& user_list);
     @pre Always true.
     @post The problems that the user has not yet solved in the course in which he is currently enrolled, but to which he can already make a submission (because he fulfills all his prerequisites, direct and indirect) are listed in increasing order by identifier. In addition to the identifiers, the number of submissions made by the user to each problem in the list (value greater than or equal to zero) is also printed. If the user does not exist in the platform or is not enrolled in any course, an error message is printed.
 */
-void tell_solvable_probs(string user_id, Users& user_list, Courses& course_list);
+void tell_solvable_probs(string user_id, User_repo& user_list, Course_repo& course_list);
 
 //11.
 /**
@@ -119,7 +119,7 @@ void tell_solvable_probs(string user_id, Users& user_list, Courses& course_list)
     @pre It is ensured that the User whose identifier is @p user_id is registered and enrolled in a course where the problem appears and that the problem belongs to the set of problems to which he can submit a solution by fulfilling the prerequisites.
     @post The outcome (r= 1 if success or= 0 if failure) of a user's new submission to the problem is noted. All submissions result in updating the statistics of the user and the problem. In addition, in case= 1 it is also necessary to update the user's solved and submittable problems and check if he has completed the course he was enrolled in. If completed, the user is no longer enrolled in the course.
 */
-void deliver_problem(string user_id, string problem_id, bool successful, Users& user_list, Problem_repo& problem_list, Sessions& session_list, Courses& course_list);
+void deliver_problem(string user_id, string problem_id, bool successful, User_repo& user_list, Problem_repo& problem_list, Sessions& session_list, Course_repo& course_list);
 
 //12.
 /**
@@ -156,14 +156,14 @@ void tell_session(const string& session_id, const Sessions& session_list);
     @pre Always true.
     @post The current courses on the platform are listed, sorted incrementally by course identifier and showing, for each course, the number of current or past users who have completed the course, the number of users currently enrolled, the number of sessions that make up the course and the session identifiers, in the same order in which they were read when the course was created.
 */
-void tell_courses(Courses& course_list);
+void tell_courses(Course_repo& course_list);
 /**
     @param course_id Id of the specific Course instance.
     @param course_list Repository of Course instances.
     @pre Always true.
     @post Information about the course whose identifier is @p course_id is displayed (if it exists): the number of current or past users who have completed it, the number of users currently enrolled, the number of sessions that make it up and the session identifiers, in the same order in which they were read when the course was created. If it does not exist in the platform, an error message is printed. 
 */
-void tell_courses(int course_id, Courses& course_list);
+void tell_courses(int course_id, Course_repo& course_list);
 
 //15.
 /**
@@ -171,12 +171,12 @@ void tell_courses(int course_id, Courses& course_list);
     @pre Always true.
     @post The users currently registered on the platform are listed, sorted in ascending order by name and showing, for each user, how many total submissions they have made, how many problems they have successfully resolved, how many problems they have attempted to resolve (at least one submission), and the course identifier of the course they are enrolled in or a zero if they are not enrolled in any.
 */
-void tell_users(Users& user_list);
+void tell_users(User_repo& user_list);
 /**
     @param user_id Id of the specific User instance.
     @param user_list Repository of User instances.
     @pre Always true.
     @post Information about a User whose identifier is @p user_id is displayed (if it exists): how many total submissions he has made, how many problems he has successfully solved, how many problems he has attempted to solve (at least one submission), and the identifier of the course he is enrolled in or a zero if he is not enrolled in any. If the user does not exist on the platform an error message is printed.
 */
-void tell_users(string user_id, Users& user_list);
+void tell_users(string user_id, User_repo& user_list);
 
