@@ -4,20 +4,20 @@
 
 using namespace std;
 
-Sessions::Sessions(){}
+Session_repo::Session_repo(){}
 
 
-Session& Sessions::get_session(const string& session_id)
+Session& Session_repo::get_session(const string& session_id)
 {
     return this->session_list.at(session_id);
 }
 
-const Session& Sessions::get_session(const string& session_id) const
+const Session& Session_repo::get_session(const string& session_id) const
 {
     return this->session_list.at(session_id);
 }
 
-void Sessions::read_sessions()
+void Session_repo::read_sessions()
 {
     int n;
     cin >> n;
@@ -29,23 +29,23 @@ void Sessions::read_sessions()
     }
 }
 
-bool Sessions::exists_session(const string& target) const
+bool Session_repo::exists_session(const string& target) const
 {
     return this->session_list.find(target) != this->session_list.end();
 }
 
-bool Sessions::insert_session(const Session& new_session)
+bool Session_repo::insert_session(const Session& new_session)
 {
     return this->session_list.insert(make_pair(new_session.get_id(), new_session)).second;
     //this is using internal Session operator < overload
 }
 
-bool Sessions::insert_session(const string& session_id)
+bool Session_repo::insert_session(const string& session_id)
 {
     return session_list.insert(make_pair(session_id, Session(session_id))).second;
 }
 
-string Sessions::find_in_sessions(const string& prob) const
+string Session_repo::find_in_sessions(const string& prob) const
 {
     string res = "";
     for (const auto& the_session : this->session_list)
@@ -59,12 +59,12 @@ string Sessions::find_in_sessions(const string& prob) const
     return res;
 }
 
-int Sessions::size()
+int Session_repo::size()
 {
     return session_list.size();
 }
 
-void Sessions::list_sessions() const
+void Session_repo::list_sessions() const
 {
     for (const auto& session : this->session_list)
     {
@@ -72,9 +72,9 @@ void Sessions::list_sessions() const
     }
 }
 
-void Sessions::list_sessions(const string& session_id) const
+void Session_repo::list_sessions(const string& session_id) const
 {
     this->get_session(session_id).info_session();
 }
 
-Sessions::~Sessions(){}
+Session_repo::~Session_repo(){}

@@ -1,7 +1,7 @@
 
 /**
     @file
-    @brief Sessions list interface specification.
+    @brief Session_repo list interface specification.
 
     @author Ivan Cala Mesa
     @date 1st of April of 2021
@@ -22,12 +22,12 @@ using namespace std;
 
     Repository of @ref Session instances that works as a general interface between the (implementation-agnostic) Session storage model and the caller.
 */
-class Sessions
+class Session_repo
 {
     map<string, Session> session_list;
     set<string> list_of_problems(string session_id);
     public:
-	Sessions();	
+	Session_repo();	
 	/**
 	    @param id Valid identifier of an exiting Session instance.
 	    @return Session instance reference
@@ -69,6 +69,6 @@ class Sessions
 	void list_sessions(const string& session_id) const;
 	/**
 	*/
-	~Sessions();
+	~Session_repo();
 };
 #endif

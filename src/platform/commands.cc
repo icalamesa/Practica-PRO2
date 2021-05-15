@@ -20,7 +20,7 @@ void add_problem(Problem_repo& problem_list, const string& problem_id)
     }
 }
 
-void add_session(Sessions& session_list, const string& session_id)
+void add_session(Session_repo& session_list, const string& session_id)
 {
     Session new_session(session_id);
     new_session.read_session_problems();
@@ -35,7 +35,7 @@ void add_session(Sessions& session_list, const string& session_id)
 }
 
 //important: does NOT read course id. It reads number of sessions to be read
-void add_course(Course_repo& course_list, Sessions& session_list)
+void add_course(Course_repo& course_list, Session_repo& session_list)
 {
     Course new_course;
     new_course.read_course(session_list);
@@ -85,7 +85,7 @@ void remove_user(string user_id, User_repo& user_list, Course_repo& course_list)
     }
 }
 
-void sign_in_course(string user_id, int course_id, User_repo& user_list, Course_repo& course_list, Sessions& session_list)
+void sign_in_course(string user_id, int course_id, User_repo& user_list, Course_repo& course_list, Session_repo& session_list)
 {
     (void) session_list;
     bool u_exist = false, c_exist = false;
@@ -128,7 +128,7 @@ void tell_usr_course(string user_id, User_repo& user_list)
     }
 }
 
-void find_problem_session(int course_id, string problem_id, Course_repo& course_list, Problem_repo& problem_list, Sessions& session_list)
+void find_problem_session(int course_id, string problem_id, Course_repo& course_list, Problem_repo& problem_list, Session_repo& session_list)
 {
     bool c_exist = false, p_exist = false;
     c_exist = course_list.course_exists(course_id);
@@ -195,7 +195,7 @@ void tell_solvable_probs(string user_id, User_repo& user_list, Course_repo& cour
     }
 }
 
-void deliver_problem(string user_id, string problem_id, bool successful, User_repo& user_list, Problem_repo& problem_list, Sessions& session_list, Course_repo& course_list)
+void deliver_problem(string user_id, string problem_id, bool successful, User_repo& user_list, Problem_repo& problem_list, Session_repo& session_list, Course_repo& course_list)
 {
     User& usr = user_list.get_user(user_id);
     int course = usr.u_tell_course();
@@ -231,13 +231,13 @@ void tell_prob_list(string problem_id, Problem_repo& problem_list)
     }
 }
 
-void tell_session(const Sessions& session_list)
+void tell_session(const Session_repo& session_list)
 {
     //need to add this method
     session_list.list_sessions();
 }
 
-void tell_session(const string& session_id, const Sessions& session_list)
+void tell_session(const string& session_id, const Session_repo& session_list)
 {
     if (session_list.exists_session(session_id))
     {

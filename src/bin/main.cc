@@ -23,7 +23,7 @@ int main()
     Problem_repo problem_list;
     problem_list.read_problems();
 
-    Sessions session_list;
+    Session_repo session_list;
     session_list.read_sessions();
 
     Course_repo course_list;

@@ -76,7 +76,7 @@ class Course
 	  @pre Always true.
 	  @post Session ids are read from standard input, and the problems contained in the sessions by the  given ids are pushed into the implicit parameter.
 	*/
-	void read_course(const Sessions& session_list);
+	void read_course(const Session_repo& session_list);
 	/**
 	  @brief Printer of the ids of sessions that form the Course.
 	  @pre Always true
@@ -149,7 +149,7 @@ class Course
 	  @pre Problem with the given @p problem_id exists inside the Course's problem list.
 	  @post An std::string that contains the id of the Session instance where the problem_id has been found to be in.
 	*/
-	string session_of_problem(const string& problem_id, const Sessions& session_list);
+	string session_of_problem(const string& problem_id, const Session_repo& session_list);
 	/**
 	  @brief User solvable problems initializer (used on sign in).
 	  @param session_list List of Session instances.
@@ -158,7 +158,7 @@ class Course
 	  @pre User with the given @p user_id exists in the @p user_list.
 	  @post For each session contained inside the implicit parameter, problems from inside it are pushed into the solvable problems list of the User by the id of @p user_id.
 	*/
-	void init_solvable_from_sessions(Sessions& session_list, const string& user_id, User_repo& user_list);
+	void init_solvable_from_sessions(Session_repo& session_list, const string& user_id, User_repo& user_list);
 
 	~Course();
 };

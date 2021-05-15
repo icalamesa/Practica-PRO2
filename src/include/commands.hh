@@ -29,7 +29,7 @@ void add_problem(Problem_repo& problem_list, const string& problem_id);
     @pre Always true.
     @post Add a new session with identifier s. First read the problem structure of the session, in the same way as for the initial sessions (ensure that the problems exist and are not repeated). If a session already existed on the platform with the same identifier, an error message is printed. Otherwise the number of sessions is printed in the repository after adding it. It is guaranteed that the new session is not the same as the existing ones.
 */
-void add_session(Sessions& session_list, const string& session_id);
+void add_session(Session_repo& session_list, const string& session_id);
 
 //3.
 /**
@@ -38,7 +38,7 @@ void add_session(Sessions& session_list, const string& session_id);
     @pre Always true.
     @post Adds a new course with identifier size + 1 in case it meets the constraint of no repetition of problems in the same course. The command supports the short form nc. First a number of sessions is read and then a sequence of valid session identifiers. If there are no intersection of problems in the sessions, the course is added to the course set and its identifier is printed. its identifier is printed. Otherwise, it is not added to the set (so that the size does not change) and an error message is printed. It is guaranteed that the new course is not is not the same as the existing ones.
 */
-void add_course(Course_repo& course_list, Sessions& session_list);
+void add_course(Course_repo& course_list, Session_repo& session_list);
 
 //4.
 /**
@@ -69,7 +69,7 @@ void remove_user(string user_id, User_repo& user_list, Course_repo& course_list)
     @pre Always true.
     @post Enrolls the user with identifier @p user_id in the course with identifier @p course_id. If the user or the course does not exist in the platform or is already enrolled in another course that has not been completed, an error message is printed. Otherwise the number of users enrolled in the course after adding the course is printed (it is guaranteed that the user has not been previously enrolled in the course).
 */
-void sign_in_course(string user_id, int course_id, User_repo& user_list, Course_repo& course_list, Sessions& session_list);
+void sign_in_course(string user_id, int course_id, User_repo& user_list, Course_repo& course_list, Session_repo& session_list);
 
 //7.
 /**
@@ -90,7 +90,7 @@ void tell_usr_course(string user_id, User_repo& user_list);
     @pre Always true.
     @post Queries the session of the problem whose identifier is @p problem_id in the course with identifier @p course_id. If the course does not exist or if the problem does not exist or if the problem does not belong to the course, an error message is printed. Otherwise, the identifier of the session where the problem occurs in the course is printed.
 */
-void find_problem_session(int course_id, string problem_id, Course_repo& course_list, Problem_repo& problem_list, Sessions& session_list);
+void find_problem_session(int course_id, string problem_id, Course_repo& course_list, Problem_repo& problem_list, Session_repo& session_list);
 
 //9.
 /**
@@ -119,7 +119,7 @@ void tell_solvable_probs(string user_id, User_repo& user_list, Course_repo& cour
     @pre It is ensured that the User whose identifier is @p user_id is registered and enrolled in a course where the problem appears and that the problem belongs to the set of problems to which he can submit a solution by fulfilling the prerequisites.
     @post The outcome (r= 1 if success or= 0 if failure) of a user's new submission to the problem is noted. All submissions result in updating the statistics of the user and the problem. In addition, in case= 1 it is also necessary to update the user's solved and submittable problems and check if he has completed the course he was enrolled in. If completed, the user is no longer enrolled in the course.
 */
-void deliver_problem(string user_id, string problem_id, bool successful, User_repo& user_list, Problem_repo& problem_list, Sessions& session_list, Course_repo& course_list);
+void deliver_problem(string user_id, string problem_id, bool successful, User_repo& user_list, Problem_repo& problem_list, Session_repo& session_list, Course_repo& course_list);
 
 //12.
 /**
@@ -142,13 +142,13 @@ void tell_prob_list(string problem_id, Problem_repo& problem_list);
     @pre Always true.
     @post The current sessions of the platform are listed, sorted in increasing order by their identifier and showing, for each session, the number of problems that form it and the identifiers of these problems, following their prerequisite structure in post order.
 */
-void tell_session(const Sessions& session_list);
+void tell_session(const Session_repo& session_list);
 /**
     @param session_id Id of the specific Session instance.
     @param session_list Repository of Session instances.
     @pre Information of the session whose identifier is @p session_id is displayed: the number of problems that form it and the identifiers of these problems, following its prerequisite structure in post order.
 */
-void tell_session(const string& session_id, const Sessions& session_list);
+void tell_session(const string& session_id, const Session_repo& session_list);
 
 //14.
 /**

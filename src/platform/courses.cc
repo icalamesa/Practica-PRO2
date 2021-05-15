@@ -19,7 +19,7 @@ bool Course_repo::find_session_in_courselist(int course_id, string session_id) c
     return this->get_course(course_id).session_exists(session_id);
 }
 
-void Course_repo::read_and_add_course(Sessions& session_list)
+void Course_repo::read_and_add_course(Session_repo& session_list)
 {
     Course new_course;
     new_course.read_course(session_list);
@@ -34,7 +34,7 @@ void Course_repo::insert_course(Course& new_course)
     this->course_list.insert(make_pair(num, new_course));
 }
 
-void Course_repo::read_courses(Sessions& session_list)
+void Course_repo::read_courses(Session_repo& session_list)
 {
     int n;
     cin >> n;

@@ -43,7 +43,7 @@ void Course::info_course() const
     cout << endl;
 }
 
-void Course::read_course(const Sessions& session_list)
+void Course::read_course(const Session_repo& session_list)
 {
     int n;
     cin >> n;
@@ -124,7 +124,7 @@ bool Course::find_problem(const string& problem_id) const
     return this->problem_set.find(problem_id) != this->problem_set.end();
 }
 
-string Course::session_of_problem(const string& problem_id, const Sessions& session_list)
+string Course::session_of_problem(const string& problem_id, const Session_repo& session_list)
 {
     for (const auto& session_id : this->session_list)
     {
@@ -137,7 +137,7 @@ string Course::session_of_problem(const string& problem_id, const Sessions& sess
     return string("0");
 }
 
-void Course::init_solvable_from_sessions(Sessions& session_list, const string& user_id, User_repo& user_list)
+void Course::init_solvable_from_sessions(Session_repo& session_list, const string& user_id, User_repo& user_list)
 {
     //this is the internal session_list. Do not get confused.
     for (const auto& session : this->session_list)
