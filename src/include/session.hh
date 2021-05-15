@@ -25,19 +25,18 @@ using namespace std;
 */
 class Session
 {
+    /** @brief BinTree root of the whole problem prerequisites tree.*/
     BinTree<string> problem_node;
+    /** @brief std::map that allows quick search of the children of every problem in the prerequisites tree.*/
     map<string, std::pair<string, string>> tree_map;
-    int _size = 0;
-    void recalc_size();
+    /** @brief Identifier of the Session. */
     string id;
-    /**
-	@return A std::set<std::string> containing the id of the problems contained in the implicit parameter.
-    */
+    /**	@brief A std::set<std::string> that contains the id of the problems contained in the implicit parameter.*/
     set<string> list_of_problems;
     void fill_problem_set(BinTree<string>& tree);
-    bool search_problem(const BinTree<string>& tree, string& target_problem) const;
+    bool search_problem_in_tree(const BinTree<string>& tree, string& target_problem) const;
     void print_session(const BinTree<string>&tree) const;
-    void initial_problem_fetching(User& usr, const BinTree<string>& tree);
+    void immersion_init_solvable_problems_from_user(User& usr, const BinTree<string>& tree);
     public:
 	Session();
 	Session(const string& session_id);
@@ -54,27 +53,47 @@ class Session
 	    @return True if the target problem id is found in this session problem list. False otherwise.
 	*/
 	bool find(const string& target_problem) const;
-	/**
-	    @param target_problem std::string containing the identifier of a problem
-	    @p target_problem size is greater than zero
-	    @return A std::string with the id of the implicit parameter.
-	*/
-	string get_session_with_problem_id(string target_problem);
         /**
             @param session_id Id of the specific session.
             @pre No precondition.
             @post Info on the session is displayed on Standard output.
         */
         void info_session() const;
+	/**
+	  @pre Always true.
+	  @return std::string with the id of the implicit parameter.
+	*/
 	string get_id() const;
+	/**
+	  @param i Integer that performs as an index
+	  @pre @p i is lesser that the implicit parameter size.
+	  @return Id of the problem in the given (sorted) position set by the @p i index.
+	*/
 	string get_i_problem(int i) const;
+	/**
+	*/
 	string get_first_problem_id() const;
+	/**
+	  @param problem_id Id of a problem contained inside the implicit parameter.
+	  @pre @p problem_id exists inside the Session instance.
+	  @return std::pair containing 2 strings: Both of them representing the children of the given @p problem_id in the prerequisites tree. The given strings contain "0" if no child in a position, either left, right or both.
+	*/
 	pair<string, string> get_next_problems(const string& problem_id) const;
+	/**
+	  @pre Always true.
+	  @return Integer with the amount of problems contained in th eimplicit parameter.
+	*/
 	int size() const;
-
+	/**
+	  @param user_id Id of a User instance.
+	  @param user_list List of User instances.
+	  @pre User with the given @p user_id exists withing the @p user_list
+	  @post Problems contained inside the implicit parameter have been pushed inside the solvable problems list of the User instance by the id of @p user_id, if not solved before.
+	*/
 	void init_solvable_problems_from_user(const string& user_id, Users& user_list);
+	/**
+	*/
 	void problem_fetching(User& usr, const string& problem_id);
-	void insert_problem(const string& problem_id);
 
 	bool operator< (const Session& other) const;
 	bool operator== (const Session& other) const;

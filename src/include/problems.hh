@@ -72,8 +72,14 @@ class Problem_repo
 	    @return Boolean True if a Problem with @p problem_id exists. False otherwise.
 	*/
 	bool problem_exists(const string& problem_id);
+	/**
+	*/
 	void list_problems();
+	/**
+	*/
 	void problem_delivery(const string& problem_id, bool sucess);
+	/**
+	*/
 	~Problem_repo();
 };
 #endif

@@ -1,5 +1,6 @@
 /** 
-        @brief User class specification.
+    @file
+    @brief User class specification.
     @author Ivan Cala Mesa
     @date 1st of april of 2021
 */
@@ -27,7 +28,13 @@ class User
     //one of these
     set<string> solvable;
     map<string, pair<bool, int>> solved;
-    void insertion(string problem_id, bool solved);
+    /**
+	@param problem_id Id of a problem.
+	@param solved Boolean that tells whetther the problem has been solved or not.
+	@pre Always true.
+	@post The given @p problem_id has been inserted in the list of at least attempted problems, along with information on whether it has been solved or not.
+    */
+    void insertion(const string& problem_id, bool solved);
     public:
 	//CONSULTORES
 
@@ -89,12 +96,26 @@ class User
             @post Solved problems by the User are displayed on Standard output.
         */ 
 	void u_list_solved() const;
+	/**
+	*/
 	void u_list_solvable() const;
+	/**
+	*/
 	void info_user() const;
+	/**
+	*/
 	void insert_solvable(const string& problem_id);
+	/**
+	*/
 	void u_deliver_problem(const string& problem_id, bool success);
+	/**
+	*/
 	bool u_has_solved_problem(const string& problem_id) const;
+	/**
+	*/
 	bool u_update_course();
+	/**
+	*/
 	~User();
 };
 

@@ -25,6 +25,10 @@ class Problem
     int deliveries = 0;
     int successful_deliveries = 0;
     double ratio = 1;
+    /**
+      @pre Always true.
+      @post Recalculates the ratio variable, and reassigns the result in the proper variable.
+    */
     void recalculate_ratio();
     Problem();
     public:
@@ -56,7 +60,12 @@ class Problem
             @post Information on the problem is displayed on Standard output
         */
         void info_problem() const;
-	void problem_delivery(bool sucess);
+	/**
+	  @param success Boolean that tells whether the problem delivered was correctly solved or not. 
+	  @pre Always true.
+	  @post Registers that a problem delivery has been performed, increases the counter of total attempts performed with the implicit parameter, and if @p success is True, increases the counter of total successful deliveries performed with the problem.
+	*/
+	void problem_delivery(bool success);
         bool operator==(const Problem& other) const;
 	bool operator<(const Problem& other) const;
 	~Problem();

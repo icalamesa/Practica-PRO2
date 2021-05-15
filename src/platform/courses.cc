@@ -4,12 +4,12 @@
 Courses::Courses(){}
 Courses::~Courses(){}
 
-const Course& Courses::get_course(const int& course_id) const
+const Course& Courses::get_course(int course_id) const
 {
     return this->course_list.at(course_id);
 }
 
-Course& Courses::get_course(const int& course_id)
+Course& Courses::get_course(int course_id)
 {
     return this->course_list.at(course_id);
 }
@@ -57,7 +57,7 @@ void Courses::list_all_courses() const
     }
 }
 
-void Courses::list_course(map<int, Course>::const_iterator& it) const
+void Courses::list_course(const map<int, Course>::const_iterator& it) const
 {
     cout << it->first << ' ';
     cout << it->second.have_completed() << ' ';
@@ -79,27 +79,27 @@ bool Courses::course_exists(int course_name) const
     return this->course_list.find(course_name) != this->course_list.end();
 }
 
-int Courses::are_coursing(const int& course_id) const
+int Courses::are_coursing(int course_id) const
 {
     return this->get_course(course_id).users_coursing();
 }
 
-int Courses::have_completed(const int& course_id) const
+int Courses::have_completed(int course_id) const
 {
     return this->get_course(course_id).have_completed();
 }
 
-void Courses::increase_coursing(const int& course_id)
+void Courses::increase_coursing(int course_id)
 {
     this->get_course(course_id).increase_coursing();
 }
 
-void Courses::increase_completed(const int& course_id)
+void Courses::increase_completed(int course_id)
 {
     this->get_course(course_id).increase_completed();
 }
 
-void Courses::decrease_coursing(const int& course_id)
+void Courses::decrease_coursing(int course_id)
 {
     this->get_course(course_id).decrease_coursing();
 }

@@ -5,10 +5,10 @@ using namespace std;
 
 Course::Course(){}
 
-void Course::insertion(const string& ses)
+void Course::insertion(const string& session_id)
 {
-    this->session_list.push_back(ses);
-    this->session_list_ordered.insert(ses);
+    this->session_list.push_back(session_id);
+    this->session_list_ordered.insert(session_id);
 }
 
 int Course::size() const
@@ -21,7 +21,6 @@ int Course::amount_problems() const
     return problem_set.size();
 }
 
-//TO DO
 bool Course::is_legal()
 {
     return this->problem_set.size() == this->expected_size;
@@ -59,7 +58,6 @@ void Course::read_course(const Sessions& session_list)
     for (int i = 0; i < course_size; i++)
     {
 	string target_session = this->get_session_id(i);
-	//int session_size = session_list.session_size(target_session);
 	auto& ses = session_list.get_session(target_session);
 	int session_size = ses.size();
 	for (int j = 0; j < session_size; j++)

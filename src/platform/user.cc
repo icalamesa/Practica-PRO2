@@ -5,7 +5,7 @@ using namespace std;
 
 User::User(){}
 
-void User::insertion(string problem_id, bool solved)
+void User::insertion(const string& problem_id, bool solved)
 {
     this->solved.emplace(make_pair(problem_id, make_pair(solved, 1)));
 }

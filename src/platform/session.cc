@@ -25,7 +25,7 @@ string Session::get_id() const
     return this->id;
 }
 
-bool Session::search_problem(const BinTree<string>& tree, string& target_problem) const
+bool Session::search_problem_in_tree(const BinTree<string>& tree, string& target_problem) const
 {
     if (not tree.empty())
     {
@@ -35,7 +35,7 @@ bool Session::search_problem(const BinTree<string>& tree, string& target_problem
 	}
 	else
 	{
-	    return search_problem(tree.left(), target_problem) or search_problem(tree.right(), target_problem);
+	    return search_problem_in_tree(tree.left(), target_problem) or search_problem_in_tree(tree.right(), target_problem);
 	}
     }
     return false;
@@ -149,7 +149,7 @@ void Session::problem_fetching(User& usr, const string& problem_id)
 	}
     }
 }
-void Session::initial_problem_fetching(User& usr, const BinTree<string>& tree)
+void Session::immersion_init_solvable_problems_from_user(User& usr, const BinTree<string>& tree)
 {
     //we assume we never enter empty problems
     if (not usr.u_has_solved_problem(tree.value()))
@@ -160,11 +160,11 @@ void Session::initial_problem_fetching(User& usr, const BinTree<string>& tree)
     {
 	if (not tree.left().empty())
 	{
-	    initial_problem_fetching(usr, tree.left());
+	    immersion_init_solvable_problems_from_user(usr, tree.left());
 	}
 	if (not tree.right().empty())
 	{
-	    initial_problem_fetching(usr, tree.right());
+	    immersion_init_solvable_problems_from_user(usr, tree.right());
 	}
     }
 }
@@ -173,6 +173,6 @@ void Session::initial_problem_fetching(User& usr, const BinTree<string>& tree)
 void Session::init_solvable_problems_from_user(const string& user_id, Users& user_list)
 {
     auto& usr = user_list.get_user(user_id);
-    initial_problem_fetching(usr, this->problem_node);
+    immersion_init_solvable_problems_from_user(usr, this->problem_node);
 }
 

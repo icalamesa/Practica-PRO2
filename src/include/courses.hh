@@ -23,6 +23,7 @@ using namespace std;
 */
 class Courses
 {
+    /** @brief Container of Course instances. */
     map<int, Course> course_list;
 
     /**
@@ -31,9 +32,13 @@ class Courses
 	@post If there is no Problem intersection among the Session instances contained in the created Course, it is added to the @ref Course list. Course is not added and and error message is printed in Standard output otherwise.
     */
     void read_and_add_course(Sessions& session_list);
-
-    Course& operator[](int index) const;
-    void list_course(decltype(course_list)::const_iterator& it) const;
+    /**
+	@param it Iterator to the element to be listed.
+	@pre @p it Is an iterator pointing to an actual, non-end, element in the container. 
+	@post Information of the Course is listed on standard output following the folling format:
+	course_id total_completed actual_coursing size_of_course (sessions id contained in the course)
+    */
+    void list_course(const decltype(course_list)::const_iterator& it) const;
 
     public:
         Courses();	
@@ -57,9 +62,9 @@ class Courses
 	    @pre @p id is an integer with a valid course id.
 	    @return Lvalue reference to a Course instance
 	*/
-	const Course& get_course(const int& id) const;
+	const Course& get_course(int id) const;
 	//NECESITA DOXYCOMENTARIOS
-	Course& get_course(const int& course_id);
+	Course& get_course(int course_id);
 	/**
         Reads @ref Course instances from standard input.
 	    @pre Course instances in standard input follow the valid specified format by the docs.
@@ -87,21 +92,46 @@ class Courses
 	void list_all_courses() const;
 	/**
 	    @param course_name The id of the course to be searched for.
-	    @pre No precondition.
-	    @post If the course exists, lists information for a single course. That information is: The number of current or past users who have completed the course, the number of users currently enrolled, the number of sessions that make up the course, and the session identifiers, in the same order in which they were read when the course was created. \n If the course does not exist, prints an error message in Standard output.
+	    @pre @p course_name	is the id of an existing course in the implicit parameter.
+	    @post Information of the Course is listed on standard output following the folling format:
+	course_id total_completed actual_coursing size_of_course (session_id1 session_id2 ...)
 	*/
 	void list_course(int course_name) const;
-	void increase_coursing(const int& course_id);
-	void increase_completed(const int& course_id);
-	void decrease_coursing(const int& course_id);
-	int are_coursing(const int& course_id) const;
-	int have_completed(const int& course_id) const;
+	/**
+	*/
+	void increase_coursing(int course_id);
+	/**
+	*/
+	void increase_completed(int course_id);
+	/**
+	*/
+	void decrease_coursing(int course_id);
+	/**
+	*/
+	int are_coursing(int course_id) const;
+	/**
+	*/
+	int have_completed(int course_id) const;
+	/**
+	*/
 	int course_size(int course_id) const;
+	/**
+	*/
 	int amount_problems(int course_id) const;
+	/**
+	*/
 	void print_course_sessions(int course_id) const;
+	/**
+	*/
 	string get_session_id(int course_id, int i) const;
+	/**
+	*/
 	string get_problem_id(int course_id, int i) const;
+	/**
+	*/
 	bool find_problem_in_course(int course_id, const string& problem_id) const;
+	/**
+	*/
 	~Courses();
 };
 #endif
