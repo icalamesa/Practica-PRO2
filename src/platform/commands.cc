@@ -76,7 +76,7 @@ void remove_user(string user_id, Users& user_list, Courses& course_list)
 	cout << user_list.size() << endl;
 	if (result.second != -1)
 	{
-	    course_list.decrease_coursing(result.second);
+	    course_list.get_course(result.second).decrease_coursing();
 	}
     }
     else
@@ -94,12 +94,17 @@ void sign_in_course(string user_id, int course_id, Users& user_list, Courses& co
     c_exist = course_list.course_exists(course_id);
     if (u_exist and c_exist)
     {
-	if (not user_list.is_coursing(user_id))
+	User& the_user = user_list.get_user(user_id);
+	if (not the_user.u_is_coursing())
 	{
-	    user_list.sign_in_course(user_id, course_id);
-	    course_list.increase_coursing(course_id);
+	    //user_list.sign_in_course(user_id, course_id);
+	    the_user.u_sign_in_course(course_id);
+	    //course_list.increase_coursing(course_id);
+	    Course& the_course = course_list.get_course(course_id);
+	    the_course.increase_coursing();
 	    //need to push problems
-	    course_list.get_course(course_id).init_solvable_from_sessions(session_list, user_id, user_list);
+	    //course_list.get_course(course_id).init_solvable_from_sessions(session_list, user_id, user_list);
+	    the_course.init_solvable_from_sessions(session_list, user_id, user_list);
 	    cout << course_list.are_coursing(course_id) << endl;
 	}
 	else
@@ -118,7 +123,7 @@ void tell_usr_course(string user_id, Users& user_list)
 {
     if (user_list.user_exists(user_id))
     {
-	cout << user_list.tell_course(user_id) << endl;
+	cout << user_list.get_user(user_id).u_tell_course() << endl;
     }
     else 
     {
@@ -133,13 +138,13 @@ void find_problem_session(int course_id, string problem_id, Courses& course_list
     p_exist = problem_list.problem_exists(problem_id);
     if (c_exist and p_exist)
     {
-	if (course_list.find_problem_in_course(course_id, problem_id))
+	if (course_list.get_course(course_id).find_problem(problem_id))
 	{
 	    int course_size = course_list.course_size(course_id);
 	    string session;
 	    for (int i = 0; i < course_size; i++)
 	    {
-		session = course_list.get_session_id(course_id, i);
+		session = course_list.get_course(course_id).get_session_id(i);
 		Session& ses = session_list.get_session(session);
 		if (ses.find(problem_id))
 		{
@@ -163,7 +168,7 @@ void tell_solved_probs(string user_id, Users& user_list)
 {
     if (user_list.user_exists(user_id))
     {
-	user_list.list_solved_problems_by(user_id);
+	user_list.get_user(user_id).u_list_solved();
     }
     else
     {
@@ -176,9 +181,10 @@ void tell_solvable_probs(string user_id, Users& user_list, Courses& course_list)
     (void) course_list;
     if (user_list.user_exists(user_id))
     {
-	if (user_list.is_coursing(user_id))
+	User& the_user = user_list.get_user(user_id);
+	if (the_user.u_is_coursing())
 	{
-	    user_list.list_solvable_problems(user_id);
+	    the_user.u_list_solvable();
 	}
 	else
 	{
@@ -196,15 +202,15 @@ void deliver_problem(string user_id, string problem_id, bool successful, Users& 
     User& usr = user_list.get_user(user_id);
     int course = usr.u_tell_course();
     usr.u_deliver_problem(problem_id, successful);
-    problem_list.problem_delivery(problem_id, successful);
+    problem_list.get_problem(problem_id).problem_delivery(successful);
     if (successful)
     {
 	string session_id = course_list.get_course(usr.u_tell_course()).session_of_problem(problem_id, session_list);
 	session_list.get_session(session_id).problem_fetching(usr, problem_id);
 	if (usr.u_update_course())
 	{
-	    course_list.decrease_coursing(course);
-	    course_list.increase_completed(course);
+	    course_list.get_course(course).decrease_coursing();
+	    course_list.get_course(course).increase_completed();
 	}
     }
 }

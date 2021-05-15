@@ -33,9 +33,13 @@ class Session
     string id;
     /**	@brief A std::set<std::string> that contains the id of the problems contained in the implicit parameter.*/
     set<string> list_of_problems;
+    /***/
     void fill_problem_set(BinTree<string>& tree);
+    /***/
     bool search_problem_in_tree(const BinTree<string>& tree, string& target_problem) const;
+    /***/
     void print_session(const BinTree<string>&tree) const;
+    /***/
     void immersion_init_solvable_problems_from_user(User& usr, const BinTree<string>& tree);
     public:
 	/**
@@ -67,7 +71,7 @@ class Session
 	bool find(const string& target_problem) const;
         /**
             @param session_id Id of the specific session.
-            @pre No precondition.
+            @pre Always true.
             @post Info on the session is displayed on Standard output.
         */
         void info_session() const;

@@ -35,7 +35,7 @@ class Problem
 	/**
 	    @ref Problem constructor.
 	    @param problem_id Is the id for the new problem instance.
-	    @pre No precondition.
+	    @pre Always true.
 	    @post A problem instance with @p problem_id as its id is created.
 	*/
 	Problem(const string& problem_id);
@@ -56,7 +56,7 @@ class Problem
 	*/
 	int get_solved() const;
         /**
-            @pre No precondition.
+            @pre Always true.
             @post Information on the problem is displayed on Standard output
         */
         void info_problem() const;

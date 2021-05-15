@@ -45,58 +45,6 @@ using namespace std;
 	*/
 	bool user_exists(const string& user_id);
 	/**
-	    @param id Id of the specific student to search for.
-	    @pre @p id size is greater than zero. User with @p user_id as identifier exists.
-	    @post If a @ref User instance with the given identifier exists, an integer with id of the course that the specific User is enrolled in is returned. The returned integer is set to 0 otherwise. If a @ref User instance with the given identifier does not exist, an error is printed in the Standard output.
-	*/
-	int tell_course(const string& id);
-	/**
-	    @param id Id of the specific student to search for.
-	    @pre @p id size is greater than zero. User with @p id as identifier exists.
-	    @return True if the specific User is enrolled in a course, false if it is not.
-	*/
-	bool is_coursing(const string& id);
-
-	/**
-	    @param id Id of the specific student to search for.
-	    @pre @p id size is greater than zero. @p id belongs to an existing user.
-	    @return Integer with the amount of attempts(deliveries) the specific User has performed onto the platform.
-	*/
-	int amount_attempts(const string& id);
-	/**
-	    @param id Id of the specific student to search for.
-	    @pre @p id size is greater than zero. @p id belongs to an existing user.
-	    @return Integer with the amount of problems that have been solved so far by the specific User (deliveries flagged as correct). 
-
-	*/
-	int amount_solved_problems(const string& id);
-	/**
-	    @param id of the specific student to search for.
-	    @pre @p id size is greater than zero. @p id belongs to an existing user.
-	    @return Integer with the amount of different problems that have been attempted so far by the specific User with the given id. If it does not exist, an error message is printed.
-	*/
-	int different_attempts(const string& id);
-	//if empty string, empty course
-
-	/**
-	    Enrolls the specific User in a course if it is not in one (at function call). Prints an error message if it is already enrolled in a course.
-	    @param id Id of the specific student to search for.
-	    @param course_name Name of the course to enroll the user in.
-	    @pre @p id is the identifier of an existing user that is not enrolled in any course, plus @p course_id string corresponds to the id of an existing @ref Course instance in the valid Course container.
-	    @post User with @p id identifier has been enrolled in a course with @p course_name identifier. 
-
-	*/
-	//CORREGIR
-	void sign_in_course(const string& id, int course_name);
-	/**
-	    @param id Id of the specific student to search for.
-	    @param problem_id The id of the newly solved problem
-	    @param solved True if the given problem is solved, false otherwise.
-	    @pre @p problem_id string corresponds to the identifier of an existing problem in the platform that has not already been solved by the user with the given @p id as string id. 
-	    @post Registers a problem to the list of attempted problems by the user. Specifies whether the problem is solved and allows modification of the state of the problem (has been solved).
-	*/
-	void add_problem_to_list(const string& id, const string& problem_id, bool solved);
-	/**
 	    @param user_id Id of the User instance to search for.
 	    @pre User with the @p user_id identifier exists. If it is coursing a @ref Course, that Course must exist in the @ref Course list.
 	    @post Lists in increasing order by identifier the problems that the user has not yet solved in the course in which he is currently enrolled, but to which he can already make a submission (because he fulfills all his prerequisites, direct and indirect). In addition to the identifiers, the number of submissions made by the user to each problem in the list (value greater than or equal to zero) is also printed in Standard output. 	
@@ -108,12 +56,6 @@ using namespace std;
 	    @post The problems successfully solved by the user are listed in increasing order by identifier, either in the course he/she is currently enrolled in (if any) or those solved in previous courses. In addition to the identifiers, the number of submissions made by the user to each problem in the list (value greater than or equal to one) is also printed.
 	*/
 	void list_solved_problems_by(const string& user_id);
-	/**
-	    @param id Id of the specific student to search for.
-	    @pre No precondition.
-	    @post The list of solved problems is blanked out.
-	*/
-	void restart_solved_list(const string& id);
 	/**
 	    @param user_id Id of the specific student to search for.
 	    @pre @p id size is greater than zero.
@@ -137,7 +79,7 @@ using namespace std;
 	*/
 	void read_users();
         /**
-            @pre No precondition
+            @pre Always true
             @post Information of all of the existing User instances contained in the implicit parameter is displayed on Standard output.
         */
         void list_users() const;
@@ -148,10 +90,6 @@ using namespace std;
 	*/
 	//void push_problems_from_sessions(const string& user_id, int course_id, Sessions& session_list, Courses& course_list);
 
-	void deliver_problem(const string& user_id, const string& problem_id, bool success);
-	/**
-	*/
-	bool has_solved_problem(const string& user_id, const string& problem_id) const;
 
 	~Users();
 };

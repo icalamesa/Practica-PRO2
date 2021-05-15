@@ -37,9 +37,9 @@ pair<bool, int> Users::remove_user(const string& user_id)
     int course = -1;
     if (it != this->user_list.end())
     {
-	if (this->is_coursing(user_id))
+	if (it->second.u_is_coursing())
 	{
-	    course = this->tell_course(user_id);
+	    course = it->second.u_tell_course();
 	}
 	this->user_list.erase(it);
 	return make_pair(true, course);
@@ -50,37 +50,6 @@ pair<bool, int> Users::remove_user(const string& user_id)
 bool Users::user_exists(const string& user_id)
 {
     return this->user_list.find(user_id) != this->user_list.end();
-}
-
-int Users::tell_course(const string& user_id)
-{
-    //remember we are assuming its existence
-    return this->user_find(user_id).u_tell_course();
-}
-
-bool Users::is_coursing(const string& user_id)
-{
-    return this->user_find(user_id).u_is_coursing();
-}
-
-int Users::amount_attempts(const string& user_id)
-{
-    return this->user_find(user_id).u_amount_attempts();
-}
-
-int Users::amount_solved_problems(const string& user_id)
-{
-    return this->user_find(user_id).u_amount_solved_problems();
-}
-
-int Users::different_attempts(const string& user_id)
-{
-    return this->user_find(user_id).u_different_attempts();
-}
-
-void Users::sign_in_course(const string& user_id, int course_id)
-{
-    this->get_user(user_id).u_sign_in_course(course_id);
 }
 
 void Users::list_solvable_problems(const string& user_id)
@@ -131,12 +100,3 @@ void Users::read_users()
     }
 }
 
-void Users::deliver_problem(const string& user_id, const string& problem_id, bool success)
-{
-    this->get_user(user_id).u_deliver_problem(problem_id, success);
-}
-
-bool Users::has_solved_problem(const string& problem_id, const string& user_id) const
-{
-    return this->get_user(user_id).u_has_solved_problem(problem_id);
-}

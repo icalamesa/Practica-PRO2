@@ -80,12 +80,12 @@ class Courses
 	int size() const;
 	/**
 	    @param course_name The id of the course to be found.
-	    @pre No precondition
+	    @pre Always true
 	    @return Boolean True if @p course_name exists, False if it does not.
 	*/
 	bool course_exists(int course_name) const;
 	/**
-	    @pre No precondition.
+	    @pre Always true.
 	    @post Courses are listed, sorted by their id in strict weak ordering. For each course, the displayed information is: the number of current or past users who have completed the course, the number of users currently enrolled, the number of sessions that make up the course, and the session identifiers, in the same order in which they were read when the course was created.
 
 	*/

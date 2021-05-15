@@ -7,7 +7,7 @@ User::User(){}
 
 void User::insertion(const string& problem_id, bool solved)
 {
-    this->solved.emplace(make_pair(problem_id, make_pair(solved, 1)));
+    this->problem_register.emplace(make_pair(problem_id, make_pair(solved, 1)));
 }
 
 int User::u_tell_course() const
@@ -32,7 +32,7 @@ int User::u_amount_solved_problems() const
 
 int User::u_different_attempts() const
 {
-    return solved.size();
+    return problem_register.size();
 }
 
 //Value modification member function
@@ -42,16 +42,10 @@ void User::u_sign_in_course(int course_id)
     this->coursing = course_id;
 }
 
-void User::u_restart_solved_list()
-{
-    this->total_attempted = 0;
-    this->total_successes = 0;
-    this->solved.clear();
-}
 //CONTINUAR
 void User::u_list_solved() const
 {
-    for (const auto& problem : this->solved)
+    for (const auto& problem : this->problem_register)
     {
 	if (problem.second.first)
 	{
@@ -67,8 +61,8 @@ void User::u_list_solvable() const
     for (const auto& problem : this->solvable)
     {
 	cout << problem << '(';
-	auto it = this->solved.find(problem); 
-	if (it != this->solved.end())
+	auto it = this->problem_register.find(problem); 
+	if (it != this->problem_register.end())
 	{
 	    cout << it->second.second;
 	}
@@ -90,8 +84,8 @@ void User::info_user() const
 
 void User::insert_solvable(const string& problem_id)
 {
-    auto it = this->solved.find(problem_id);
-    if ((it == this->solved.end()) or (it != this->solved.end() and it->second.first == false))
+    auto it = this->problem_register.find(problem_id);
+    if ((it == this->problem_register.end()) or (it != this->problem_register.end() and it->second.first == false))
     {
 	this->solvable.insert(problem_id);
     }
@@ -102,8 +96,8 @@ void User::u_deliver_problem(const string& problem_id, bool success)
 {
     this->total_successes += success;
     this->total_attempted++;
-    decltype(this->solved)::iterator it = this->solved.find(problem_id);
-    if (it == this->solved.end())
+    decltype(this->problem_register)::iterator it = this->problem_register.find(problem_id);
+    if (it == this->problem_register.end())
     {
 	this->insertion(problem_id, success);
     }
@@ -121,8 +115,8 @@ void User::u_deliver_problem(const string& problem_id, bool success)
 
 bool User::u_has_solved_problem(const string& problem_id) const
 {
-    auto it = this->solved.find(problem_id);
-    return it != this->solved.end() and it->second.first == 1;
+    auto it = this->problem_register.find(problem_id);
+    return it != this->problem_register.end() and it->second.first == 1;
 }
 
 bool User::u_update_course()

@@ -32,11 +32,12 @@ class User
     /** @brief List of solvable problems by the User. Theoretically empty if not coursing anything.*/
     set<string> solvable;
     /** @brief Register of the different attempted problems. The key represents the problem identifier. The value is a std::pair of a Boolean (whether the problem has been solved) and an integer (total amount of deliveries performed onto that specific problem).*/
-    map<string, pair<bool, int>> solved;
+    map<string, pair<bool, int>> problem_register;
     /**
+	@brief Generic insertion method into the register of attempted problems.
 	@param problem_id Id of a problem.
 	@param solved Boolean that tells whether the problem has been solved or not.
-	@pre Always true.
+	@pre @p problem_id had not been attempted before(not isnerted).
 	@post The given @p problem_id has been inserted in the list of at least attempted problems, along with information on whether it has been solved or not.
     */
     void insertion(const string& problem_id, bool solved);
@@ -48,27 +49,32 @@ class User
 	*/
 	User();
 	/**
-	    @pre No precondition.
+	  @brief Getter of the currently coursing Course by the User. 0 if not coursing any.
+	    @pre Always true.
 	    @post If the user is enrolled in a course, the id of the course is returned. If it is not, the returned integer is set to 0.
 	*/
 	int u_tell_course() const;
 	/**
-	    @pre No precondition.
+	  @brief Checker of the coursing status(coursing or not).
+	    @pre Always true.
 	    @return True if the specific User is enrolled in a course, false otherwise.
 	*/
 	bool u_is_coursing() const;
 	/**
-	    @pre No precondition.
+	  @brief Getter of the counter of attempted deliveries thus far.
+	    @pre Always true.
 	    @return Integer with the amount of attempts(deliveries) the specific User has performed onto the platform.
 	*/
 	int u_amount_attempts() const;
 	/**
-	    @pre No precondition.	
+	  @brief Getter of the counter of successful deliveries thus far.
+	    @pre Always true.	
 	    @return Integer with the amount of problems that have been solved so far by the specific User (deliveries flagged as correct). 
 	*/
 	int u_amount_solved_problems() const;
 	/**
-	    @pre No precondition.
+	  @brief Getter of the amount of different problems where at least one delivery has been performed onto by the User thus far.
+	    @pre Always true.
 	    @return Integer with the amount of different problems that have been attempted so far by the specific User.
 	*/
 	int u_different_attempts() const;
@@ -77,29 +83,19 @@ class User
 	//MODIFICADORES
 
 	/**
-	    Enrolls the specific User in a course if it is not in one (at function call). Prints an error message if it is already enrolled in a course.
+	    @brief Updates the register of what Course is the User coursing. Does not update anything else. 	    
 	    @param course_id Name of the course to enroll the user in.
-	    @pre @p course_name integer corresponds to the id of an existing @ref Course instance in the valid Course container. User was not enrroled in any course previously.
+	    @pre @p course_name integer corresponds to the id of an existing @ref Course instance in the valid Course container. User was not enrolled in any course previously.
 	    @post If the user was not enrolled in a course, it is then enrolled in one with @p course_name identifier. If it already was enrolled in a @ref Course, prints an error message. 
 
 	*/
 	void u_sign_in_course(int course_id);
 	/**
-	    @param problem_id The id of the newly solved problem
-	    @param solved True if the given problem is solved, false otherwise.
-	    @pre @p problem_id string corresponds to the identifier of an existing problem in the platform that has not already been solved by the user with the given @p id as string id. The @p problem_id identifier corresponds to a problem that the user can solve(because he belongs to a course with it, and it is a solvable problem).
-	    @post Registers a problem to the list of attempted problems by the user. Specifies whether the problem is solved and allows modification of the state of the problem (has been solved). If the problem delivery completes the list of problems of a Course, User stops being enrolled to it.
+	    @pre Always true.
+	    @post The list of solved problems by the implicit parameter is printed in standard output following the format:
+	    problem_id(total_attempts)
+	    One line for each.
 	*/
-	void u_add_problem_to_list(const string& problem_id, bool solved);
-	/**
-	    @pre No precondition.
-	    @post The list of solved problems by the implicit parameter is blanked out.
-	*/
-	void u_restart_solved_list();
-	/**
-            @pre No precondition.
-            @post Solved problems by the User are displayed on Standard output.
-        */ 
 	void u_list_solved() const;
 	/**
 	*/
@@ -108,15 +104,28 @@ class User
 	*/
 	void info_user() const;
 	/**
+	  @brief Individually push problems to be solved into the solvable list.
+	  @param problem_id Id of a Problem instance.
+	  @pre User is enrolled in a Course. @p problem_id belongs to a Session instance that composes the Course the User is enrolled in.
+	  @post Problem identifier hgas been pushed into the list of solvable problems.
 	*/
 	void insert_solvable(const string& problem_id);
 	/**
 	*/
 	void u_deliver_problem(const string& problem_id, bool success);
 	/**
+	  @brief Checker of whether a problem ahs been solved by the User.
+	  @pre Always true.
+	  @return Boolean True if it was solved before, False otherwise.
 	*/
 	bool u_has_solved_problem(const string& problem_id) const;
 	/**
+	  @brief Checks the pending-to-solve problem list and unenrolls the User if no problem is left to be solved.
+
+	  We assume the correctness of the algorithm that updates the list of solvable problems after signing in a Course and after each delivery.
+	  @pre Always true.
+	  @post If no problems are left to be solved, unenrolls the User from the Course.
+	  @return True if The User has been unerolled. False otherwise.
 	*/
 	bool u_update_course();
 	/**

@@ -8,10 +8,7 @@
     @date 1st of April of 2021
 */
 
-#include "courses.hh"
-#include "sessions.hh"
 #include "problems.hh"
-#include "users.hh"
 #include "commands.hh"
 /** @cond */
 #include <iostream>

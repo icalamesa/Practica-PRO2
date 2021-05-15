@@ -68,7 +68,7 @@ class Problem_repo
 	*/
 	Problem& get_problem(const string& problem_id);
 	/**
-	    @pre No precondition.
+	    @pre Always true.
 	    @return Boolean True if a Problem with @p problem_id exists. False otherwise.
 	*/
 	bool problem_exists(const string& problem_id);

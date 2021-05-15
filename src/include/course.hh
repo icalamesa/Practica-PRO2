@@ -65,7 +65,7 @@ class Course
 	/**
 	    @brief Session belonging to the Course checker.
 	    @param session_id Id of the Session instance to search for.
-	    @pre No precondition.
+	    @pre Always true.
 	    @return Boolean True if a Session with @p session_id as its identifier exists. False otherwise.
 	*/
 	bool session_exists(const string& session_id) const;
