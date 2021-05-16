@@ -6,7 +6,7 @@
     This file contains the multiple different functions used for every operation that may be performed by the user-agent. In the Evaluator platform's implementation, every different function/function overload is 1:1 identified by a single command (plus its correspondent abbreviation).
 
     @author Ivan Cala Mesa
-    @date 1st of April of 2021
+    @date 15th of May of 2021
 
 */
 
@@ -15,6 +15,7 @@
 
 //1.
 /**
+    @brief Function that performs the "nuevo_problema" command.
     @param problem_id Id for the new problem to be created.
     @param problem_list Problem repository to insert the new problem instance in.
     @pre Always true.
@@ -24,6 +25,7 @@ void add_problem(Problem_repo& problem_list, const string& problem_id);
 
 //2.
 /**
+  @brief Function that performs the "nueva_sesion" command.
     @param session_id Id for the new Session instance to be created and inserted into the Session repository.
     @param session_list Session repository to insert the new Session instance in.
     @pre Always true.
@@ -33,6 +35,7 @@ void add_session(Session_repo& session_list, const string& session_id);
 
 //3.
 /**
+  @brief Function that performs the "nuevo_curso" command.
     @param course_id Id for the new Course instance to be created and inserted into the Course repository.
     @param course_list Problem repository to insert the new problem instance in.
     @pre Always true.
@@ -42,6 +45,7 @@ void add_course(Course_repo& course_list, Session_repo& session_list);
 
 //4.
 /**
+  @brief Function that performs the "nuevo_usuario" command.
     @param user_id Id for the new User instance to be created and inserted into the User repository.
     @param user_list User repository to insert the new User instance in.
     @pre Always true.
@@ -52,6 +56,7 @@ void add_user(string user_id, User_repo& user_list);
 
 //5.
 /**
+  @brief Function that performs the "baja_usuario" command.
     @param user_id Id for the new User instance to be created and inserted into the User repository.
     @param user_list User repository to insert the new User instance in.
     @pre Always true.
@@ -63,6 +68,7 @@ void remove_user(string user_id, User_repo& user_list, Course_repo& course_list)
 
 //6.
 /**
+  @brief Function that performs the "inscribir_curso" command.
     @param user_id Id of the User.
     @param course_id Id of the Course to enroll the User in.
     @param user_list the list of users where the target user we assume is in.
@@ -73,6 +79,7 @@ void sign_in_course(string user_id, int course_id, User_repo& user_list, Course_
 
 //7.
 /**
+  @brief Function that performs the "curso_usuario" command.
     @param user_id Id of the User to be enrolled in a Course.
     @param user_list Id of the User.
     @pre Always true.
@@ -83,6 +90,7 @@ void tell_usr_course(string user_id, User_repo& user_list);
 
 //8.
 /**
+  @brief Function that performs the "sesion_problema" command.
     @param course_id Id of the Course.
     @param problem_id Id of the Problem.
     @param course_list Course instances repository.
@@ -94,6 +102,7 @@ void find_problem_session(int course_id, string problem_id, Course_repo& course_
 
 //9.
 /**
+  @brief Function that performs the "problemas_resueltos" command.
     @param user_id Id of the User.
     @param user_list Repository of User instances.
     @pre Always true.
@@ -103,32 +112,38 @@ void tell_solved_probs(string user_id, User_repo& user_list);
 
 //10.
 /**
+  @brief Function that performs the "problemas_enviables" command.
     @param user_id Id of the User.
     @param user_list Repository of User instances.
-    @param course_list Repository of Course instance.
     @pre Always true.
     @post The problems that the user has not yet solved in the course in which he is currently enrolled, but to which he can already make a submission (because he fulfills all his prerequisites, direct and indirect) are listed in increasing order by identifier. In addition to the identifiers, the number of submissions made by the user to each problem in the list (value greater than or equal to zero) is also printed. If the user does not exist in the platform or is not enrolled in any course, an error message is printed.
 */
-void tell_solvable_probs(string user_id, User_repo& user_list, Course_repo& course_list);
+void tell_solvable_probs(string user_id, User_repo& user_list);
 
 //11.
 /**
+  @brief Functions that performs the "envio" command.
     @param user_id Id of the User that performed the submission.
     @param problem_id Id of the Problem submitted.
     @param successful True if the submission is flagged correct, false otherwise.
+    @param problem_list List of problems.
+    @param session_list List of sessions.
+    @param course_list List of courses.
     @pre It is ensured that the User whose identifier is @p user_id is registered and enrolled in a course where the problem appears and that the problem belongs to the set of problems to which he can submit a solution by fulfilling the prerequisites.
-    @post The outcome (r= 1 if success or= 0 if failure) of a user's new submission to the problem is noted. All submissions result in updating the statistics of the user and the problem. In addition, in case= 1 it is also necessary to update the user's solved and submittable problems and check if he has completed the course he was enrolled in. If completed, the user is no longer enrolled in the course.
+    @post The outcome (r= 1 if success or= 0 if failure) of a user's new submission to the problem is noted. All submissions result in updating the statistics of the user and the problem. In addition, in case @p successful = 1 it is also necessary to update the user's solved and submittable problems and check if he has completed the course he was enrolled in. If completed, the user is no longer enrolled in the course.
 */
-void deliver_problem(string user_id, string problem_id, bool successful, User_repo& user_list, Problem_repo& problem_list, Session_repo& session_list, Course_repo& course_list);
+void submit_problem(string user_id, string problem_id, bool successful, User_repo& user_list, Problem_repo& problem_list, Session_repo& session_list, Course_repo& course_list);
 
 //12.
 /**
+    @brief Function that performs the "listar_problemas" command.
     @param problem_list Repository of Problem instances.
     @pre Always true.
     @post The problems in the collection are listed, indicating for each problem the number of total submissions and the number of successful submissions to that problem, in both cases from present or past users. The ratio (successful_submissions+ 1)/(total_submissions+ 1) should also be written, and the problems should be listed in increasing order by this ratio. In case of a tie, they should be listed in increasing order of identifier.
 */
 void tell_prob_list(Problem_repo& problem_list);
 /**
+  @brief Function that performs the "escribir_problema" command.
     @param problem_id Id of the specific Problem instance.
     @param problem_list Repository of Problem instances.
     @pre Always true.
@@ -138,12 +153,14 @@ void tell_prob_list(string problem_id, Problem_repo& problem_list);
 
 //13.
 /**
+  @brief Function that performs the "listar_sesiones" command.
     @param session_list Repository of Session instances.
     @pre Always true.
     @post The current sessions of the platform are listed, sorted in increasing order by their identifier and showing, for each session, the number of problems that form it and the identifiers of these problems, following their prerequisite structure in post order.
 */
 void tell_session(const Session_repo& session_list);
 /**
+  @brief Function that performs the "escribir_sesion" command.
     @param session_id Id of the specific Session instance.
     @param session_list Repository of Session instances.
     @pre Information of the session whose identifier is @p session_id is displayed: the number of problems that form it and the identifiers of these problems, following its prerequisite structure in post order.
@@ -152,12 +169,14 @@ void tell_session(const string& session_id, const Session_repo& session_list);
 
 //14.
 /**
+  @brief Function that performs the "listar_cursos" command.
     @param course_list Repository of Course instances.
     @pre Always true.
     @post The current courses on the platform are listed, sorted incrementally by course identifier and showing, for each course, the number of current or past users who have completed the course, the number of users currently enrolled, the number of sessions that make up the course and the session identifiers, in the same order in which they were read when the course was created.
 */
 void tell_courses(Course_repo& course_list);
 /**
+  @brief Function that performs the "escribir_curso" command.
     @param course_id Id of the specific Course instance.
     @param course_list Repository of Course instances.
     @pre Always true.
@@ -167,12 +186,14 @@ void tell_courses(int course_id, Course_repo& course_list);
 
 //15.
 /**
+  @brief Function that performs the "listar_usuarios" command.
     @param user_list Repository of User instances.
     @pre Always true.
     @post The users currently registered on the platform are listed, sorted in ascending order by name and showing, for each user, how many total submissions they have made, how many problems they have successfully resolved, how many problems they have attempted to resolve (at least one submission), and the course identifier of the course they are enrolled in or a zero if they are not enrolled in any.
 */
 void tell_users(User_repo& user_list);
 /**
+  @brief Function that performs the "escribir_usuario" command.
     @param user_id Id of the specific User instance.
     @param user_list Repository of User instances.
     @pre Always true.

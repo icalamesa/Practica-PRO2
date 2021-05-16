@@ -22,12 +22,12 @@ double Problem::get_ratio() const
 
 int Problem::get_attempts() const
 {
-    return this->deliveries;
+    return this->submissions;
 }
 
 int Problem::get_solved() const
 {
-    return this->successful_deliveries;
+    return this->successful_submissions;
 }
 //TO DO
 void Problem::info_problem() const
@@ -50,13 +50,13 @@ bool Problem::operator<(const Problem& other) const
 
 void Problem::recalculate_ratio()
 {
-    this->ratio = double(1 + deliveries)/(1 +successful_deliveries );
+    this->ratio = double(1 + submissions)/(1 +successful_submissions );
 }
 
-void Problem::problem_delivery(bool success)
+void Problem::problem_submission(bool success)
 {
-    this->deliveries++;
-    this->successful_deliveries += success;
+    this->submissions++;
+    this->successful_submissions += success;
     this->recalculate_ratio();
 }
 

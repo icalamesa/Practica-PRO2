@@ -47,9 +47,12 @@ void User::u_list_solved() const
 {
     for (const auto& problem : this->problem_register)
     {
+	//Bool, whether the problem has been solved
 	if (problem.second.first)
 	{
+	    //id of problem
 	    cout << problem.first << '(';
+	    //total submissions
 	    cout << problem.second.second;
 	    cout << ')' << endl;
 	}
@@ -85,6 +88,8 @@ void User::info_user() const
 void User::insert_solvable(const string& problem_id)
 {
     auto it = this->problem_register.find(problem_id);
+    //I need this weird condition since I pack both solved and unsolved (but at leat attempted) in a single container. 
+    //Those that were not even attempted aren't listed in it, though.
     if ((it == this->problem_register.end()) or (it != this->problem_register.end() and it->second.first == false))
     {
 	this->solvable.insert(problem_id);
@@ -92,10 +97,11 @@ void User::insert_solvable(const string& problem_id)
     
 }
 
-void User::u_deliver_problem(const string& problem_id, bool success)
+void User::u_submit_problem(const string& problem_id, bool success)
 {
     this->total_successes += success;
     this->total_attempted++;
+    //Maybe auto works better here than this ugly line
     decltype(this->problem_register)::iterator it = this->problem_register.find(problem_id);
     if (it == this->problem_register.end())
     {

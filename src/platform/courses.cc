@@ -59,7 +59,7 @@ void Course_repo::list_all_courses() const
 
 void Course_repo::list_course(const map<int, Course>::const_iterator& it) const
 {
-    cout << it->first << ' ';
+    cout << it->first << ' '; //this one is the id
     cout << it->second.have_completed() << ' ';
     cout << it->second.users_coursing() << ' ';
     cout << it->second.size() << ' ';
@@ -79,7 +79,3 @@ bool Course_repo::course_exists(int course_name) const
     return this->course_list.find(course_name) != this->course_list.end();
 }
 
-void Course_repo::print_course_sessions(int course_id) const
-{
-    this->get_course(course_id).info_course();
-}

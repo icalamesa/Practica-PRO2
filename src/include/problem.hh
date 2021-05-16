@@ -3,7 +3,7 @@
     @brief Problem class specification.
 
     @author Ivan Cala Mesa
-    @date 1st of April of 2021
+    @date 15th of May of 2021
 
 */
 using namespace std;
@@ -17,15 +17,20 @@ using namespace std;
 
 /** @brief Class that behaves as an uniquely id-identified problem in the Evaluator platform.
 
-  The Problem class allows the platform store insightful use information such as the amount of resolution attempts and successful deliveries to uniquely identified problems (by an string id).
+  The Problem class allows the platform store insightful use information such as the amount of resolution attempts and successful submissions to uniquely identified problems (by an string id).
 */
 class Problem
 {
+    /** @brief Identifier of Problem.*/
     string id;
-    int deliveries = 0;
-    int successful_deliveries = 0;
+    /** @brief Total submissions counter.*/
+    int submissions = 0;
+    /** @brief Successful submissions counter.*/
+    int successful_submissions = 0;
+    /** @brief Problem ratio. Result of (submissions+1)/(successful_submissions+1).*/
     double ratio = 1;
     /**
+      @brief Ratio recalculator and updater.
       @pre Always true.
       @post Recalculates the ratio variable, and reassigns the result in the proper variable.
     */
@@ -33,39 +38,46 @@ class Problem
     Problem();
     public:
 	/**
-	    @ref Problem constructor.
+	    @brief Problem constructor.
 	    @param problem_id Is the id for the new problem instance.
 	    @pre Always true.
 	    @post A problem instance with @p problem_id as its id is created.
 	*/
 	Problem(const string& problem_id);
 	/**
+	    @brief Identifier getter.
 	    @return Problem id.
 	*/
 	string get_id() const;
 	/**
-	    @return The ratio, whose calculation is as follows: (successful_deliveries+1)/(total_deliveries+1)
+	    @brief Ratio getter.
+	    @return The ratio, whose calculation is as follows: (successful_submissions+1)/(total_submissions+1)
 	*/
 	double get_ratio() const;
 	/**
-	    @return Integer with the number of attempts/total deliveries done to this problem.
+	    @brief Total submissions counter getter.
+	    @return Integer with the number of attempts/total submissions done to this problem.
 	*/
 	int get_attempts() const;
 	/**
-	    @return Integer with the number of successful attempts/correct deliveries done to this problem.
+	    @brief Successful submissions counter getter.
+	    @return Integer with the number of successful attempts/correct submissions done to this problem.
 	*/
 	int get_solved() const;
         /**
+	    @brief Printer of information of the Problem on Standard output.
             @pre Always true.
-            @post Information on the problem is displayed on Standard output
+            @post Information on the problem is displayed on Standard output in the following format:
+	    id(total_attempts,total_solved,ratio)
         */
         void info_problem() const;
 	/**
-	  @param success Boolean that tells whether the problem delivered was correctly solved or not. 
+	  @brief Submission results counter modifier.
+	  @param success Boolean that tells whether the problem submited was correctly solved or not. 
 	  @pre Always true.
-	  @post Registers that a problem delivery has been performed, increases the counter of total attempts performed with the implicit parameter, and if @p success is True, increases the counter of total successful deliveries performed with the problem.
+	  @post Registers that a problem submission has been performed, increases the counter of total attempts performed on it, and if @p success is True, increases the counter of total successful submissions performed with the problem.
 	*/
-	void problem_delivery(bool success);
+	void problem_submission(bool success);
         bool operator==(const Problem& other) const;
 	bool operator<(const Problem& other) const;
 	~Problem();

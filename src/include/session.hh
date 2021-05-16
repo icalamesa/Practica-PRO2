@@ -3,7 +3,7 @@
     @brief Session class specification.
 
     @author Ivan Cala Mesa
-    @date 1st of April of 2021
+    @date 15th of May of 2021
 */
 using namespace std;
 /** @cond */
@@ -33,13 +33,32 @@ class Session
     string id;
     /**	@brief A std::set<std::string> that contains the id of the problems contained in the implicit parameter.*/
     set<string> list_of_problems;
-    /***/
+    /** 
+      @brief Immersion function to read binary trees. 
+      @param tree Binary Tree node.
+
+      Reads strings in preorder from Standard input. If such string is not equal to "0", then the function calls itself again 2 times on both of its child nodes, and inserts the root and both children in the map of strings that allows a quick search of what are the children for each node. Otherwise, it does not call itself recursively again. 
+      @pre Always true.
+      @post A binary tree of strings has been structured, in preorder.
+    */
     void fill_problem_set(BinTree<string>& tree);
-    /***/
-    bool search_problem_in_tree(const BinTree<string>& tree, string& target_problem) const;
-    /***/
-    void print_session(const BinTree<string>&tree) const;
-    /***/
+    /** 
+      @brief Printer in postorder of the sessions in the prerequisites tree.
+      @param tree BinTree node in the tree.
+      @pre @p tree is a non-empty binary tree node.
+      @post The whole tree has been printed in standard output in post order.
+    */
+    void print_session(const BinTree<string>& tree) const;
+    /** 
+      @brief Immersion function to check and push solvable problems to a User.
+      
+      If a problem has been solved by a User, recursively calls itself until it findsan empty node, or a problem not solved by the @p usr, in which case the node value gets pushed into the solvable problems list the @p usr holds inside.
+      @param usr User instance.
+      @param tree Node to be checked
+      @pre @p tree is not an empty node.
+      @post The solvable problems list has been updated accordingly to the situation of the @p usr (what problems where solved up to that point by it).
+
+    */
     void immersion_init_solvable_problems_from_user(User& usr, const BinTree<string>& tree);
     public:
 	/**
@@ -65,17 +84,20 @@ class Session
 	void read_session_problems();
 	
 	/**
-	    @p target_problem size is greater than zero
+	    @brief Problem finder within the Session.
+	    @param target_problem size is greater than zero
 	    @return True if the target problem id is found in this session problem list. False otherwise.
 	*/
 	bool find(const string& target_problem) const;
         /**
-            @param session_id Id of the specific session.
+	    @brief Printer method of information of the Session.
             @pre Always true.
-            @post Info on the session is displayed on Standard output.
+            @post Info on the session is displayed on Standard output in the following format:
+	    id session_size sessions_in_postorder.
         */
         void info_session() const;
 	/**
+	  @brief Getter of identifiers.
 	  @pre Always true.
 	  @return std::string with the id of the implicit parameter.
 	*/
@@ -88,12 +110,7 @@ class Session
 	*/
 	string get_i_problem(int i) const;
 	/**
-	  @param problem_id Id of a problem contained inside the implicit parameter.
-	  @pre @p problem_id exists inside the Session instance.
-	  @return std::pair containing 2 strings: Both of them representing the children of the given @p problem_id in the prerequisites tree. The given strings contain "0" if no child in a position, either left, right or both.
-	*/
-	pair<string, string> get_next_problems(const string& problem_id) const;
-	/**
+	  @brief Container size getter.
 	  @pre Always true.
 	  @return Integer with the amount of problems contained in th eimplicit parameter.
 	*/
@@ -107,7 +124,7 @@ class Session
 	*/
 	void init_solvable_problems_from_user(const string& user_id, User_repo& user_list);
 	/**
-	  @brief Recursive method to insert solvable problems on delivery.
+	  @brief Recursive method to insert solvable problems to specific User on submission.
 	  @pre Always true.
 	  @post Recursively adds problems from the prerequisites tree into the User solvable problems list with @p problem_id as its root.
 	*/

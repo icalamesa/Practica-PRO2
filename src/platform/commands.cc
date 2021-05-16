@@ -34,7 +34,6 @@ void add_session(Session_repo& session_list, const string& session_id)
     }
 }
 
-//important: does NOT read course id. It reads number of sessions to be read
 void add_course(Course_repo& course_list, Session_repo& session_list)
 {
     Course new_course;
@@ -174,9 +173,8 @@ void tell_solved_probs(string user_id, User_repo& user_list)
     }
 }
 
-void tell_solvable_probs(string user_id, User_repo& user_list, Course_repo& course_list)
+void tell_solvable_probs(string user_id, User_repo& user_list)
 {
-    (void) course_list;
     if (user_list.user_exists(user_id))
     {
 	User& the_user = user_list.get_user(user_id);
@@ -195,12 +193,12 @@ void tell_solvable_probs(string user_id, User_repo& user_list, Course_repo& cour
     }
 }
 
-void deliver_problem(string user_id, string problem_id, bool successful, User_repo& user_list, Problem_repo& problem_list, Session_repo& session_list, Course_repo& course_list)
+void submit_problem(string user_id, string problem_id, bool successful, User_repo& user_list, Problem_repo& problem_list, Session_repo& session_list, Course_repo& course_list)
 {
     User& usr = user_list.get_user(user_id);
     int course = usr.u_tell_course();
-    usr.u_deliver_problem(problem_id, successful);
-    problem_list.get_problem(problem_id).problem_delivery(successful);
+    usr.u_submit_problem(problem_id, successful);
+    problem_list.get_problem(problem_id).problem_submission(successful);
     if (successful)
     {
 	string session_id = course_list.get_course(usr.u_tell_course()).session_of_problem(problem_id, session_list);

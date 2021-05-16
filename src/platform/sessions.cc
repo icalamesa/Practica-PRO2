@@ -6,7 +6,7 @@ using namespace std;
 
 Session_repo::Session_repo(){}
 
-
+//these getters absolutely assume the element exists.
 Session& Session_repo::get_session(const string& session_id)
 {
     return this->session_list.at(session_id);
@@ -36,27 +36,12 @@ bool Session_repo::exists_session(const string& target) const
 
 bool Session_repo::insert_session(const Session& new_session)
 {
+    //making use of the std::pair return by one of the insert overloads
+    //from cppreference:
+    //Returns a pair consisting of an iterator to the inserted element (or 
+    //to the element that prevented the insertion) 
+    //and a bool denoting whether the insertion took place.
     return this->session_list.insert(make_pair(new_session.get_id(), new_session)).second;
-    //this is using internal Session operator < overload
-}
-
-bool Session_repo::insert_session(const string& session_id)
-{
-    return session_list.insert(make_pair(session_id, Session(session_id))).second;
-}
-
-string Session_repo::find_in_sessions(const string& prob) const
-{
-    string res = "";
-    for (const auto& the_session : this->session_list)
-    {
-	if (the_session.second.find(prob))
-	{
-	    res = the_session.second.get_id();
-	    break;
-	}
-    }
-    return res;
 }
 
 int Session_repo::size()

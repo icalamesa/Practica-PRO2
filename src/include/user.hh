@@ -24,14 +24,14 @@ class User
 {
     /** @brief Integer that represents the currently coursing Course identifier. 0 if not coursing any.*/
     int coursing = 0; //0 if not coursing anything
-    /** @brief Total successful deliveries counter.*/
+    /** @brief Total successful submities counter.*/
     int total_successes = 0;
-    /** @brief Total deliveries attempted counter.*/
+    /** @brief Total submities attempted counter.*/
     int total_attempted = 0;
     //one of these
     /** @brief List of solvable problems by the User. Theoretically empty if not coursing anything.*/
     set<string> solvable;
-    /** @brief Register of the different attempted problems. The key represents the problem identifier. The value is a std::pair of a Boolean (whether the problem has been solved) and an integer (total amount of deliveries performed onto that specific problem).*/
+    /** @brief Register of the different attempted problems. The key represents the problem identifier. The value is a std::pair of a Boolean (whether the problem has been solved) and an integer (total amount of submissions performed onto that specific problem).*/
     map<string, pair<bool, int>> problem_register;
     /**
 	@brief Generic insertion method into the register of attempted problems.
@@ -55,25 +55,25 @@ class User
 	*/
 	int u_tell_course() const;
 	/**
-	  @brief Checker of the coursing status(coursing or not).
+	    @brief Checker of the coursing status(coursing or not).
 	    @pre Always true.
 	    @return True if the specific User is enrolled in a course, false otherwise.
 	*/
 	bool u_is_coursing() const;
 	/**
-	  @brief Getter of the counter of attempted deliveries thus far.
+	    @brief Getter of the counter of attempted submities thus far.
 	    @pre Always true.
-	    @return Integer with the amount of attempts(deliveries) the specific User has performed onto the platform.
+	    @return Integer with the amount of attempts(submities) the specific User has performed onto the platform.
 	*/
 	int u_amount_attempts() const;
 	/**
-	  @brief Getter of the counter of successful deliveries thus far.
+	  @brief Getter of the counter of successful submities thus far.
 	    @pre Always true.	
-	    @return Integer with the amount of problems that have been solved so far by the specific User (deliveries flagged as correct). 
+	    @return Integer with the amount of problems that have been solved so far by the specific User (submities flagged as correct). 
 	*/
 	int u_amount_solved_problems() const;
 	/**
-	  @brief Getter of the amount of different problems where at least one delivery has been performed onto by the User thus far.
+	  @brief Getter of the amount of different problems where at least one submission has been performed onto by the User thus far.
 	    @pre Always true.
 	    @return Integer with the amount of different problems that have been attempted so far by the specific User.
 	*/
@@ -91,28 +91,43 @@ class User
 	*/
 	void u_sign_in_course(int course_id);
 	/**
+	    @brief Printer of information of solved problems.
 	    @pre Always true.
-	    @post The list of solved problems by the implicit parameter is printed in standard output following the format:
-	    problem_id(total_attempts)
+	    @post The list of solved problems by the implicit parameter is printed in standard output following the format:\n
+	    solved problem_id(total_attempts)\n
 	    One line for each.
 	*/
 	void u_list_solved() const;
 	/**
+	  @brief Printer of information of solvable problems.
+	  @pre Always true.
+	  @post The list of solvable problems by the implicit parameter is printed in standard output following the format:\n
+	  problem_id(number_of_submissions)\n
+	  One line for each.
 	*/
 	void u_list_solvable() const;
 	/**
+	    @brief Printer of generic information of the User.
+            @pre Always true.
+            @post Information of the User instance is displayed in Standard output in the following format:\n
+	    id(total_attempts,amount_solved_problems,total_different_attempts,course)
 	*/
 	void info_user() const;
 	/**
 	  @brief Individually push problems to be solved into the solvable list.
 	  @param problem_id Id of a Problem instance.
 	  @pre User is enrolled in a Course. @p problem_id belongs to a Session instance that composes the Course the User is enrolled in.
-	  @post Problem identifier hgas been pushed into the list of solvable problems.
+	  @post Problem identifier has been pushed into the list of solvable problems.
 	*/
 	void insert_solvable(const string& problem_id);
 	/**
+	  @brief Performs an modification of the internal registers and counters after a Problem submission has been done.
+	  @param problem_id Identifier of the Problem the User has attempted to solve.
+	  @param success Boolean that represents whether the submission was sucessful.
+	  @pre Always true.
+	  @post Increases the counter of total submissions, and the counter of successful submissions if @p success is set to True. If the problem had not received a submission before, a new entry is creatred, with the attempt counter set to 1. If the problem had already received a submission by the user, the information regarding whether it was completed or not is overwritten and the submission counter onto that specific problem is increased by 1.
 	*/
-	void u_deliver_problem(const string& problem_id, bool success);
+	void u_submit_problem(const string& problem_id, bool success);
 	/**
 	  @brief Checker of whether a problem ahs been solved by the User.
 	  @pre Always true.
@@ -122,10 +137,10 @@ class User
 	/**
 	  @brief Checks the pending-to-solve problem list and unenrolls the User if no problem is left to be solved.
 
-	  We assume the correctness of the algorithm that updates the list of solvable problems after signing in a Course and after each delivery.
+	  We assume the correctness of the algorithm that updates the list of solvable problems after signing in a Course and after each submission.
 	  @pre Always true.
 	  @post If no problems are left to be solved, unenrolls the User from the Course.
-	  @return True if The User has been unerolled. False otherwise.
+	  @return True if The User has been unenrolled. False otherwise.
 	*/
 	bool u_update_course();
 	/**

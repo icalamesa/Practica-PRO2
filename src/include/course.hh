@@ -3,7 +3,7 @@
     @brief Course class specification.
 
     @author Ivan Cala Mesa
-    @date 1st of April of 2021
+    @date 15th of May of 2021
 
 */
 /** @cond */

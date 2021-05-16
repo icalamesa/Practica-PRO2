@@ -10,11 +10,13 @@ Session::Session(const string& session_id)
     this->id = session_id;
 }
 
+/** @brief Comparison of ids with <*/
 bool Session::operator< (const Session& other) const
 {
     return this->get_id() < other.get_id();
 }
 
+/** @brief Comparison of ids with ==*/
 bool Session::operator== (const Session& other) const
 {
     return this->get_id() == other.get_id();
@@ -23,22 +25,6 @@ bool Session::operator== (const Session& other) const
 string Session::get_id() const
 {
     return this->id;
-}
-
-bool Session::search_problem_in_tree(const BinTree<string>& tree, string& target_problem) const
-{
-    if (not tree.empty())
-    {
-	if (tree.value() == target_problem)
-	{
-	    return true;
-	}
-	else
-	{
-	    return search_problem_in_tree(tree.left(), target_problem) or search_problem_in_tree(tree.right(), target_problem);
-	}
-    }
-    return false;
 }
 
 bool Session::find(const string& target_problem) const
@@ -57,6 +43,7 @@ void Session::fill_problem_set(BinTree<string>& tree)
 	fill_problem_set(left);
 	fill_problem_set(right);
 	tree = BinTree<string>(aux, left, right);
+	//we also want to insert them in the map (tree_map)
 	string l = "0";
 	string r = "0";
 	if (not left.empty()) l = left.value();
@@ -68,12 +55,12 @@ void Session::fill_problem_set(BinTree<string>& tree)
 void Session::read_session()
 {
     cin >> this->id;
-    fill_problem_set(problem_node);
+    fill_problem_set(this->problem_node);
 }
 
 void Session::read_session_problems()
 {
-    fill_problem_set(problem_node);
+    fill_problem_set(this->problem_node);
 }
 
 void Session::print_session(const BinTree<string>& tree) const
@@ -110,14 +97,10 @@ string Session::get_i_problem(int i) const
     return *a;
 }
 
-//we assume problem_id is never incorrect
-pair<string, string> Session::get_next_problems(const string& problem_id) const
-{
-    return this->tree_map.at(problem_id);
-}
-
 void Session::problem_fetching(User& usr, const string& problem_id)
 {
+    //this fetches solvable problems for the user. But it does NOT
+    //use the BinTree. Instead, it makes use of a std::map (tree_map).
     auto it = this->tree_map.find(problem_id);
     string problem1 = it->second.first;
     string problem2 = it->second.second;

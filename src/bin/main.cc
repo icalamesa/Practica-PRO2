@@ -5,7 +5,7 @@
     The Evaluator main program works as follow. The main program will start by reading an initial number of problems P >0 and a sequence of P strings identifying those problems. It will then read an initial number of sessions Q>0 and a sequence of Q sessions. For each session, its name and a sequence of problem identifiers will be entered, following a preordering of its prerequisite structure. Then, an initial number of courses N >0 and a sequence of N courses will be read, identified by the order in which they are read. For each course, between 1 and N, the number of sessions S>0 of the course will be read first and then a sequence of S session identifiers, valid and without repetitions. To finish the initializations, a number M of initially registered users will be read followed by their M identifiers. Note that the magnitudes P, Q, N and M are not constant; P, Q and N may increase when new problems, new sessions or new courses are added later. Neither problems, sessions nor courses will ever be deleted, and once created, neither sessions nor courses can be modified. Therefore, the number of sessions S of a course will be constant, as well as the number of problems of a session. The number M of users will vary (increase or decrease) as new users register or unsubscribe from the platform.
 
     @author Ivan Cala Mesa
-    @date 1st of April of 2021
+    @date 15th of May of 2021
 */
 
 #include "problems.hh"
@@ -109,7 +109,7 @@ int main()
 	    string user;
 	    cin >> user;
 	    cout << '#' << command << ' ' << user << endl;
-	    tell_solvable_probs(user, user_list, course_list);
+	    tell_solvable_probs(user, user_list);
 	}
 	else if (command == "envio" or command == "e")
 	{
@@ -120,7 +120,7 @@ int main()
 	    bool successful;
 	    cin >> successful;
 	    cout << '#' << command << ' ' << user << ' ' << problem << ' ' << successful << endl;
-	    deliver_problem(user, problem, successful, user_list, problem_list, session_list, course_list);
+	    submit_problem(user, problem, successful, user_list, problem_list, session_list, course_list);
 	}
 	else if (command == "listar_problemas" or command == "lp")
 	{
