@@ -25,14 +25,13 @@ using namespace std;
 */
 class Session
 {
-    /** @brief BinTree root of the whole problem prerequisites tree.*/
+    /** @brief BinTree root of the whole problem prerequisites tree. We require this BinTree because it allows an efficient way to print the tree in postorder, without having to perform a superlinear O(n*log(n)) cost algorithm in the std::map.
+    */
     BinTree<string> problem_node;
-    /** @brief std::map that allows quick search of the children of every problem in the prerequisites tree.*/
+    /** @brief std::map that allows quick search of the children nodes for every problem in the prerequisites tree. Stores '0' if no child node.*/
     map<string, std::pair<string, string>> tree_map;
     /** @brief Identifier of the Session. */
     string id;
-    /**	@brief A std::set<std::string> that contains the id of the problems contained in the implicit parameter.*/
-    set<string> list_of_problems;
     /** 
       @brief Immersion function to read binary trees. 
       @param tree Binary Tree node.
@@ -43,7 +42,7 @@ class Session
     */
     void fill_problem_set(BinTree<string>& tree);
     /** 
-      @brief Printer in postorder of the sessions in the prerequisites tree.
+      @brief Recursive printer in postorder of the sessions in the prerequisites tree.
       @param tree BinTree node in the tree.
       @pre @p tree is a non-empty binary tree node.
       @post The whole tree has been printed in standard output in post order.
@@ -52,7 +51,7 @@ class Session
     /** 
       @brief Immersion function to check and push solvable problems to a User.
       
-      If a problem has been solved by a User, recursively calls itself until it findsan empty node, or a problem not solved by the @p usr, in which case the node value gets pushed into the solvable problems list the @p usr holds inside.
+      If a problem has been solved by a User, recursively calls itself until it finds an empty node, or a problem not solved by the @p usr, in which case the node value gets pushed into the solvable problems list the @p usr holds inside.
       @param usr User instance.
       @param tree Node to be checked
       @pre @p tree is not an empty node.
@@ -105,14 +104,14 @@ class Session
 	/**
 	  @brief Index-based (vector-like) problem_id getter.
 	  @param i Integer that performs as an index
-	  @pre @p i is lesser that the implicit parameter size.
+	  @pre @p i is lesser than the implicit parameter size.
 	  @return Id of the problem in the given (sorted) position set by the @p i index.
 	*/
 	string get_i_problem(int i) const;
 	/**
 	  @brief Container size getter.
 	  @pre Always true.
-	  @return Integer with the amount of problems contained in th eimplicit parameter.
+	  @return Integer with the amount of problems contained in the implicit parameter.
 	*/
 	int size() const;
 	/**
@@ -129,8 +128,9 @@ class Session
 	  @post Recursively adds problems from the prerequisites tree into the User solvable problems list with @p problem_id as its root.
 	*/
 	void problem_fetching(User& usr, const string& problem_id);
-
+	/** @brief Comparison of Session std::string identifiers with < operator. */
 	bool operator< (const Session& other) const;
+	/** @brief Comparison of Session std::string identifiers with == operator. */
 	bool operator== (const Session& other) const;
 	~Session();
 };

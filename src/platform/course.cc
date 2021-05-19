@@ -104,11 +104,13 @@ void Course::decrease_coursing()
     this->are_coursing--;
 }
 
+//this is a vector-like index-based session getter
 string Course::get_session_id(int i) const
 {
     return this->session_list[i];
 }
 
+//this is a vector-like index-based problem getter
 string Course::get_problem_id(int i) const
 {
     auto it = this->problem_set.begin();
@@ -147,7 +149,7 @@ void Course::init_solvable_from_sessions(Session_repo& session_list, const strin
     for (const auto& session : this->session_list)
     {
 	//one by one, we set everything so that the User gets every different possible
-	//solvable problem inserted into its solvable problems list.
+	//solvable problem from every different session inserted into its solvable problems list.
 	session_list.get_session(session).init_solvable_problems_from_user(user_id, user_list);
 
     }

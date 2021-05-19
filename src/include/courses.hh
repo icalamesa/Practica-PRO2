@@ -27,9 +27,9 @@ class Course_repo
     map<int, Course> course_list;
 
     /**
-      A Course instance is read from Standard input following the format.
-	@pre Read Course instance is guaranteed to not be equal to other existing courses.
-	@post If there is no Problem intersection among the Session instances contained in the created Course, it is added to the @ref Course list. Course is not added and and error message is printed in Standard output otherwise.
+      @brief A Course instance is read from Standard input following the format, and inserted.
+	@pre Read Course instance is guaranteed to not be equal to other existing courses and the read Course follows the platform's rules for Courses.
+	@post If there is no Problem intersection among the Session instances contained in the created Course, it is added to the @ref Course list.
     */
     void read_and_add_course(Session_repo& session_list);
     /**
@@ -38,16 +38,16 @@ class Course_repo
 	@post Information of the Course is listed on standard output following the folling format:
 	course_id total_completed actual_coursing size_of_course (sessions id contained in the course)
     */
-    void list_course(const decltype(course_list)::const_iterator& it) const;
+    void list_course(const map<int, Course>::const_iterator& it) const;
 
     public:
         Course_repo();	
 	/**
-	    @brief Problem id finder inside an specific Course.
+	    @brief Session id finder inside an specific Course.
 	    @param course_id The id of the specific course to find the problem in.
-	    @param target_problem The id of the specific problem to be searched for.
+	    @param session_id The id of the specific Session to be searched for.
 	    @pre course_id is not equal to 0 and course_id corresponds to the id of an existing course in the implicit parameter.
-	    @post If the given problem is found within the problems of the given @ref Course, the name of the Session is returned. If the problem with the given identifier does not exist in the given course, or the Course does not exist, or even the problem, an error is printed in Standard output.
+	    @return If the given Session forms the Course instance, True is returned. False otherwise.
 	*/
 	bool find_session_in_courselist(int course_id, string session_id) const;
 	/** 
@@ -58,7 +58,6 @@ class Course_repo
 	*/
 
 	void insert_course(Course& new_course);
-	//listar por orden de inclusión
 	/**
 	    @brief Course Lvalue const reference getter.
 	    @param course_id Identifier of a Course instance.
@@ -68,8 +67,8 @@ class Course_repo
 	const Course& get_course(int course_id) const;
 	/**
 	    @brief Course Lvalue reference getter.
-	    @param id Identifier of a Course instance.
-	    @pre @p id integer that references a valid, existing Course instance.
+	    @param course_id Identifier of a Course instance.
+	    @pre @p course:id integer that references a valid, existing Course instance.
 	    @return Lvalue const reference to a Course instance
 	*/
 	Course& get_course(int course_id);

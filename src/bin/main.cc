@@ -170,7 +170,7 @@ int main()
 	    cout << '#' << command << ' ' << user << endl;
 	    tell_users(user, user_list);
 	}
-	
+	command.clear(); //no real need. Just in case.
 	cin >> command;
     }
 }

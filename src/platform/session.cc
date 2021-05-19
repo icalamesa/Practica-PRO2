@@ -29,7 +29,7 @@ string Session::get_id() const
 
 bool Session::find(const string& target_problem) const
 {
-    return this->list_of_problems.find(target_problem) != this->list_of_problems.end();
+    return this->tree_map.find(target_problem) != this->tree_map.end();
 }
 
 void Session::fill_problem_set(BinTree<string>& tree)
@@ -38,7 +38,6 @@ void Session::fill_problem_set(BinTree<string>& tree)
     cin >> aux;
     if (aux != "0")
     {
-	this->list_of_problems.insert(aux);
 	BinTree<string> left, right;
 	fill_problem_set(left);
 	fill_problem_set(right);
@@ -87,14 +86,14 @@ void Session::info_session() const
 
 int Session::size() const
 {
-    return this->list_of_problems.size();
+    return this->tree_map.size();
 }
 
 string Session::get_i_problem(int i) const
 {
-    auto a = this->list_of_problems.begin();
+    auto a = this->tree_map.begin();
     std::advance(a, i);
-    return *a;
+    return a->first;
 }
 
 void Session::problem_fetching(User& usr, const string& problem_id)
