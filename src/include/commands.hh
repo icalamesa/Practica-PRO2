@@ -36,8 +36,8 @@ void add_session(Session_repo& session_list, const string& session_id);
 //3.
 /**
   @brief Function that performs the "nuevo_curso" command.
-    @param course_id Id for the new Course instance to be created and inserted into the Course repository.
     @param course_list Problem repository to insert the new problem instance in.
+    @param session_list List of Session instances.
     @pre Always true.
     @post Adds a new course with identifier size + 1 in case it meets the constraint of no repetition of problems in the same course. The command supports the short form nc. First a number of sessions is read and then a sequence of valid session identifiers. If there are no intersection of problems in the sessions, the course is added to the course set and its identifier is printed. its identifier is printed. Otherwise, it is not added to the set (so that the size does not change) and an error message is printed. It is guaranteed that the new course is not is not the same as the existing ones.
 */
@@ -59,6 +59,7 @@ void add_user(string user_id, User_repo& user_list);
   @brief Function that performs the "baja_usuario" command.
     @param user_id Id for the new User instance to be created and inserted into the User repository.
     @param user_list User repository to insert the new User instance in.
+    @param course_list Repository of Course instances.
     @pre Always true.
     @post Removes a user with identifier @p user_id from the list. If there is no user on the platform with the same identifier, an error message is printed. Otherwise the number of registered users is printed after deletion. 
     
@@ -72,6 +73,8 @@ void remove_user(string user_id, User_repo& user_list, Course_repo& course_list)
     @param user_id Id of the User.
     @param course_id Id of the Course to enroll the User in.
     @param user_list the list of users where the target user we assume is in.
+    @param course_list Repository of Course instances.
+    @param session_list Repository of Session instances.
     @pre Always true.
     @post Enrolls the user with identifier @p user_id in the course with identifier @p course_id. If the user or the course does not exist in the platform or is already enrolled in another course that has not been completed, an error message is printed. Otherwise the number of users enrolled in the course after adding the course is printed (it is guaranteed that the user has not been previously enrolled in the course).
 */
@@ -95,6 +98,7 @@ void tell_usr_course(string user_id, User_repo& user_list);
     @param problem_id Id of the Problem.
     @param course_list Course instances repository.
     @param problem_list Repository of Problem instances.
+    @param session_list Repository of Session instances.
     @pre Always true.
     @post Queries the session of the problem whose identifier is @p problem_id in the course with identifier @p course_id. If the course does not exist or if the problem does not exist or if the problem does not belong to the course, an error message is printed. Otherwise, the identifier of the session where the problem occurs in the course is printed.
 */
@@ -126,6 +130,7 @@ void tell_solvable_probs(string user_id, User_repo& user_list);
     @param user_id Id of the User that performed the submission.
     @param problem_id Id of the Problem submitted.
     @param successful True if the submission is flagged correct, false otherwise.
+    @param user_list List of users.
     @param problem_list List of problems.
     @param session_list List of sessions.
     @param course_list List of courses.

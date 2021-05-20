@@ -31,7 +31,7 @@ using namespace std;
 	    @pre @p it points to a valid location (non past-the-end).
 	    @post Information of the User instance contained in the list of users pointed by the iterator is displayed in Standard output.
 	*/
-	void list_users(const decltype(user_list)::const_iterator& it) const;
+	void list_users(const map<string, User>::const_iterator& it) const;
 	public:
 	/**
 	    Constructs an empty User_repo class.

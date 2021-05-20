@@ -38,6 +38,7 @@ class Course
     /** @brief Number of total active and past users that have completed the Course.*/
     int have_coursed = 0;
     /**
+      @brief Inserts Session ids inside the Course session id container.
 	@param session_id Id of session.
 	@pre Always true.
 	@post The given @p session_id has been inserted in the list of session ids.

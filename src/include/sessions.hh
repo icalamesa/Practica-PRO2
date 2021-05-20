@@ -24,18 +24,19 @@ using namespace std;
 */
 class Session_repo
 {
+    /** @brief Container of Session instances. Access by identifier. */
     map<string, Session> session_list;
     public:
 	Session_repo();	
 	/**
 	    @brief Session reference getter.
-	    @param id Valid identifier of an exiting Session instance.
+	    @param session_id Valid identifier of an exiting Session instance.
 	    @return Lvalue Session instance reference.
 	*/
-	const Session& get_session(const string& id) const;
+	const Session& get_session(const string& session_id) const;
 	/**
 	    @brief Const Session reference getter.
-	    @param id Valid identifier of an exiting Session instance.
+	    @param session_id Valid identifier of an exiting Session instance.
 	    @return Lvalue Session instance const reference.
 	*/
 	Session& get_session(const string& session_id);
@@ -58,7 +59,7 @@ class Session_repo
 	    @param new_session The already initialized @ref Session instance to be added.
 	    @pre Always true.
 	    @post Inserts @p new_session onto the list of sessions.
-	    @return Boolean True if an isnertion actually happened(no identifier overlapping). False otherwise.
+	    @return Boolean True if an insertion actually happened(no identifier overlapping). False otherwise.
 	*/
 	bool insert_session(const Session& new_session);
 	/**
@@ -79,7 +80,7 @@ class Session_repo
 	  @brief Prints information of an specific Session instance.
             @param session_id Id of an specific session.
             @pre @p session_id is the identifier of an existing Session.
-            @post Info on the session whose id is @p session_id is displayed on Standard output in the following format:
+            @post Info on the session whose id is @p session_id is displayed on Standard output in the following format:\n
 	    id session_size sessions_in_postorder.
 	*/
 	void list_sessions(const string& session_id) const;

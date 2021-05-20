@@ -67,7 +67,7 @@ void User_repo::list_users(const string& user_id) const
     this->list_users(it);
 }
 
-void User_repo::list_users(const decltype(User_repo::user_list)::const_iterator& it) const
+void User_repo::list_users(const map<string, User>::const_iterator& it) const
 {
     cout << it->first;
     it->second.info_user();
