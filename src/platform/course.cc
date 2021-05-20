@@ -65,7 +65,7 @@ void Course::read_course(const Session_repo& session_list)
 	for (int j = 0; j < session_size; j++)
 	{
 	    string problem = ses.get_i_problem(j);
-	    this->problem_set.insert(make_pair(problem, ses.get_id()));
+	    this->insert_problem(problem, ses_ids);
 	}
     }
     //and push them to the Course altogether
@@ -131,16 +131,8 @@ bool Course::find_problem(const string& problem_id) const
 
 string Course::session_of_problem(const string& problem_id, const Session_repo& session_list)
 {
-    //brute force to find the Session of a Problem. Not the best method.
-    for (const auto& session_id : this->session_list)
-    {
-	auto& the_session = session_list.get_session(session_id);
-	if (the_session.find(problem_id))
-	{
-	    return session_id;
-	}
-    }
-    return string("0");
+    (void) session_list;
+    return this->problem_set.at(problem_id);
 }
 
 void Course::init_solvable_from_sessions(Session_repo& session_list, const string& user_id, User_repo& user_list)
