@@ -139,17 +139,7 @@ void find_problem_session(int course_id, string problem_id, Course_repo& course_
 	Course& the_course = course_list.get_course(course_id);
 	if (the_course.find_problem(problem_id))
 	{
-	    int course_size = the_course.size();
-	    string session;
-	    for (int i = 0; i < course_size; i++)
-	    {
-		session = the_course.get_session_id(i);
-		Session& ses = session_list.get_session(session);
-		if (ses.find(problem_id))
-		{
-		    cout << session << endl;
-		}
-	    }
+	    cout << course_list.get_course(course_id).session_of_problem(problem_id, session_list) << endl;    
 	}
 	else
 	{

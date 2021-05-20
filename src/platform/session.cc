@@ -48,6 +48,7 @@ void Session::fill_problem_set(BinTree<string>& tree)
 	if (not left.empty()) l = left.value();
 	if (not right.empty()) r = right.value();
 	this->tree_map.insert(make_pair(aux, make_pair(l, r)));
+	this->problems.push_back(aux);
     }
 }
 
@@ -92,8 +93,7 @@ int Session::size() const
 string Session::get_i_problem(int i) const
 {
     auto a = this->tree_map.begin();
-    std::advance(a, i);
-    return a->first;
+    return this->problems[i];
 }
 
 void Session::problem_fetching(User& usr, const string& problem_id)

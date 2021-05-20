@@ -30,6 +30,7 @@ class Session
     BinTree<string> problem_node;
     /** @brief std::map that allows quick search of the children nodes for every problem in the prerequisites tree. Stores '0' if no child node.*/
     map<string, std::pair<string, string>> tree_map;
+    std::vector<string> problems;
     /** @brief Identifier of the Session. */
     string id;
     /** 
