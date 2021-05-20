@@ -8,7 +8,7 @@
 */
 /** @cond */
 #include <string>
-#include <set>
+#include <map>
 #include <vector>
 /** @endcond */
 #include "sessions.hh"
@@ -25,7 +25,7 @@ using namespace std;
 class Course
 {
     /** @brief Set of problems retrieved from every Session in the Course.*/
-    set<string> problem_set;
+    map<string, string> problem_set;
     /** @brief Integer that is increased after every problem session_insertion. Allows an easy way to check whether the Course follows the no intersection rule between problems from sessions. */
     int expected_size = 0;
     /** @brief List of sessions, contained in an std::set in a lexicographically sorted fashion*/
@@ -133,7 +133,7 @@ class Course
 	  @pre Always true.
 	  @post The id of a given problem @p problem_id has been individually pushed into the Course problem list.
 	*/
-	void insert_problem(const string& problem_id);
+	void insert_problem(const string& problem_id, const string& session_id);
 	/**
 	  @brief Checker of existence of a problem within the Course.
 	  @param problem_id Id of a problem.

@@ -65,14 +65,14 @@ void Course::read_course(const Session_repo& session_list)
 	for (int j = 0; j < session_size; j++)
 	{
 	    string problem = ses.get_i_problem(j);
-	    probs.push_back(problem);
+	    this->problem_set.insert(make_pair(problem, ses.get_id()));
 	}
     }
     //and push them to the Course altogether
-    for ( const auto& str : probs )
-    {
-	this->insert_problem(str);
-    }
+    //for ( const auto& str : probs )
+    //{
+	//this->insert_problem(str);
+    //}
 }
 
 bool Course::session_exists(const string& session_id) const
@@ -113,12 +113,12 @@ string Course::get_problem_id(int i) const
 {
     auto it = this->problem_set.begin();
     std::advance(it, i);
-    return *it;
+    return it->first;
 }
 
-void Course::insert_problem(const string& problem_id)
+void Course::insert_problem(const string& problem_id, const string& session_id)
 {
-    this->problem_set.insert(problem_id);
+    this->problem_set.insert(make_pair(problem_id, session_id));
     this->expected_size++;
 }
 
